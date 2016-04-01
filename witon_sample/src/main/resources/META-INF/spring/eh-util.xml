@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.witon.ehealth.biz" />
+	<context:component-scan base-package="com.witon.ehealth.core" />
+
+	<!-- 配置线程池 -->
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 线程池维护线程的最少数量 -->
+		<property name="corePoolSize" value="5" />
+		<!-- 线程池维护线程所允许的空闲时间 -->
+		<property name="keepAliveSeconds" value="30000" />
+		<!-- 线程池维护线程的最大数量 -->
+		<property name="maxPoolSize" value="5" />
+		<!-- 线程池所使用的缓冲队列 -->
+		<property name="queueCapacity" value="256" />
+	</bean>
+
+
+	<!-- 环境变量配置 start -->
+	<bean id="envProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:/app.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="extProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:/conf/#{envProperties.getProperty('config.file.type')}/config.properties
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dbConfigProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>#{extProperties.getProperty('db.config.file')}</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<context:property-placeholder
+		properties-ref="envProperties" ignore-unresolvable="true"
+		ignore-resource-not-found="true" />
+	<context:property-placeholder
+		properties-ref="extProperties" ignore-unresolvable="true" />
+	<context:property-placeholder
+		properties-ref="dbConfigProperties" ignore-unresolvable="true" />
+	<!-- 环境变量配置 end -->
+
+	<!-- systemConfig -->
+	<bean id="ehSystemConfig" class="com.witon.ehealth.util.conf.SystemConfigImpl">
+		<property name="envProps" ref="envProperties" />
+		<property name="extprops" ref="extProperties" />
+		<property name="test" value="${jdbc.url}" />
+	</bean>
+
+
+	<!-- velocity -->
+	<bean id="velocityEngineInternal"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<props>
+				<prop key="resource.loader">file, class, jar</prop>
+				<prop key="class.resource.loader.class">
+					org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+				</prop>
+				<prop key="jar.resource.loader.class">
+					org.apache.velocity.runtime.resource.loader.JarResourceLoader
+				</prop>
+
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+			</props>
+		</property>
+		<property name="resourceLoaderPath" value="classpath:/META-INF/velocity/vms/" />
+	</bean>
+
+
+
+</beans>

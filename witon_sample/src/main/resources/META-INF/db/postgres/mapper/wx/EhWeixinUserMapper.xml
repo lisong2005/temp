@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.witon.ehealth.common.dal.pg.dao.wx.WeixinUserDao">
+
+	<resultMap id="RM"
+		type="com.witon.ehealth.common.dal.pg.dbo.wx.WeixinUserDo">
+		<result property="id" column="id" />
+		<result property="appId" column="app_id" />
+		<result property="openId" column="open_id" />
+		<result property="unionId" column="union_id" />
+		<result property="props" column="props" />
+		<result property="gmtCreate" column="gmt_create" />
+		<result property="gmtModify" column="gmt_modify" />
+	</resultMap>
+
+	<sql id="allColumns">
+		ID,
+		APP_ID,
+		OPEN_ID,
+		UNION_ID,
+		PROPS,
+		GMT_CREATE,
+		GMT_MODIFY
+	</sql>
+
+	<select id="getId" resultType="long">
+		select
+		nextval('seq_eh_weixin_user')
+	</select>
+
+	<insert id="add" parameterType="com.witon.ehealth.common.dal.pg.dbo.wx.WeixinUserDo">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select
+			nextval('SEQ_eh_weixin_user')
+		</selectKey>
+		insert into eh_weixin_user (
+		<include refid="allColumns" />
+		) values
+		(
+		#{id},
+		#{appId},
+		#{openId},
+		#{unionId},
+		#{props},
+		now(),
+		now()
+		)
+	</insert>
+
+	<select id="getById" resultMap="RM">
+		select
+		<include refid="allColumns" />
+		from eh_weixin_user where
+		id = #{id}
+	</select>
+
+	<select id="lockById" resultMap="RM">
+		select
+		<include refid="allColumns" />
+		from eh_weixin_user where
+		id = #{id} for update nowait
+	</select>
+
+	<select id="getByOpenId" resultMap="RM" parameterType="java.util.HashMap">
+		select
+		<include refid="allColumns" />
+		from eh_weixin_user
+		where 1=1 and
+		open_id=#{openId} and
+		app_id=#{appId}
+		limit 1
+	</select>
+
+	<select id="getByUnionId" resultMap="RM" parameterType="java.util.HashMap">
+		select
+		<include refid="allColumns" />
+		from eh_weixin_user
+		where union_id=#{unionId}
+	</select>
+
+	<delete id="deleteByUnionId">
+		delete from eh_weixin_user
+		where union_id=#{unionId}
+	</delete>
+
+</mapper>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.witon.ehealth.common.dal.pg.dao.comm.ConfigParamDao">
+
+	<resultMap id="RM"
+		type="com.witon.ehealth.common.dal.pg.dbo.comm.ConfigParamDo">
+		<result property="id" column="ID" />
+		<result property="systemName" column="SYSTEM_NAME" />
+		<result property="moduleName" column="MODULE_NAME" />
+		<result property="paramKey" column="PARAM_KEY" />
+		<result property="paramValue" column="PARAM_VALUE" />
+		<result property="status" column="STATUS" />
+		<result property="memo" column="MEMO" />
+		<result property="gmtCreate" column="GMT_CREATE" />
+		<result property="gmtModify" column="GMT_MODIFY" />
+	</resultMap>
+
+	<sql id="allColumns">
+		ID,
+		SYSTEM_NAME,
+		MODULE_NAME,
+		PARAM_KEY,
+		PARAM_VALUE,
+		STATUS,
+		MEMO,
+		GMT_CREATE,
+		GMT_MODIFY
+	</sql>
+
+	<sql id="allColumnsForOrg">
+		a.ID,
+		a.SYSTEM_NAME,
+		a.MODULE_NAME,
+		b.NAME as PARAM_KEY,
+		a.PARAM_VALUE,
+		a.STATUS,
+		a.MEMO,
+		a.GMT_CREATE,
+		a.GMT_MODIFY
+	</sql>
+
+	<insert id="add"
+		parameterType="com.witon.ehealth.common.dal.pg.dbo.comm.ConfigParamDo">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select
+			nextval('SEQ_EH_CONFIG_PARAM')
+		</selectKey>
+		insert into EH_CONFIG_PARAM (
+		<include refid="allColumns" />
+		) values
+		(
+		#{id},
+		#{systemName},
+		#{moduleName},
+		#{paramKey},
+		#{paramValue},
+		#{status},
+		#{memo},
+		now(),
+		now()
+		)
+	</insert>
+
+	<select id="getById" resultMap="RM">
+		select
+		<include refid="allColumns" />
+		from EH_CONFIG_PARAM
+		where id = #{id}
+	</select>
+
+	<select id="lockById" resultMap="RM">
+		select
+		<include refid="allColumns" />
+		from EH_CONFIG_PARAM
+		where id = #{id} for update nowait
+	</select>
+
+
+	<select id="getByCond" resultMap="RM" parameterType="java.util.HashMap">
+		select
+		<include refid="allColumns" />
+		from EH_CONFIG_PARAM
+		where 1=1
+		<if test="systemName != null">
+			and SYSTEM_NAME=#{systemName}
+		</if>
+		<if test="moduleName != null">
+			and MODULE_NAME=#{moduleName}
+		</if>
+		<if test="paramKey != null">
+			and PARAM_KEY=#{paramKey}
+		</if>
+		<if test="status != null">
+			and STATUS=#{status}
+		</if>
+	</select>
+
+
+	<!-- update -->
+	<update id="update"
+		parameterType="com.witon.ehealth.common.dal.pg.dbo.comm.ConfigParamDo">
+		UPDATE EH_CONFIG_PARAM
+		SET
+		SYSTEM_NAME=#{systemName},
+		MODULE_NAME=#{moduleName},
+		PARAM_KEY=#{paramKey},
+		PARAM_VALUE=#{paramValue},
+		STATUS=#{status},
+		MEMO=#{memo},
+		GMT_MODIFY=now()
+		WHERE
+		id=#{id}
+	</update>
+
+
+	<!-- start pageQuery -->
+	<select id="pageQuery" resultMap="RM" parameterType="java.util.HashMap">
+		select
+		<include refid="allColumns" />
+		from EH_CONFIG_PARAM
+		where 1=1
+		<if test="systemName != null">
+			and SYSTEM_NAME=#{systemName}
+		</if>
+		<if test="moduleName != null">
+			and MODULE_NAME=#{moduleName}
+		</if>
+		<if test="paramKey != null">
+			and PARAM_KEY=#{paramKey}
+		</if>
+		<if test="status != null">
+			and STATUS=#{status}
+		</if>
+		order by gmt_create desc limit #{limit}
+		OFFSET #{offset}
+	</select>
+
+	<select id="pageQueryCount" resultType="long" parameterType="java.util.HashMap">
+		select
+		count(1)
+		from EH_CONFIG_PARAM
+		where 1=1
+		<if test="systemName != null">
+			and SYSTEM_NAME=#{systemName}
+		</if>
+		<if test="moduleName != null">
+			and MODULE_NAME=#{moduleName}
+		</if>
+		<if test="paramKey != null">
+			and PARAM_KEY=#{paramKey}
+		</if>
+		<if test="status != null">
+			and STATUS=#{status}
+		</if>
+	</select>
+	<!-- end pageQuery -->
+
+
+	<update id="delete" parameterType="java.util.HashMap">
+		DELETE from eh_config_param
+		WHERE
+		id in
+		<foreach item="item" collection="idList" separator="," open="("
+			close=")" index="">
+			#{item}
+		</foreach>
+	</update>
+
+</mapper>
+

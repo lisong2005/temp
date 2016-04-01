@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.witon.ehealth.common.dal.pg.dao.wx.OpenTokenDao">
+
+	<resultMap id="RM"
+		type="com.witon.ehealth.common.dal.pg.dbo.wx.OpenTokenDo">
+		<result property="id" column="ID" />
+		<result property="appType" column="APP_TYPE" />
+		<result property="appId" column="APP_ID" />
+		<result property="accessToken" column="ACCESS_TOKEN" />
+		<result property="refreshToken" column="REFRESH_TOKEN" />
+		<result property="props" column="PROPS" />
+		<result property="memo" column="MEMO" />
+		<result property="gmtCreate" column="gmt_create" />
+		<result property="gmtModify" column="gmt_modify" />
+		<result property="gmtEffect" column="GMT_EFFECT" />
+		<result property="gmtExpire" column="GMT_EXPIRE" />
+	</resultMap>
+
+	<sql id="allColumns">
+		ID,
+		APP_TYPE,
+		APP_ID,
+		ACCESS_TOKEN,
+		REFRESH_TOKEN,
+		PROPS,
+		MEMO,
+		GMT_CREATE,
+		GMT_MODIFY,
+		GMT_EFFECT,
+		GMT_EXPIRE
+	</sql>
+
+	<select id="getId" resultType="long">
+		select
+		nextval('SEQ_EH_OPEN_TOKEN')
+	</select>
+
+	<insert id="add" parameterType="com.witon.ehealth.common.dal.pg.dbo.wx.OpenTokenDo">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select
+			nextval('SEQ_EH_OPEN_TOKEN')
+		</selectKey>
+		insert into eh_open_token (
+		<include refid="allColumns" />
+		) values
+		(
+		#{id},
+		#{appType},
+		#{appId},
+		#{accessToken},
+		#{refreshToken},
+		#{props},
+		#{memo},
+		now(),
+		now(),
+		#{gmtEffect},
+		#{gmtExpire}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.witon.ehealth.common.dal.pg.dbo.wx.OpenTokenDo">
+		update eh_open_token set
+		APP_TYPE = #{appType},
+		APP_ID = #{appId},
+		ACCESS_TOKEN = #{accessToken},
+		REFRESH_TOKEN = #{refreshToken},
+		PROPS = #{props},
+		MEMO = #{memo},
+		GMT_MODIFY = now(),
+		GMT_EFFECT = #{gmtEffect},
+		GMT_EXPIRE = #{gmtExpire}
+		where id = #{id}
+	</update>
+
+	<select id="getById" resultMap="RM">
+		select
+		<include refid="allColumns" />
+		from EH_OPEN_TOKEN
+		where id = #{id}
+	</select>
+
+	<select id="lockById" resultMap="RM">
+		select
+		<include refid="allColumns" />
+		from EH_OPEN_TOKEN
+		where id = #{id} for update nowait
+	</select>
+
+	<select id="getByCond" resultMap="RM" parameterType="java.util.HashMap">
+		select
+		<include refid="allColumns" />
+		from EH_OPEN_TOKEN
+		where APP_ID=#{appId}
+		and APP_TYPE=#{appType}
+		<if test="gmtExpire != null">
+			and GMT_EXPIRE>#{gmtExpire}
+		</if>
+		<if test="gmtExpire == null">
+			and GMT_EXPIRE>now()
+		</if>
+		order by GMT_EXPIRE desc
+	</select>
+
+
+
+</mapper>

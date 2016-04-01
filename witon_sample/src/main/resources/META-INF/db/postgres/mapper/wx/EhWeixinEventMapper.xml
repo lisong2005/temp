@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.witon.ehealth.common.dal.pg.dao.wx.WeixinEventDao">
+
+	<resultMap id="RM"
+		type="com.witon.ehealth.common.dal.pg.dbo.wx.WeixinEventDo">
+		<result property="id" column="ID" />
+		<result property="toUser" column="TO_USER" />
+		<result property="fromUser" column="FROM_USER" />
+		<result property="eventType" column="EVENT_TYPE" />
+		<result property="eventKey" column="EVENT_KEY" />
+		<result property="eventProps" column="EVENT_PROPS" />
+		<result property="gmtUpload" column="GMT_UPLOAD" />
+		<result property="gmtCreate" column="GMT_CREATE" />
+		<result property="gmtModify" column="GMT_MODIFY" />
+	</resultMap>
+
+	<sql id="allColumns">
+		ID,
+		TO_USER,
+		FROM_USER,
+		EVENT_TYPE,
+		EVENT_KEY,
+		EVENT_PROPS,
+		GMT_UPLOAD,
+		GMT_CREATE,
+		GMT_MODIFY
+	</sql>
+
+	<select id="getId" resultType="long">
+		select nextval('seq_eh_wx_event')
+	</select>
+
+	<insert id="add"
+		parameterType="com.witon.ehealth.common.dal.pg.dbo.wx.WeixinEventDo">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select
+			nextval('SEQ_eh_wx_event')
+		</selectKey>
+		insert into eh_wx_event (
+		<include refid="allColumns" />
+		) values
+		(
+		#{id},
+		#{toUser},
+		#{fromUser},
+		#{eventType},
+		#{eventKey},
+		#{eventProps},
+		#{gmtUpload},
+		now(),
+		now()
+		)
+	</insert>
+
+	<select id="getById" resultMap="RM">
+		select
+		<include refid="allColumns" />
+		from eh_wx_event
+		where id = #{id}
+	</select>
+
+	<select id="lockById" resultMap="RM">
+		select
+		<include refid="allColumns" />
+		from eh_wx_event
+		where id = #{id} for update nowait
+	</select>
+
+
+
+</mapper>

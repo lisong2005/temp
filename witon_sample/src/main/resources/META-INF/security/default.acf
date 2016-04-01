@@ -1,0 +1,15 @@
+
+# 不需要登录授权可以访问的页面
+/notfound.htm>NO_AUTH
+/error.htm>NO_AUTH
+/login.htm>NO_AUTH
+/vc.htm>NO_AUTH
+/alipay/aboutUs.htm>NO_AUTH
+
+## ws服务不需要登录
+/services/*>NO_AUTH
+
+
+## 默认其他页面都需要登录
+/*>NORMAL_ROLE
+
