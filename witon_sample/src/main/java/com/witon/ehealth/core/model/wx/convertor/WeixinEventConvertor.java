@@ -39,7 +39,8 @@ public class WeixinEventConvertor {
         ret.setFromUser(aWeixinEventDo.getFromUser());
         ret.setEventKey(aWeixinEventDo.getEventKey());
 
-        WeixinEvent.EventTypeEnum type = WeixinEvent.EventTypeEnum.getByCode(aWeixinEventDo.getEventType());
+        WeixinEvent.EventTypeEnum type = WeixinEvent.EventTypeEnum
+            .getByCode(aWeixinEventDo.getEventType());
         if (type == null) {
             ret.setWxEventType(aWeixinEventDo.getEventType());
         } else {

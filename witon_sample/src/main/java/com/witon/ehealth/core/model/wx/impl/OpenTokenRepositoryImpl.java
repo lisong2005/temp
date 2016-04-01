@@ -79,7 +79,8 @@ public class OpenTokenRepositoryImpl implements OpenTokenRepository {
         List<OpenToken> retList = new ArrayList<OpenToken>();
 
         List<OpenTokenDo> list = this.openTokenDao.getByCond(
-                cond.getAppType() != null ? cond.getAppType().getCode() : null, cond.getAppId(), cond.getGmtExpire());
+            cond.getAppType() != null ? cond.getAppType().getCode() : null, cond.getAppId(),
+            cond.getGmtExpire());
         if (!CollectionUtils.isEmpty(list)) {
             for (OpenTokenDo item : list) {
                 retList.add(OpenTokenConvertor.convert(item));

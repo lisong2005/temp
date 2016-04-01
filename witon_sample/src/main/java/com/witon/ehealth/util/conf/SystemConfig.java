@@ -14,11 +14,11 @@ public interface SystemConfig {
     /** 系统运行模式 */
     public static enum RunModeEnum {
 
-                                    /** 发布模式 */
-                                    PRODUCT,
+        /** 发布模式 */
+        PRODUCT,
 
-                                    /** 开发模式 */
-                                    DEVELOP;
+        /** 开发模式 */
+        DEVELOP;
 
     }
 
