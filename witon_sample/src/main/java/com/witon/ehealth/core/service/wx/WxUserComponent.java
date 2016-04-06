@@ -24,14 +24,6 @@ public interface WxUserComponent {
     /**
      * 
      * @param wexinUser
-     * @param orgId
-     * @return
-     */
-    public WxResult createUserWithOrg(WeixinUser wexinUser, long orgId);
-
-    /**
-     * 
-     * @param wexinUser
      * @return
      */
     public WxResult unsubscribe(WeixinUser wexinUser);
@@ -51,14 +43,5 @@ public interface WxUserComponent {
      * @return
      */
     public WxResult query(String appId, String openId);
-
-    /**
-     * 失效原来的微信用户，新用户新增微信登录方式
-     * 
-     * @param oldUserInfo
-     * @param newUserInfo
-     * @return
-     */
-    public boolean bindAndDisable(String oldUid, String newUid);
 
 }
