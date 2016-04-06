@@ -2,7 +2,7 @@
  * Witontek.com.
  * Copyright (c) 2012-2014 All Rights Reserved.
  */
-package org.springframework.web.servlet.view.velocity;
+package com.spring.velocity;
 
 import java.util.Map;
 
@@ -16,6 +16,7 @@ import org.apache.velocity.tools.view.ViewToolContext;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.Assert;
+import org.springframework.web.servlet.view.velocity.VelocityToolboxView;
 
 /**
  * 支持 2.0 版本的velocity-tool
