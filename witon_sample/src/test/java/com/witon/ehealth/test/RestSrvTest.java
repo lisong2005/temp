@@ -15,6 +15,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.witon.ehealth.biz.srv.rest.test.Customer;
+
 /**
  * 
  * @author Administrator
@@ -72,6 +74,30 @@ public class RestSrvTest {
             //            JAXBContext jaxbContext = JAXBContext.newInstance(JSONObject.class);
             //            jaxbContext.createMarshaller().marshal(req, sw);
             //            logger.info("{}", sw.toString());
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_client_003() {
+        try {
+            logger.info("");
+
+            Customer c = new Customer();
+            c.setId(113L);
+            c.setName("aaaa");
+
+            // http://localhost:8080/ehealth/rest/test/qr/createReq
+            Client client = ClientBuilder.newClient();
+            WebTarget target = client.target("http://localhost:8090/wt/rest").path("test/add")
+                .queryParam("a", "b").queryParam("c", "d").queryParam("lang", "zh_cn");
+
+            String restResult = target.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.json(c),
+                String.class);
+
+            logger.info("{}", restResult);
+
         } catch (Exception e) {
             logger.error("", e);
         }

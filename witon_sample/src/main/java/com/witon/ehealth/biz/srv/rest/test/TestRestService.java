@@ -10,12 +10,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
@@ -66,9 +71,36 @@ public class TestRestService implements InitializingBean {
         }
     }
 
+    @POST
+    @Path("/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON })
+    public List<Customer> add(Customer c, @Context UriInfo uriInfo) {
+        logger.info("add {}", c);
+
+        MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
+        MultivaluedMap<String, String> pathParams = uriInfo.getPathParameters();
+        logger.info("queryParams = {}", queryParams);
+        logger.info("pathParams = {}", pathParams);
+
+        customers.put((long) customers.size(), c);
+        return new ArrayList<Customer>(customers.values());
+    }
+
+    @GET
+    @Path("/query")
+    @Produces({ MediaType.APPLICATION_JSON })
+    public Customer queryByParam(@DefaultValue("0") @QueryParam("id") Long id) {
+        logger.info("{}", id);
+        Customer ret = customers.get(id);
+        if (ret != null) {
+            return ret;
+        }
+        return new Customer();
+    }
+
     @GET
     @Path("/query/{id}")
-    //  @Consumes(MediaType.APPLICATION_JSON)
     @Produces({ MediaType.APPLICATION_JSON })
     public Customer doTestRequest(@PathParam("id") Long id) {
         logger.info("{}", id);
@@ -85,6 +117,13 @@ public class TestRestService implements InitializingBean {
     @Path("/hello/{username}")
     public String hello(@PathParam("username") String userName, @Context UriInfo uriInfo) {
         logger.info("hello {}, uriInfo={}", userName, ToStringBuilder.reflectionToString(uriInfo));
+
+        MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
+        MultivaluedMap<String, String> pathParams = uriInfo.getPathParameters();
+
+        logger.info("queryParams = {}", queryParams);
+        logger.info("pathParams = {}", pathParams);
+
         return String.format("hello %s!", userName);
     }
 
