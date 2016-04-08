@@ -72,11 +72,26 @@ public class TestRestService implements InitializingBean {
     }
 
     @POST
+    @Path("/reqAsStr")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({ MediaType.APPLICATION_JSON })
+    public List<Customer> reqAsStr(String req, @Context UriInfo uriInfo) {
+        logger.info("req = {}", req);
+
+        MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
+        MultivaluedMap<String, String> pathParams = uriInfo.getPathParameters();
+        logger.info("queryParams = {}", queryParams);
+        logger.info("pathParams = {}", pathParams);
+
+        return new ArrayList<Customer>(customers.values());
+    }
+
+    @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({ MediaType.APPLICATION_JSON })
     public List<Customer> add(Customer c, @Context UriInfo uriInfo) {
-        logger.info("add {}", c);
+        logger.info("c = {}", c);
 
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         MultivaluedMap<String, String> pathParams = uriInfo.getPathParameters();

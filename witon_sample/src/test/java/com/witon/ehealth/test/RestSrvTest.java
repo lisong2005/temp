@@ -102,4 +102,28 @@ public class RestSrvTest {
             logger.error("", e);
         }
     }
+
+    @Test
+    public void test_client_004() {
+        try {
+            logger.info("");
+
+            Customer c = new Customer();
+            c.setId(113L);
+            c.setName("aaaa");
+
+            // http://localhost:8080/ehealth/rest/test/qr/createReq
+            Client client = ClientBuilder.newClient();
+            WebTarget target = client.target("http://localhost:8090/wt/rest").path("test/reqAsStr")
+                .queryParam("a", "b").queryParam("c", "d").queryParam("lang", "zh_cn");
+
+            String restResult = target.request(MediaType.APPLICATION_JSON_TYPE).post(Entity.json(c),
+                String.class);
+
+            logger.info("{}", restResult);
+
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
 }
