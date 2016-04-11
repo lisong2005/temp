@@ -408,8 +408,7 @@
 		additivity="false">
 		<appender-ref ref="EHEALTH-WEB-APPENDER" />
 		<appender-ref ref="COMMON-ERROR" />
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
@@ -420,8 +419,7 @@
 		additivity="false">
 		<appender-ref ref="EHEALTH-CORE-MODEL-APPENDER" />
 		<appender-ref ref="COMMON-ERROR" />
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
@@ -432,8 +430,7 @@
 		additivity="false">
 		<appender-ref ref="EHEALTH-CORE-SERVICE-APPENDER" />
 		<appender-ref ref="COMMON-ERROR" />
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
@@ -444,8 +441,7 @@
 		additivity="false">
 		<appender-ref ref="EHEALTH-BIZ-SERVICE-APPENDER" />
 		<appender-ref ref="COMMON-ERROR" />
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
@@ -456,8 +452,7 @@
 		additivity="false">
 		<appender-ref ref="EHEALTH-BIZ-SERVICE-REST-APPENDER" />
 		<appender-ref ref="COMMON-ERROR" />
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
@@ -468,8 +463,7 @@
 		additivity="false">
 		<appender-ref ref="EHEALTH-BIZ-SERVICE-WS-APPENDER" />
 		<appender-ref ref="COMMON-ERROR" />
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
@@ -492,8 +486,7 @@
 		additivity="false">
 		<appender-ref ref="EHEALTH-DAL-APPENDER" />
 		<appender-ref ref="COMMON-ERROR" />
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
@@ -504,8 +497,7 @@
 		level="${logging_level_default}" additivity="false">
 		<appender-ref ref="EHEALTH-INTEGRATION-APPENDER" />
 		<appender-ref ref="COMMON-ERROR" />
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
@@ -536,8 +528,7 @@
 		additivity="false">
 		<appender-ref ref="DEFAULT" />
 		<appender-ref ref="COMMON-ERROR" />
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
@@ -558,8 +549,7 @@
 
 	<!-- default -->
 	<root level="${logging_level_warn}">
-		<if
-			condition='property("run.mode").contains("0") &amp;&amp; property("test.env").contains("dev")'>
+		<if condition='property("os.name").contains("Windows")'>
 			<then>
 				<appender-ref ref="STDOUT" />
 			</then>
