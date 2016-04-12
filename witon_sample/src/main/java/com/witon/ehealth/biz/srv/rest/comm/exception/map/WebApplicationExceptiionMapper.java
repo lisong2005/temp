@@ -2,7 +2,7 @@
  * Witontek.com.
  * Copyright (c) 2012-2015 All Rights Reserved.
  */
-package com.witon.ehealth.biz.srv.rest.exception.map;
+package com.witon.ehealth.biz.srv.rest.comm.exception.map;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.witon.ehealth.biz.srv.rest.comm.AbstractRestResponse;
-import com.witon.ehealth.biz.srv.rest.enums.RestResultCodeEnum;
+import com.witon.ehealth.biz.srv.rest.comm.enums.RestResultCodeEnum;
 
 /**
  * 

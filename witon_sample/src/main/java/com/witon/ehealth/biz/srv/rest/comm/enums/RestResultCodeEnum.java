@@ -2,7 +2,7 @@
  * Witontek.com.
  * Copyright (c) 2012-2014 All Rights Reserved.
  */
-package com.witon.ehealth.biz.srv.rest.enums;
+package com.witon.ehealth.biz.srv.rest.comm.enums;
 
 import org.apache.commons.lang.StringUtils;
 

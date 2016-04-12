@@ -2,55 +2,55 @@
  * Witontek.com.
  * Copyright (c) 2012-2014 All Rights Reserved.
  */
-package com.witon.ehealth.biz.srv.rest.exception;
+package com.witon.ehealth.biz.srv.rest.comm.exception;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.witon.ehealth.biz.srv.rest.enums.RestResultCodeEnum;
+import com.witon.ehealth.biz.srv.rest.comm.enums.RestResultCodeEnum;
 
 /**
  * 
  * @author song.li@witontek.com
- * @version $Id: ApiIllegalArgumentException.java, v 0.1 2014年12月12日 下午1:14:47 song.li@witontek.com Exp $
+ * @version $Id: ApiRequestDeniedException.java, v 0.1 2014年12月11日 下午2:29:51 song.li@witontek.com Exp $
  */
-public class ApiIllegalArgumentException extends ApiException {
+public class ApiRequestDeniedException extends ApiException {
 
     /**  */
-    private static final long serialVersionUID = 703850537463377107L;
+    private static final long serialVersionUID = 362763113558415118L;
 
     /**
      * 
      */
-    public ApiIllegalArgumentException() {
+    public ApiRequestDeniedException() {
         super();
     }
 
     /**
      * @param status
      */
-    public ApiIllegalArgumentException(int status) {
+    public ApiRequestDeniedException(int status) {
         super(status);
     }
 
     /**
      * @param response
      */
-    public ApiIllegalArgumentException(Response response) {
+    public ApiRequestDeniedException(Response response) {
         super(response);
     }
 
     /**
      * @param resultCode
      */
-    public ApiIllegalArgumentException(RestResultCodeEnum resultCode) {
+    public ApiRequestDeniedException(RestResultCodeEnum resultCode) {
         super(resultCode);
     }
 
     /**
      * @param status
      */
-    public ApiIllegalArgumentException(Status status) {
+    public ApiRequestDeniedException(Status status) {
         super(status);
     }
 
@@ -58,7 +58,7 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param message
      * @param status
      */
-    public ApiIllegalArgumentException(String message, int status) {
+    public ApiRequestDeniedException(String message, int status) {
         super(message, status);
     }
 
@@ -66,7 +66,7 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param message
      * @param response
      */
-    public ApiIllegalArgumentException(String message, Response response) {
+    public ApiRequestDeniedException(String message, Response response) {
         super(message, response);
     }
 
@@ -74,7 +74,7 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param message
      * @param status
      */
-    public ApiIllegalArgumentException(String message, Status status) {
+    public ApiRequestDeniedException(String message, Status status) {
         super(message, status);
     }
 
@@ -83,7 +83,7 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param cause
      * @param status
      */
-    public ApiIllegalArgumentException(String message, Throwable cause, int status) {
+    public ApiRequestDeniedException(String message, Throwable cause, int status) {
         super(message, cause, status);
     }
 
@@ -92,7 +92,7 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param cause
      * @param response
      */
-    public ApiIllegalArgumentException(String message, Throwable cause, Response response) {
+    public ApiRequestDeniedException(String message, Throwable cause, Response response) {
         super(message, cause, response);
     }
 
@@ -102,8 +102,8 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param status
      * @throws IllegalArgumentException
      */
-    public ApiIllegalArgumentException(String message, Throwable cause,
-                                       Status status) throws IllegalArgumentException {
+    public ApiRequestDeniedException(String message, Throwable cause,
+                                     Status status) throws IllegalArgumentException {
         super(message, cause, status);
     }
 
@@ -111,14 +111,14 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param message
      * @param cause
      */
-    public ApiIllegalArgumentException(String message, Throwable cause) {
+    public ApiRequestDeniedException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
      * @param message
      */
-    public ApiIllegalArgumentException(String message) {
+    public ApiRequestDeniedException(String message) {
         super(message);
     }
 
@@ -126,7 +126,7 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param cause
      * @param status
      */
-    public ApiIllegalArgumentException(Throwable cause, int status) {
+    public ApiRequestDeniedException(Throwable cause, int status) {
         super(cause, status);
     }
 
@@ -134,7 +134,7 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param cause
      * @param response
      */
-    public ApiIllegalArgumentException(Throwable cause, Response response) {
+    public ApiRequestDeniedException(Throwable cause, Response response) {
         super(cause, response);
     }
 
@@ -143,15 +143,15 @@ public class ApiIllegalArgumentException extends ApiException {
      * @param status
      * @throws IllegalArgumentException
      */
-    public ApiIllegalArgumentException(Throwable cause,
-                                       Status status) throws IllegalArgumentException {
+    public ApiRequestDeniedException(Throwable cause,
+                                     Status status) throws IllegalArgumentException {
         super(cause, status);
     }
 
     /**
      * @param cause
      */
-    public ApiIllegalArgumentException(Throwable cause) {
+    public ApiRequestDeniedException(Throwable cause) {
         super(cause);
     }
 

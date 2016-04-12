@@ -2,13 +2,13 @@
  * Witontek.com.
  * Copyright (c) 2012-2014 All Rights Reserved.
  */
-package com.witon.ehealth.biz.srv.rest.exception;
+package com.witon.ehealth.biz.srv.rest.comm.exception;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.witon.ehealth.biz.srv.rest.enums.RestResultCodeEnum;
+import com.witon.ehealth.biz.srv.rest.comm.enums.RestResultCodeEnum;
 
 /**
  * 
