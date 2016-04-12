@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+
+
+
+	<!-- WxAccessTokenComponent -->
+	<bean id="wxAccessTokenComponent"
+		class="com.witon.ehealth.core.service.wx.impl.WxAccessTokenComponentImpl">
+	</bean>
+
+	<!-- WxUserComponent -->
+	<bean id="wxUserComponent"
+		class="com.witon.ehealth.core.service.wx.impl.WxUserComponentImpl">
+	</bean>
+
+	<!-- WxMsgComponent -->
+	<bean id="wxMsgComponent"
+		class="com.witon.ehealth.core.service.wx.impl.WxMsgComponentImpl">
+		<property name="executors">
+			<list>
+				<ref bean="wxMsgExecutorForEvent" />
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxMsgExecutorForText"></bean>
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxMsgExecutorForVoice"></bean>
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxMsgExecutorForVideo"></bean>
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxMsgExecutorForImg"></bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- wxMsgExecutorForEvent -->
+	<bean id="wxMsgExecutorForEvent"
+		class="com.witon.ehealth.core.service.wx.executor.WxMsgExecutorForEvent">
+		<property name="list">
+			<list>
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxEventExecutorForClick" />
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxEventExecutorForView" />
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxEventExecutorForScan" />
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxEventExecutorForLocation" />
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxEventExecutorForSubscribe" />
+				<bean
+					class="com.witon.ehealth.core.service.wx.executor.WxEventExecutorForUnSubscribe" />
+			</list>
+		</property>
+		<property name="defalutExecutor">
+			<bean
+				class="com.witon.ehealth.core.service.wx.executor.WxEventExecutorForDefault"></bean>
+		</property>
+	</bean>
+
+
+
+</beans>

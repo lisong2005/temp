@@ -22,6 +22,10 @@
 	<bean id="weixinUserRepository"
 		class="com.witon.ehealth.core.model.wx.impl.WeixinUserRepositoryImpl" />
 
+	<!-- WxAppConfigRepository -->
+	<bean id="wxAppConfigRepository"
+		class="com.witon.ehealth.core.model.wx.impl.WxAppConfigRepositoryImpl" />
+
 
 
 </beans>

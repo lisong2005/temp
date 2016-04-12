@@ -13,7 +13,7 @@
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:/META-INF/spring/eh-*.xml</param-value>
+		<param-value>classpath:/META-INF/spring/base/**/eh-*.xml</param-value>
 	</context-param>
 
 

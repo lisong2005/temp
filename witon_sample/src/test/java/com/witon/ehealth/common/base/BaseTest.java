@@ -27,7 +27,8 @@ public class BaseTest {
     @Before
     public void setup() {
         try {
-            context = new ClassPathXmlApplicationContext("classpath*:/META-INF/spring/eh-*.xml");
+            context = new ClassPathXmlApplicationContext(
+                "classpath*:/META-INF/spring/base/**/eh-*.xml");
 
             logger.debug("[{}]setup", BaseTest.class.getName());
         } catch (Exception e) {

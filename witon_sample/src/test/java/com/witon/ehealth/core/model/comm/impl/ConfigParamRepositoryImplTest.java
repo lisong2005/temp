@@ -4,7 +4,10 @@
  */
 package com.witon.ehealth.core.model.comm.impl;
 
+import org.junit.Test;
+
 import com.witon.ehealth.common.base.BaseTest;
+import com.witon.ehealth.core.model.comm.ConfigParamRepository;
 
 /**
  * 
@@ -13,4 +16,13 @@ import com.witon.ehealth.common.base.BaseTest;
  */
 public class ConfigParamRepositoryImplTest extends BaseTest {
 
+    @Test
+    public void test_001() {
+        try {
+            ConfigParamRepository repo = getContext().getBean(ConfigParamRepository.class);
+            logger.info("{}", repo.getById(1L));
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
 }
