@@ -70,7 +70,8 @@ public class XMLParse {
      * @param nonce 随机字符串
      * @return 生成的xml字符串
      */
-    public static String generate(String encrypt, String signature, String timestamp, String nonce) {
+    public static String generate(String encrypt, String signature, String timestamp,
+                                  String nonce) {
 
         String format = "<xml>\n" + "<Encrypt><![CDATA[%1$s]]></Encrypt>\n"
                         + "<MsgSignature><![CDATA[%2$s]]></MsgSignature>\n"

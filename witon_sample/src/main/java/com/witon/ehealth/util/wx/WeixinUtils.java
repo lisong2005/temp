@@ -40,7 +40,7 @@ public class WeixinUtils {
 
     /**  */
     public static final Charset CHARSET            = Charset
-                                                       .forName(EhealthConstants.DEFAULT_CHARSET);
+        .forName(EhealthConstants.DEFAULT_CHARSET);
 
     public static String        ENCRYPT_XML_FORMAT = "<xml>\n"
                                                      // =============================================
@@ -59,8 +59,8 @@ public class WeixinUtils {
      * @param token
      * @return
      */
-    public static boolean verifyUrl(String signature, String timestamp, String nonce, String token)
-                                                                                                   throws AesException {
+    public static boolean verifyUrl(String signature, String timestamp, String nonce,
+                                    String token) throws AesException {
         String digest = getSHA1HexStr(timestamp, nonce, token);
         return StringUtils.equalsIgnoreCase(signature, digest);
     }
@@ -74,8 +74,8 @@ public class WeixinUtils {
      * @param encrypt 密文
      * @return 安全签名
      */
-    public static String getSHA1(String token, String timestamp, String nonce, String encrypt)
-                                                                                              throws AesException {
+    public static String getSHA1(String token, String timestamp, String nonce,
+                                 String encrypt) throws AesException {
         return getSHA1HexStr(token, timestamp, nonce, encrypt);
     }
 
@@ -132,8 +132,8 @@ public class WeixinUtils {
      * @return
      * @throws AesException
      */
-    public static String encrypt(String appId, String encodingAesKey, String text)
-                                                                                  throws AesException {
+    public static String encrypt(String appId, String encodingAesKey,
+                                 String text) throws AesException {
         byte[] aesKey = Base64.decodeBase64(encodingAesKey + "=");
 
         ByteGroup byteCollector = new ByteGroup();
@@ -184,8 +184,8 @@ public class WeixinUtils {
      * @return
      * @throws AesException
      */
-    public static String decrypt(String appId, String encodingAesKey, String text)
-                                                                                  throws AesException {
+    public static String decrypt(String appId, String encodingAesKey,
+                                 String text) throws AesException {
         byte[] aesKey = Base64.decodeBase64(encodingAesKey + "=");
         byte[] original;
         try {

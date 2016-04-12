@@ -27,8 +27,8 @@ public class SHA1 {
      * @return 安全签名
      * @throws AesException 
      */
-    public static String getSHA1(String token, String timestamp, String nonce, String encrypt)
-                                                                                              throws AesException {
+    public static String getSHA1(String token, String timestamp, String nonce,
+                                 String encrypt) throws AesException {
         try {
             String[] array = new String[] { token, timestamp, nonce, encrypt };
             StringBuffer sb = new StringBuffer();

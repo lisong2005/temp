@@ -43,7 +43,8 @@ public class DateUtil {
     public final static long      ONE_DAY_SECONDS      = 86400;
     public final static long      ONE_DAY_MILL_SECONDS = 86400000;
 
-    private static final String[] weekDayNames         = { "周日", "周一", "周二", "周三", "周四", "周五", "周六" };
+    private static final String[] weekDayNames         = { "周日", "周一", "周二", "周三", "周四", "周五",
+                                                           "周六" };
 
     /**
      * 获取星期中文描述
@@ -1027,7 +1028,7 @@ public class DateUtil {
         sBuffer.append("秒");
         return sBuffer.toString();
     }
-    
+
     public static DateFormat getNewDateFormat(String pattern) {
         DateFormat df = new SimpleDateFormat(pattern);
 

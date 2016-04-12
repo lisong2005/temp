@@ -75,8 +75,8 @@ public class WxSaxParseUtil {
          * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
          */
         @Override
-        public void startElement(String uri, String localName, String qName, Attributes attributes)
-                                                                                                   throws SAXException {
+        public void startElement(String uri, String localName, String qName,
+                                 Attributes attributes) throws SAXException {
             logger.debug("[startElement] qName={},attributes={}", qName, attributes);
             key = qName;
         }
