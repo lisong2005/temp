@@ -16,11 +16,9 @@
 
 	<toolbox scope="application">
 		<!-- <tool key="map" class="java.util.HashMap"/> -->
-		<tool key="dateUtil" class="com.witon.ehealth.common.service.facade.util.DateUtil" />
+		<tool key="dateUtil" class="com.witon.ehealth.util.DateUtil" />
 		<tool key="stringUtil" class="org.apache.commons.lang.StringUtils" />
 		<tool key="arrayUtil" class="org.apache.commons.lang.ArrayUtils" />
-		<tool key="hiddenHelper" class="com.witon.ehealth.util.HiddenHelper" />
-		<tool key="logger" class="com.witon.ehealth.web.util.VelocityLogger" />
 		<tool key="stringEscape" class="org.apache.commons.lang.StringEscapeUtils" />
 	</toolbox>
 </tools>  
