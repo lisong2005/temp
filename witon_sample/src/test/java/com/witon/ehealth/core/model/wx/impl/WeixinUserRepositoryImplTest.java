@@ -27,4 +27,15 @@ public class WeixinUserRepositoryImplTest extends BaseTest {
         }
     }
 
+    @Test
+    public void test_002() {
+        try {
+            WeixinUserRepository repo = getContext().getBean(WeixinUserRepository.class);
+
+            logger.info("{}", repo.getByOpenId("ouf3ytx8GektXcQQk1ekiGo0bVn4", "Default"));
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
 }
