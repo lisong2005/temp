@@ -32,7 +32,7 @@ public class ErrorController {
     }
 
     @RequestMapping(value = "/notfound.htm")
-    public String notfound(ModelMap modelMap, HttpServletRequest req) {
+    public String notfound(ModelMap modelMap, HttpServletRequest req, String src) {
 
         // javax.servlet.forward.request_uri = /wt/css/aaa.csss
         // javax.servlet.forward.context_path = /wt
@@ -42,8 +42,9 @@ public class ErrorController {
         // javax.servlet.error.status_code = 404
         // javax.servlet.error.request_uri = /wt/css/aaa.csss
 
-        logger.info("【404页面】code={}, uri={}", req.getAttribute("javax.servlet.error.status_code"),
-            req.getAttribute("javax.servlet.error.request_uri"));
+        logger.info("【404页面】code={}, uri={}, src={}",
+            req.getAttribute("javax.servlet.error.status_code"),
+            req.getAttribute("javax.servlet.error.request_uri"), src);
 
         //        Enumeration<String> ee = req.getAttributeNames();
         //        while (ee.hasMoreElements()) {

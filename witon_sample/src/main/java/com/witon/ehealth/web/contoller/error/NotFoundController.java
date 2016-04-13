@@ -29,9 +29,10 @@ public class NotFoundController extends AbstractController {
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request,
                                                  HttpServletResponse response) throws Exception {
-        logger.info("404 page");
+        logger.debug("404 page");
+
         ModelAndView mv = new ModelAndView(
-            String.format("redirect:/notfound.htm?%s", request.getRequestURI()));
+            String.format("redirect:/notfound.htm?src=%s", request.getRequestURI()));
         //URLEncoder.encode(request.getRequestURI(), EhealthConstants.DEFAULT_CHARSET)));
         return mv;
     }

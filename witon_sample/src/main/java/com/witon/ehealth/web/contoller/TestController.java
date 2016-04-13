@@ -26,4 +26,10 @@ public class TestController {
         logger.info("");
         throw new NullPointerException();
     }
+
+    @RequestMapping(value = "/404.htm")
+    public String notFound() {
+        logger.info("");
+        return "404_.vm";
+    }
 }

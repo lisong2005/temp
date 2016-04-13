@@ -46,11 +46,11 @@ public class CommonInterceptor implements HandlerInterceptor {
             ToStringBuilder.reflectionToString(handler, ToStringStyle.SHORT_PREFIX_STYLE));
 
         logger.debug("response.isCommitted() = {}", response.isCommitted());
-        if (modelAndView == null && !response.isCommitted()) {
-            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            logger.info("x 404 uri={}", request.getRequestURI());
-            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-        }
+        //        if (modelAndView == null && !response.isCommitted()) {
+        //            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        //            logger.info("x 404 uri={}", request.getRequestURI());
+        //            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        //        }
     }
 
     /** 
