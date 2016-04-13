@@ -41,28 +41,28 @@ import com.witon.ehealth.web.util.URLUtils;
  * @version $Id: WxGatewayController.java, v 0.1 2016年4月13日 下午3:50:22 Administrator Exp $
  */
 @Controller
-@RequestMapping(value = "/wx/gw/{appid}.gw")
+@RequestMapping(value = "/wx/gw/{appid}.do")
 public class WxGatewayController {
 
     /**
     * Logger for this class
     */
-    private static final Logger     logger        = LoggerFactory
+    private static final Logger   logger        = LoggerFactory
         .getLogger(WxGatewayController.class);
 
     /** 微信消息处理组件 */
     @Autowired
-    private WxMsgComponent          wxMsgComponent;
+    private WxMsgComponent        wxMsgComponent;
 
     /**  */
     @Autowired
-    protected WxAppConfigRepository wxAppConfigRepository;
+    private WxAppConfigRepository wxAppConfigRepository;
 
     /** 微信加密类型 */
-    private static final String     ENCRYPT_TYPE  = EhWxConstants.ENCRYPT_TYPE;
+    private static final String   ENCRYPT_TYPE  = EhWxConstants.ENCRYPT_TYPE;
 
     /** xml请求报文最大读取行数 */
-    public static final int         MAX_LINE_SIZE = 1024;
+    public static final int       MAX_LINE_SIZE = 1024;
 
     /**
      * 
@@ -89,7 +89,7 @@ public class WxGatewayController {
         WxAppConfig appConfig = wxAppConfigRepository.getByAppId(appid);
         if (appConfig == null) {
             logger.warn("【微信网关处理异常】配置信息未找到 appid={}", appid);
-            resp.getWriter().write(ResultCodeEnum.ILLEGAL_ARGUMENT.getCode());
+            resp.getWriter().write(ResultCodeEnum.RECORD_NOT_EXIST.getCode());
             return;
         }
 
