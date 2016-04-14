@@ -170,7 +170,7 @@ public class WxGatewayController {
                 String xml = process(xmlParams, appConfig);
                 logger.info("【返回明文】xml=\n{}", xml);
 
-                // 需要返回报文，进行加密后发送
+                // 需要对返回报文，进行加密后发送
                 if (StringUtils.isNotBlank(xml)) {
                     retXml = WeixinUtils.encryptAndSign(appConfig.getAppId(), appConfig.getAesKey(),
                         xml, appConfig.getToken(), nonce);
@@ -183,7 +183,7 @@ public class WxGatewayController {
                 retXml = process(xmlParams, appConfig);
             }
         } catch (AesException e) {
-            logger.error(String.format("%s", AesException.getMessage(e.getCode())), e);
+            logger.error(String.format("加解密异常 %s", AesException.getMessage(e.getCode())), e);
         } catch (Throwable e) {
             logger.error(String.format("处理消息异常 msg=%s", e.getMessage()), e);
         }
