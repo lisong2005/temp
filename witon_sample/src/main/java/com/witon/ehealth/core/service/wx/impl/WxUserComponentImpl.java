@@ -14,7 +14,7 @@ import com.witon.ehealth.common.srv.integration.wx.WxRestServiceClient;
 import com.witon.ehealth.core.model.wx.WeixinUserRepository;
 import com.witon.ehealth.core.model.wx.model.WeixinUser;
 import com.witon.ehealth.core.service.wx.WxUserComponent;
-import com.witon.ehealth.core.service.wx.result.WxResult;
+import com.witon.ehealth.core.service.wx.result.WxUserInfoResult;
 
 /**
  * 
@@ -39,7 +39,7 @@ public class WxUserComponentImpl implements WxUserComponent {
      * @see com.witon.ehealth.core.service.wx.WxUserComponent#createUser(com.witon.ehealth.core.model.wx.model.WeixinUser)
      */
     @Override
-    public WxResult createUser(WeixinUser wexinUser) {
+    public WxUserInfoResult createUser(WeixinUser wexinUser) {
         logger.info("【微信用户新增】{}", wexinUser);
         return null;
     }
@@ -48,7 +48,7 @@ public class WxUserComponentImpl implements WxUserComponent {
      * @see com.witon.ehealth.core.service.wx.WxUserComponent#unsubscribe(com.witon.ehealth.core.model.wx.model.WeixinUser)
      */
     @Override
-    public WxResult unsubscribe(WeixinUser wexinUser) {
+    public WxUserInfoResult unsubscribe(WeixinUser wexinUser) {
         throw new NotImplementedException();
     }
 
@@ -56,10 +56,10 @@ public class WxUserComponentImpl implements WxUserComponent {
      * @see com.witon.ehealth.core.service.wx.WxUserComponent#subscribe(java.lang.String, java.lang.String)
      */
     @Override
-    public WxResult subscribe(String appId, String openId) {
+    public WxUserInfoResult subscribe(String appId, String openId) {
         logger.info("【微信用户订阅】appId={}, openId={}", appId, openId);
 
-        WxResult result = new WxResult();
+        WxUserInfoResult result = new WxUserInfoResult();
 
         WeixinUser user = weixinUserRepository.getByOpenId(openId, appId);
 
@@ -73,7 +73,7 @@ public class WxUserComponentImpl implements WxUserComponent {
             return result;
         }
 
-        WxResult r = new WxResult();
+        WxUserInfoResult r = new WxUserInfoResult();
         r.setSuccess(false);
         r.setResultCode(ResultCodeEnum.SYSTEM_ERROR.getCode());
         r.setResultMsg(ResultCodeEnum.SYSTEM_ERROR.getDesc());
@@ -84,9 +84,9 @@ public class WxUserComponentImpl implements WxUserComponent {
      * @see com.witon.ehealth.core.service.wx.WxUserComponent#query(java.lang.String, java.lang.String)
      */
     @Override
-    public WxResult query(String appId, String openId) {
+    public WxUserInfoResult query(String appId, String openId) {
         logger.info("【微信用户查询】appId={}, openId={}", appId, openId);
-        WxResult r = new WxResult();
+        WxUserInfoResult r = new WxUserInfoResult();
         WeixinUser user = weixinUserRepository.getByOpenId(openId, appId);
         if (user == null) {
             user = this.wxRestServiceClient.queryUserInfo(appId, openId);

@@ -19,7 +19,7 @@ import com.witon.ehealth.core.service.wx.enums.WxMsgTypeEnum;
 import com.witon.ehealth.core.service.wx.executor.WxMsgExecutor;
 import com.witon.ehealth.core.service.wx.executor.req.WxMsgExeRequest;
 import com.witon.ehealth.core.service.wx.req.WxMsgReq;
-import com.witon.ehealth.core.service.wx.result.WxResult;
+import com.witon.ehealth.core.service.wx.result.WxUserInfoResult;
 import com.witon.ehealth.core.service.wx.result.WxRetMsg;
 import com.witon.ehealth.util.wx.EhWxConstants;
 
@@ -68,7 +68,7 @@ public class WxMsgComponentImpl implements WxMsgComponent, InitializingBean {
         // 重构：修改为查询，在关注和扫码关注事件中进行用户新增操作，允许用户信息查询失败（首次扫码关注）
         String fromUser = params.get(EhWxConstants.KEY_FROM_USER);
         // WxResult wxResult = wxUserComponent.subscribe(wxMsgReq.getAppId(), fromUser);
-        WxResult wxResult = wxUserComponent.query(wxMsgReq.getAppId(), fromUser);
+        WxUserInfoResult wxResult = wxUserComponent.query(wxMsgReq.getAppId(), fromUser);
 
         if (wxResult == null || !wxResult.isSuccess()) {
             logger.error("【查询用户信息失败】MsgType={}, params={}", msgType, params);

@@ -5,7 +5,7 @@
 package com.witon.ehealth.core.service.wx;
 
 import com.witon.ehealth.core.model.wx.model.WeixinUser;
-import com.witon.ehealth.core.service.wx.result.WxResult;
+import com.witon.ehealth.core.service.wx.result.WxUserInfoResult;
 
 /**
  * 
@@ -19,14 +19,14 @@ public interface WxUserComponent {
      * @param wexinUser
      * @return
      */
-    public WxResult createUser(WeixinUser wexinUser);
+    public WxUserInfoResult createUser(WeixinUser wexinUser);
 
     /**
      * 
      * @param wexinUser
      * @return
      */
-    public WxResult unsubscribe(WeixinUser wexinUser);
+    public WxUserInfoResult unsubscribe(WeixinUser wexinUser);
 
     /**
      * 
@@ -34,7 +34,7 @@ public interface WxUserComponent {
      * @param openId
      * @return
      */
-    public WxResult subscribe(String appId, String openId);
+    public WxUserInfoResult subscribe(String appId, String openId);
 
     /**
      * 
@@ -42,6 +42,6 @@ public interface WxUserComponent {
      * @param openId
      * @return
      */
-    public WxResult query(String appId, String openId);
+    public WxUserInfoResult query(String appId, String openId);
 
 }

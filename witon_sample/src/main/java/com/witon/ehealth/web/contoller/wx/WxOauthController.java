@@ -22,7 +22,7 @@ import com.witon.ehealth.common.srv.integration.wx.result.WxOauthResult;
 import com.witon.ehealth.core.model.wx.WxAppConfigRepository;
 import com.witon.ehealth.core.model.wx.model.WxAppConfig;
 import com.witon.ehealth.core.service.wx.WxUserComponent;
-import com.witon.ehealth.core.service.wx.result.WxResult;
+import com.witon.ehealth.core.service.wx.result.WxUserInfoResult;
 import com.witon.ehealth.util.EhealthConstants;
 import com.witon.ehealth.web.filter.WxOauthFilter;
 import com.witon.ehealth.web.util.SessionUtil;
@@ -83,7 +83,7 @@ public class WxOauthController implements EhealthConstants {
             logger.warn("【查询失败】{}", result);
             return ERROR_PAGE;
         }
-        WxResult r = null;
+        WxUserInfoResult r = null;
         if (needUserInfo) {
             r = wxUserComponent.createUser(result.getWeixinUser());
         } else {
