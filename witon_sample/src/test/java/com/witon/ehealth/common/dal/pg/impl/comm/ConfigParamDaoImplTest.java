@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.witon.ehealth.common.base.BaseTest;
 import com.witon.ehealth.common.dal.pg.dao.comm.ConfigParamDao;
+import com.witon.ehealth.common.dal.pg.dbo.comm.ConfigParamDo;
 
 /**
  * 
@@ -21,6 +22,26 @@ public class ConfigParamDaoImplTest extends BaseTest {
         try {
             ConfigParamDao dao = getContext().getBean(ConfigParamDao.class);
             logger.info("{}", dao.getById(1L));
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_add() {
+        try {
+            ConfigParamDao dao = getContext().getBean(ConfigParamDao.class);
+            ConfigParamDo configParamDo = new ConfigParamDo();
+            configParamDo.setSystemName("systemName");
+            configParamDo.setModuleName("moduleName");
+            configParamDo.setParamKey("key");
+            configParamDo.setParamValue("value");
+            configParamDo.setStatus("E");
+            configParamDo.setMemo("memo");
+
+            long id = dao.add(configParamDo);
+
+            logger.info("{}", dao.getById(id));
         } catch (Exception e) {
             logger.error("", e);
         }
