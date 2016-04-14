@@ -43,7 +43,7 @@ public class ConfigParamDaoImplTest extends BaseTest {
 
             logger.info("{}", dao.getById(id));
         } catch (Exception e) {
-            logger.error("", e);
+            logger.error("系统异常", e);
         }
     }
 }

@@ -56,7 +56,7 @@ public class TestOrderDaoImplTest extends BaseTest {
     public void test_getById() {
         try {
             TestOrderDao dao = getContext().getBean(TestOrderDao.class);
-            logger.info("{}", dao.getById(21L));
+            logger.info("{}", dao.getById(1L));
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -66,7 +66,7 @@ public class TestOrderDaoImplTest extends BaseTest {
     public void test_getById_new_001() {
         try {
             TestOrderDao dao = getContext().getBean(TestOrderDao.class);
-            logger.info("{}", dao.getByIdNew(21L));
+            logger.info("{}", dao.getByIdNew(1L));
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -76,7 +76,7 @@ public class TestOrderDaoImplTest extends BaseTest {
     public void test_getById_new_002() {
         try {
             TestOrderDao dao = getContext().getBean(TestOrderDao.class);
-            logger.info("{}", dao.getByIdNew2(21L));
+            logger.info("{}", dao.getByIdNew2(1L));
         } catch (Exception e) {
             logger.error("", e);
         }

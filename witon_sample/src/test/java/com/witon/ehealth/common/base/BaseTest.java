@@ -27,10 +27,14 @@ public class BaseTest {
     @Before
     public void setup() {
         try {
+            logger.info("---------------------------------------------");
+            logger.info("---------------------------------------------");
             context = new ClassPathXmlApplicationContext(
                 "classpath*:/META-INF/spring/base/**/eh-*.xml");
 
             logger.debug("[{}]setup", BaseTest.class.getName());
+            logger.info("---------------------------------------------");
+            logger.info("---------------------------------------------");
         } catch (Exception e) {
             logger.error("", e);
         }
