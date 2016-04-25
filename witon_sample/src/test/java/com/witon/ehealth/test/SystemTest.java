@@ -4,9 +4,13 @@
  */
 package com.witon.ehealth.test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.codec.binary.Hex;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,5 +39,24 @@ public class SystemTest {
         for (Object key : props.keySet()) {
             logger.info("{} = {}", key, props.get(key));
         }
+    }
+
+    @SuppressWarnings({ "unused", "resource" })
+    public static void main(String[] args) throws Exception {
+        logger.info("start");
+        for (int i = 0; i < 10; i++) {
+            InputStream is = new FileInputStream(new File("d:/rsync.txt"));
+        }
+        byte[] b = new byte[16];
+        System.in.read(b); // pause1
+        logger.info("a {}", Hex.encodeHexString(b));
+
+        System.gc();
+        logger.info("b");
+
+        byte[] b2 = new byte[16];
+        System.in.read(b2); // pause2
+        logger.info("end {}", Hex.encodeHexString(b2));
+
     }
 }

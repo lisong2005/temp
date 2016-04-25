@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.witon.ehealth.util.conf.SystemConfig;
@@ -54,6 +55,13 @@ public class TestRestService implements InitializingBean {
     /**  */
     @Autowired
     private SystemConfig        systemConfig;
+
+    @Value("${jdbc.url}")
+    private String              jdbcUrl;
+
+    /**  */
+    @Autowired
+    private PropertiesUtils     propertiesUtils;
 
     /**
      * 
@@ -210,6 +218,9 @@ public class TestRestService implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         logger.info("初始化 {}", this);
+        logger.info("{}", this.jdbcUrl);
+        logger.info("{}", this.propertiesUtils);
+        logger.info("{}", this.propertiesUtils.getPropertiesValue("${jdbc.url}"));
         logger.info("初始化 config = {}", this.systemConfig);
     }
 
