@@ -63,9 +63,8 @@ public class PagePerfFilter implements Filter {
      * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
      */
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-                                                                                             throws IOException,
-                                                                                             ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response,
+                         FilterChain chain) throws IOException, ServletException {
         logger.debug("PagePerfFilter.doFilter req={},resp={},chain={}", request, response, chain);
 
         if (request instanceof HttpServletRequest) {
