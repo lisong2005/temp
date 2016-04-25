@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     2016/4/14 12:43:20                           */
+/* Created on:     2016/4/14 15:22:39                           */
 /*==============================================================*/
 
 
@@ -25,41 +25,41 @@ create table eh_config_param (
    param_value          text                 null,
    status               text                 null,
    memo                 text                 null,
-   gmt_create           timestamp            null,
-   gmt_modify           timestamp            null,
+   gmt_create           TIMESTAMP WITH TIME ZONE null,
+   gmt_modify           TIMESTAMP WITH TIME ZONE null,
    constraint pk_eh_config_param primary key (id),
    constraint uk_eh_config_param_smk unique (system_name, module_name, param_key)
 );
 
 comment on table eh_config_param is
-'ÅäÖÃ²ÎÊı±í';
+'é…ç½®å‚æ•°è¡¨';
 
 comment on column eh_config_param.id is
-'Êı¾İ¿âseq';
+'æ•°æ®åº“seq';
 
 comment on column eh_config_param.system_name is
-'ÏµÍ³Ãû';
+'ç³»ç»Ÿå';
 
 comment on column eh_config_param.module_name is
-'Ä£¿éÃû';
+'æ¨¡å—å';
 
 comment on column eh_config_param.param_key is
-'²ÎÊıkey';
+'å‚æ•°key';
 
 comment on column eh_config_param.param_value is
-'²ÎÊıÖµ';
+'å‚æ•°å€¼';
 
 comment on column eh_config_param.status is
-'×´Ì¬£ºE¿ÉÓÃ£»D²»¿ÉÓÃ';
+'çŠ¶æ€ï¼šEå¯ç”¨ï¼›Dä¸å¯ç”¨';
 
 comment on column eh_config_param.memo is
-'±¸×¢';
+'å¤‡æ³¨';
 
 comment on column eh_config_param.gmt_create is
-'´´½¨Ê±¼ä';
+'åˆ›å»ºæ—¶é—´';
 
 comment on column eh_config_param.gmt_modify is
-'×î½üĞŞ¸ÄÊ±¼ä';
+'æœ€è¿‘ä¿®æ”¹æ—¶é—´';
 
 /*==============================================================*/
 /* Table: eh_open_token                                         */
@@ -72,45 +72,45 @@ create table eh_open_token (
    refresh_token        text                 null,
    props                text                 null,
    memo                 text                 null,
-   gmt_create           timestamp            null,
-   gmt_modify           timestamp            null,
-   gmt_effect           timestamp            null,
-   gmt_expire           timestamp            null,
+   gmt_create           TIMESTAMP WITH TIME ZONE null,
+   gmt_modify           TIMESTAMP WITH TIME ZONE null,
+   gmt_effect           TIMESTAMP WITH TIME ZONE null,
+   gmt_expire           TIMESTAMP WITH TIME ZONE null,
    constraint pk_eh_open_token primary key (id)
 );
 
 comment on column eh_open_token.id is
-'Êı¾İ¿âseq';
+'æ•°æ®åº“seq';
 
 comment on column eh_open_token.app_type is
-'Ó¦ÓÃÀàĞÍ£ºweixin£»...';
+'åº”ç”¨ç±»å‹ï¼šweixinï¼›...';
 
 comment on column eh_open_token.app_id is
-'Ó¦ÓÃID';
+'åº”ç”¨ID';
 
 comment on column eh_open_token.access_token is
-'·ÃÎÊÁîÅÆ';
+'è®¿é—®ä»¤ç‰Œ';
 
 comment on column eh_open_token.refresh_token is
-'Ë¢ĞÂÁîÅÆ';
+'åˆ·æ–°ä»¤ç‰Œ';
 
 comment on column eh_open_token.props is
-'ÊôĞÔ£ºjson¸ñÊ½';
+'å±æ€§ï¼šjsonæ ¼å¼';
 
 comment on column eh_open_token.memo is
-'±¸×¢';
+'å¤‡æ³¨';
 
 comment on column eh_open_token.gmt_create is
-'´´½¨Ê±¼ä';
+'åˆ›å»ºæ—¶é—´';
 
 comment on column eh_open_token.gmt_modify is
-'×î½üĞŞ¸ÄÊ±¼ä';
+'æœ€è¿‘ä¿®æ”¹æ—¶é—´';
 
 comment on column eh_open_token.gmt_effect is
-'ÉúĞ§Ê±¼ä';
+'ç”Ÿæ•ˆæ—¶é—´';
 
 comment on column eh_open_token.gmt_expire is
-'Ê§Ğ§Ê±¼ä';
+'å¤±æ•ˆæ—¶é—´';
 
 /*==============================================================*/
 /* Table: eh_wx_event                                           */
@@ -122,38 +122,38 @@ create table eh_wx_event (
    event_type           text                 null,
    event_key            text                 null,
    event_props          text                 null,
-   gmt_upload           timestamp            null,
-   gmt_create           timestamp            null,
-   gmt_modify           timestamp            null,
+   gmt_upload           TIMESTAMP WITH TIME ZONE null,
+   gmt_create           TIMESTAMP WITH TIME ZONE null,
+   gmt_modify           TIMESTAMP WITH TIME ZONE null,
    constraint pk_eh_wx_event primary key (id)
 );
 
 comment on column eh_wx_event.id is
-'Êı¾İ¿âseq';
+'æ•°æ®åº“seq';
 
 comment on column eh_wx_event.to_user is
-'ÏûÏ¢½ÓÊÕÕß';
+'æ¶ˆæ¯æ¥æ”¶è€…';
 
 comment on column eh_wx_event.from_user is
-'ÏûÏ¢·¢ËÍÕß';
+'æ¶ˆæ¯å‘é€è€…';
 
 comment on column eh_wx_event.event_type is
-'ÊÂ¼şÀàĞÍ';
+'äº‹ä»¶ç±»å‹';
 
 comment on column eh_wx_event.event_key is
-'ÊÂ¼şÂë';
+'äº‹ä»¶ç ';
 
 comment on column eh_wx_event.event_props is
-'Ê±¼äÊôĞÔ£ºjson¸ñÊ½';
+'æ—¶é—´å±æ€§ï¼šjsonæ ¼å¼';
 
 comment on column eh_wx_event.gmt_upload is
-'Ìá½»Ê±¼ä';
+'æäº¤æ—¶é—´';
 
 comment on column eh_wx_event.gmt_create is
-'´´½¨Ê±¼ä';
+'åˆ›å»ºæ—¶é—´';
 
 comment on column eh_wx_event.gmt_modify is
-'×î½üĞŞ¸ÄÊ±¼ä';
+'æœ€è¿‘ä¿®æ”¹æ—¶é—´';
 
 /*==============================================================*/
 /* Table: eh_wx_user                                            */
@@ -164,17 +164,17 @@ create table eh_wx_user (
    open_id              text                 null,
    union_id             text                 null,
    props                text                 null,
-   gmt_create           timestamp            null,
-   gmt_modify           timestamp            null,
+   gmt_create           TIMESTAMP WITH TIME ZONE null,
+   gmt_modify           TIMESTAMP WITH TIME ZONE null,
    constraint pk_eh_weixin_user primary key (id),
    constraint uk_eh_weixin_user_aoid unique (app_id, open_id)
 );
 
 comment on column eh_wx_user.id is
-'Êı¾İ¿âseq';
+'æ•°æ®åº“seq';
 
 comment on column eh_wx_user.app_id is
-'Ó¦ÓÃID';
+'åº”ç”¨ID';
 
 comment on column eh_wx_user.open_id is
 'openId';
@@ -183,13 +183,13 @@ comment on column eh_wx_user.union_id is
 'unionId';
 
 comment on column eh_wx_user.props is
-'ÆäËûÊôĞÔ';
+'å…¶ä»–å±æ€§';
 
 comment on column eh_wx_user.gmt_create is
-'´´½¨Ê±¼ä';
+'åˆ›å»ºæ—¶é—´';
 
 comment on column eh_wx_user.gmt_modify is
-'×î½üĞŞ¸ÄÊ±¼ä';
+'æœ€è¿‘ä¿®æ”¹æ—¶é—´';
 
 /*==============================================================*/
 /* Table: test_pay_order                                        */
