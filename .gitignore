@@ -3,6 +3,7 @@ witon_sample/.project
 witon_sample/.settings
 witon_sample/target
 witon_sample/bin
+witon_sample/**/*.orig
 
 druid-test/.classpath
 druid-test/.project

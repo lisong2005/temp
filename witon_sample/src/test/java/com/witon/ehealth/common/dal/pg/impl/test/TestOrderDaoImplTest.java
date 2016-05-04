@@ -4,6 +4,7 @@
  */
 package com.witon.ehealth.common.dal.pg.impl.test;
 
+import org.apache.commons.codec.binary.Hex;
 import org.junit.Test;
 
 import com.witon.ehealth.common.base.BaseTest;
@@ -24,7 +25,7 @@ public class TestOrderDaoImplTest extends BaseTest {
             TestOrderDao dao = getContext().getBean(TestOrderDao.class);
             TestOrderDo order = new TestOrderDo();
             order.setAmount(new Money(12));
-            order.setMemo("test_xxx");
+            order.setMemo("xxxxx");
             order.setTradeNo("111");
             long id = dao.add(order);
             logger.info("{}", id);
@@ -56,7 +57,11 @@ public class TestOrderDaoImplTest extends BaseTest {
     public void test_getById() {
         try {
             TestOrderDao dao = getContext().getBean(TestOrderDao.class);
-            logger.info("{}", dao.getById(1L));
+            TestOrderDo byId = dao.getById(26L);
+            byte[] bs = byId.getMemo().getBytes();
+            logger.info("{}", byId);
+            logger.info("{}", bs.length);
+            logger.info("{}", Hex.encodeHexString(bs));
         } catch (Exception e) {
             logger.error("", e);
         }
