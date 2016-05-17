@@ -476,6 +476,23 @@
 		<!-- <version>2.3.3</version> -->
 		<!-- </dependency> -->
 
+
+		<!-- http://mvnrepository.com/artifact/com.google.zxing/javase -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
+		<!-- http://mvnrepository.com/artifact/net.sf.barcode4j/barcode4j -->
+		<dependency>
+			<groupId>net.sf.barcode4j</groupId>
+			<artifactId>barcode4j</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>
