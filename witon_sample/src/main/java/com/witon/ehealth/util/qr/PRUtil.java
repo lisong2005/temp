@@ -41,7 +41,7 @@ public class PRUtil {
     private static final Logger logger           = LoggerFactory.getLogger(PRUtil.class);
 
     /**  */
-    private static final String UTF_8            = "UTF-8";
+    private static final String DEFAULT_CS       = "utf-8";
 
     // 图片宽度的一般
     private static final int    IMAGE_WIDTH      = 80;
@@ -58,7 +58,7 @@ public class PRUtil {
      * @param imgPath
      */
     public static void encodePR(String contents, int width, int height, String imgPath) {
-        encodePR(contents, UTF_8, width, height, imgPath);
+        encodePR(contents, DEFAULT_CS, width, height, imgPath);
     }
 
     /**
@@ -84,6 +84,20 @@ public class PRUtil {
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
+    }
+
+    /**
+     * 生成带图片的二维码
+     * 
+     * @param content
+     * @param width
+     * @param height
+     * @param srcImagePath
+     * @param destImagePath
+     */
+    public static void encodePR(String content, int width, int height, String srcImagePath,
+                                String destImagePath) {
+        encodePR(content, DEFAULT_CS, width, height, srcImagePath, destImagePath);
     }
 
     /**
@@ -120,7 +134,7 @@ public class PRUtil {
      * @return
      */
     public static String decodePR(String imgPath) {
-        return decodePR(imgPath, UTF_8);
+        return decodePR(imgPath, DEFAULT_CS);
     }
 
     /**

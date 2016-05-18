@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.witon.ehealth.util.qr.PRUtil;
+
 /**
  * 
  * @author song.li@witontek.com
@@ -21,7 +23,7 @@ public class ZXingTest {
 
     @Test
     public void test_gen() {
-        String contents = "hello";
+        String contents = "请使用睿博app扫码#xxxdafdasfasdff==#";
         int width = 200;
         int height = 200;
         String imgPath = "d:/witon/a.png";
