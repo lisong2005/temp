@@ -507,6 +507,15 @@
 	<!-- ================================================== -->
 	<!-- ================================================== -->
 
+	<logger name="org.glassfish.jersey" level="${logger.sql.level}" />
+	<logger name="com.witon.jersey.CLIENT" level="${logger.sql.level}" />
+	<logger name="com.witon.ehealth.biz.srv.rest.plugin" level="${logger.sql.level}" />
+
+	<logger name="com.sun.jersey" level="${logging_level_default}" />
+	<logger name="org.apache.catalina" level="${logging_level_default}" />
+	<logger name="org.apache.tomcat" level="${logging_level_default}" />
+	<logger name="org.apache.coyote.AbstractProtocol" level="${logging_level_default}" />
+	<logger name="com.mchange.v2.c3p0" level="${logging_level_default}" />
 
 	<logger name="com.health" level="${logging_level_test}" />
 	<logger name="com.qq" level="${logging_level_test}" />

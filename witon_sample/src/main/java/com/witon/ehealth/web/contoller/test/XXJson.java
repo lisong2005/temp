@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.witon.ehealth.biz.srv.rest.test.Customer;
@@ -34,12 +33,14 @@ public class XXJson {
     /**
     * Logger for this class
     */
-    private static final Logger logger = LoggerFactory.getLogger(XXJson.class);
+    private static final Logger logger   = LoggerFactory.getLogger(XXJson.class);
 
-    @RequestMapping(value = "/hello1.json", method = RequestMethod.GET)
+    /**  */
+    private static final String PRODUCES = MediaType.APPLICATION_JSON + "; charset=gbk";
+
+    @RequestMapping(value = "/hello1.json")
     public void get(ModelMap modelMap) throws IOException, JSONException {
         logger.info("");
-
         modelMap.addAttribute("aaa", "咋说的法定");
         return;
     }
@@ -48,17 +49,16 @@ public class XXJson {
     // =================================================
     // =================================================
 
-    @RequestMapping(value = "/hello3.json", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello3.json", produces = PRODUCES)
     @ResponseBody
     public String bbb(ModelMap modelMap) throws IOException, JSONException {
         logger.info("");
-
         JSONObject ret = new JSONObject();
         ret.put("hello", "张三");
         return ret.toString();
     }
 
-    @RequestMapping(value = "/hello3_2.json", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello3_2.json", produces = PRODUCES)
     @ResponseBody
     public JSONObject bbb_2(ModelMap modelMap) throws IOException, JSONException {
         logger.info("");
@@ -68,13 +68,13 @@ public class XXJson {
         return ret;
     }
 
-    @RequestMapping(value = "/hello3_3.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+    @RequestMapping(value = "/hello3_3.json", produces = MediaType.APPLICATION_JSON)
     @ResponseBody
     public Customer bbb_3(ModelMap modelMap) throws IOException, JSONException {
         logger.info("");
-
         Customer ret = new Customer();
-        ret.setName("sss");
+        ret.setName("sss=中文");
+        ret.setId(11L);
         return ret;
     }
 
@@ -82,7 +82,7 @@ public class XXJson {
     // =================================================
     // =================================================
 
-    @RequestMapping(value = "/hello2.json", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello2.json")
     public void aaa(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap,
                     String type) throws IOException, JSONException {
         if (StringUtils.isBlank(type)) {
@@ -94,7 +94,9 @@ public class XXJson {
         logger.info("resp = {}", response.getCharacterEncoding());
 
         JSONObject ret = new JSONObject();
+        //        ret.put("hello", URLEncoder.encode("张三", type));
         ret.put("hello", "张三");
+        response.setContentType(String.format("application/json;charset=%s", type));
         response.getOutputStream().write(ret.toString().getBytes(type));
         return;
     }

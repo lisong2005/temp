@@ -507,6 +507,8 @@
 	<!-- ================================================== -->
 	<!-- ================================================== -->
 
+	<logger name="org.glassfish.jersey" level="${logging_level_test}" />
+	<logger name="com.witon.jersey.CLIENT" level="${logger.sql.level}" />
 
 	<logger name="com.health" level="${logging_level_test}" />
 	<logger name="com.qq" level="${logging_level_test}" />
