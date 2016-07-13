@@ -12,7 +12,7 @@
 
 
 	<properties>
-		<jdk.version>1.8</jdk.version>
+		<jdk.version>1.7</jdk.version>
 
 		<jaxservlet.api.version>2.5</jaxservlet.api.version>
 		<jaxjsp.api.version>2.1</jaxjsp.api.version>
