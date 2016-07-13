@@ -134,7 +134,7 @@ public class RestSrvTest {
                 logger.info("{}", ToStringBuilder.reflectionToString(client.getConfiguration(),
                     ToStringStyle.MULTI_LINE_STYLE));
 
-                WebTarget target = client.target("http://localhost:8090/wt/rest").path("test/add")
+                WebTarget target = client.target("http://localhost:8090/wit/rest").path("test/add")
                     .queryParam("a", "b")
                     .queryParam("c", URLEncoder.encode(request.toString(), "utf-8"))
                     .queryParam("lang", "zh_cn");

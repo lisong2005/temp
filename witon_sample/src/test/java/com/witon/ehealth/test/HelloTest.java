@@ -24,7 +24,7 @@ public class HelloTest extends BaseRestTest {
     public void test_client_hello1() {
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wt/").path("hello1.json");
+            WebTarget target = client.target("http://localhost:8090/wit/").path("hello1.json");
             byte[] restResult = target.request(MediaType.APPLICATION_JSON_TYPE).get(byte[].class);
             logger.info("{}", Hex.encodeHexString(restResult));
             logger.info("{}", new String(restResult, "gbk"));
@@ -38,7 +38,7 @@ public class HelloTest extends BaseRestTest {
     public void test_client_hello2() {
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wt/").path("hello2.json");
+            WebTarget target = client.target("http://localhost:8090/wit/").path("hello2.json");
             byte[] restResult = target.request(MediaType.APPLICATION_JSON_TYPE).get(byte[].class);
             logger.info("{}", Hex.encodeHexString(restResult));
             logger.info("{}", new String(restResult, "gbk"));
@@ -53,7 +53,7 @@ public class HelloTest extends BaseRestTest {
         String cs = "gbk";
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wt/").path("hello2.json")
+            WebTarget target = client.target("http://localhost:8090/wit/").path("hello2.json")
                 .queryParam("type", cs);
 
             logger.info("{}", target.request(MediaType.APPLICATION_JSON_TYPE).get(String.class));
@@ -71,7 +71,7 @@ public class HelloTest extends BaseRestTest {
         String cs = "utf-8";
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wt/").path("hello2.json")
+            WebTarget target = client.target("http://localhost:8090/wit/").path("hello2.json")
                 .queryParam("type", cs);
 
             logger.info("{}", target.request(MediaType.APPLICATION_JSON_TYPE).get(String.class));
@@ -88,7 +88,7 @@ public class HelloTest extends BaseRestTest {
     public void test_client_hello3() {
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wt/").path("hello3.json");
+            WebTarget target = client.target("http://localhost:8090/wit/").path("hello3.json");
             byte[] restResult = target.request(MediaType.APPLICATION_JSON_TYPE).get(byte[].class);
             logger.info("{}", Hex.encodeHexString(restResult));
             logger.info("{}", new String(restResult, "gbk"));
@@ -102,7 +102,7 @@ public class HelloTest extends BaseRestTest {
     public void test_client_hello3_2() {
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wt/").path("hello3_2.json");
+            WebTarget target = client.target("http://localhost:8090/wit/").path("hello3_2.json");
             byte[] restResult = target.request(MediaType.APPLICATION_JSON_TYPE).get(byte[].class);
             logger.info("{}", Hex.encodeHexString(restResult));
             logger.info("{}", new String(restResult, "gbk"));
@@ -116,7 +116,7 @@ public class HelloTest extends BaseRestTest {
     public void test_client_hello3_3() {
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wt/").path("hello3_3.json");
+            WebTarget target = client.target("http://localhost:8090/wit/").path("hello3_3.json");
             byte[] restResult = target.request(MediaType.APPLICATION_JSON_TYPE).get(byte[].class);
             logger.info("{}", Hex.encodeHexString(restResult));
             logger.info("{}", new String(restResult, "gbk"));

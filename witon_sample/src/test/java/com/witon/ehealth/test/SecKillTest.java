@@ -27,7 +27,7 @@ import com.witon.ehealth.util.DateUtil;
  * @author song.li@witontek.com
  * @version $Id: SecKillTest.java, v 0.1 2016年7月13日 上午9:11:00 song.li@witontek.com Exp $
  */
-public class SecKillTest {
+public class SecKillTest extends BaseRestTest {
     /**
     * Logger for this class
     */
