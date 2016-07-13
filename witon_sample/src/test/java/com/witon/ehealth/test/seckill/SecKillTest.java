@@ -2,7 +2,7 @@
  * Witontek.com.
  * Copyright (c) 2012-2016 All Rights Reserved.
  */
-package com.witon.ehealth.test;
+package com.witon.ehealth.test.seckill;
 
 import java.util.Date;
 import java.util.Timer;
@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.witon.ehealth.common.srv.integration.EhJerseyClient;
+import com.witon.ehealth.test.BaseRestTest;
 import com.witon.ehealth.util.DateUtil;
 
 /**
