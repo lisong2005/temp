@@ -13,7 +13,7 @@ import com.witon.ehealth.common.base.BaseModel;
  * @author song.li@witontek.com
  * @version $Id: Person.java, v 0.1 2014年8月15日 上午9:46:55 song.li@witontek.com Exp $
  */
-@XmlRootElement
+@XmlRootElement(name = "xml")
 public class Customer extends BaseModel {
 
     /**  */
