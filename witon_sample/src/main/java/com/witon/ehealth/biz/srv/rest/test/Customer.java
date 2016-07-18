@@ -20,7 +20,12 @@ public class Customer extends BaseModel {
     private static final long serialVersionUID = -1938498743847393403L;
 
     private long              id;
+
     private String            name;
+
+    private float             height;
+
+    private double            weight;
 
     public long getId() {
         return id;
@@ -36,6 +41,42 @@ public class Customer extends BaseModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * Getter method for property <tt>height</tt>.
+     * 
+     * @return property value of height
+     */
+    public float getHeight() {
+        return height;
+    }
+
+    /**
+     * Setter method for property <tt>height</tt>.
+     * 
+     * @param height value to be assigned to property height
+     */
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    /**
+     * Getter method for property <tt>weight</tt>.
+     * 
+     * @return property value of weight
+     */
+    public double getWeight() {
+        return weight;
+    }
+
+    /**
+     * Setter method for property <tt>weight</tt>.
+     * 
+     * @param weight value to be assigned to property weight
+     */
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
 }
