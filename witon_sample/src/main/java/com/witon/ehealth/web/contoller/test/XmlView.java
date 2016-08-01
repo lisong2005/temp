@@ -91,9 +91,10 @@ public class XmlView {
 
     @RequestMapping(value = "/3.b", method = RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE)
     @ResponseBody
-    public Person test3p(ModelMap modelMap, @RequestParam(defaultValue = "") String timestamp,
+    public Person test3p(ModelMap modelMap,
+                         @RequestParam(value = "timestamp", defaultValue = "") String xtimestamp,
                          @RequestBody String xml) throws IOException, JSONException {
-        logger.info("{}", timestamp);
+        logger.info("xtimestamp = {}", xtimestamp);
         logger.info("{}", xml);
 
         try {

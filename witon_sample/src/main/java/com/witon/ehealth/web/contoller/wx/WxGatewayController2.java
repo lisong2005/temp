@@ -69,11 +69,11 @@ public class WxGatewayController2 {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public String doGet(@PathVariable String appid,
-                        @RequestParam(defaultValue = "") String signature,
-                        @RequestParam(defaultValue = "") String timestamp,
-                        @RequestParam(defaultValue = "") String nonce,
-                        @RequestParam(defaultValue = "") String echostr) throws IOException {
+    public String doGet(@PathVariable("appid") String appid,
+                        @RequestParam(defaultValue = "", value = "signature") String signature,
+                        @RequestParam(defaultValue = "", value = "timestamp") String timestamp,
+                        @RequestParam(defaultValue = "", value = "nonce") String nonce,
+                        @RequestParam(defaultValue = "", value = "echostr") String echostr) throws IOException {
         logger.info("【微信网关处理器】get appId={}", appid);
 
         if (StringUtils.isBlank(signature) || StringUtils.isBlank(timestamp)
@@ -111,13 +111,13 @@ public class WxGatewayController2 {
      */
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE)
     @ResponseBody
-    public String doPost(@RequestParam(defaultValue = "") String signature,
-                         @RequestParam(defaultValue = "") String timestamp,
-                         @RequestParam(defaultValue = "") String nonce,
-                         @RequestParam(defaultValue = "") String msgSignature,
-                         @RequestParam(defaultValue = "") String encryptType,
+    public String doPost(@RequestParam(value = "signature", defaultValue = "") String signature,
+                         @RequestParam(value = "timestamp", defaultValue = "") String timestamp,
+                         @RequestParam(value = "nonce", defaultValue = "") String nonce,
+                         @RequestParam(value = "msgSignature", defaultValue = "") String msgSignature,
+                         @RequestParam(value = "encryptType", defaultValue = "") String encryptType,
                          @RequestBody String content,
-                         @PathVariable String appid) throws IOException {
+                         @PathVariable("appid") String appid) throws IOException {
         logger.info("【微信网关处理器】post appId={}", appid);
 
         if (StringUtils.isBlank(signature) || StringUtils.isBlank(timestamp)
