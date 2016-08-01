@@ -5,6 +5,10 @@
 package com.witon.ehealth.web.contoller.test;
 
 import java.io.IOException;
+import java.io.StringReader;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
@@ -77,6 +81,30 @@ public class XmlView {
     public Person test3p(ModelMap modelMap, @RequestBody Person person) throws IOException,
                                                                         JSONException {
         logger.info("{}", person);
+        Person ret = new Person();
+        ret.setName("李四");
+        ret.setId(11L);
+        ret.setAge(30);
+        return ret;
+    }
+
+    @RequestMapping(value = "/3.b", method = RequestMethod.POST, consumes = MediaType.APPLICATION_XML_VALUE)
+    @ResponseBody
+    public Person test3p(ModelMap modelMap, @RequestBody String xml) throws IOException,
+                                                                     JSONException {
+        logger.info("{}", xml);
+
+        try {
+            JAXBContext context = JAXBContext.newInstance(Person.class);
+            //            Marshaller marshaller = context.createMarshaller();
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+
+            Person reqPer = (Person) unmarshaller.unmarshal(new StringReader(xml));
+            logger.info("{}", reqPer);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+
         Person ret = new Person();
         ret.setName("李四");
         ret.setId(11L);

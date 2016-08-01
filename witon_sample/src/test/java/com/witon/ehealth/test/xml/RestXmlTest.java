@@ -58,4 +58,20 @@ public class RestXmlTest extends BaseRestTest {
         }
     }
 
+    @Test
+    public void test_client_hello3p_2() {
+
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><xml><age>9</age><id>9</id><name>&lt;&gt;dfasd</name><sex>xxx</sex></xml>";
+
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://localhost:8090/wit/xml/").path("3.b");
+            String restResult = target.request(MediaType.APPLICATION_XML_TYPE).post(Entity.xml(xml),
+                String.class);
+            logger.info("{}", restResult);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
 }
