@@ -65,7 +65,8 @@ public class RestXmlTest extends BaseRestTest {
 
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wit/xml/").path("3.b");
+            WebTarget target = client.target("http://localhost:8090/wit/xml/").path("3.b")
+                .queryParam("timestamp", "zzz").queryParam("xxxx", "bbb");
             String restResult = target.request(MediaType.APPLICATION_XML_TYPE).post(Entity.xml(xml),
                 String.class);
             logger.info("{}", restResult);
