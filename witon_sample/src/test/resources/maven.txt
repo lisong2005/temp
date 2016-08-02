@@ -1,0 +1,8 @@
+http://maven.aliyun.com/nexus/#welcome
+
+<mirror>
+  <id>aliyun</id>
+  <mirrorOf>central</mirrorOf>
+  <name>Human Readable Name for this Mirror.</name>
+  <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+</mirror>
