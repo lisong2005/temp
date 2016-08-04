@@ -11,8 +11,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.witon.ehealth.common.srv.integration.EhJerseyClient;
-
 /**
  * 
  * @author song.li@witontek.com
@@ -35,6 +33,36 @@ public class EhJerseyClientTest {
 
             logger.info("{}", restResult);
 
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_002() {
+        Client client = EhJerseyClient.getSSLTrustJerseyClient("e:/key/client.p12", "123456");
+
+        try {
+            WebTarget target = client.target("https://localhost:8443/xnwy/rest/test/query")
+                .queryParam("lang", "zh_cn");
+
+            String restResult = target.request().get(String.class);
+            logger.info("{}", restResult);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_003() {
+        Client client = EhJerseyClient.getSSLTrustJerseyClient("e:/key/client2.p12", "123456");
+
+        try {
+            WebTarget target = client.target("https://localhost:8443/xnwy/rest/test/query")
+                .queryParam("lang", "zh_cn");
+
+            String restResult = target.request().get(String.class);
+            logger.info("{}", restResult);
         } catch (Exception e) {
             logger.error("", e);
         }
