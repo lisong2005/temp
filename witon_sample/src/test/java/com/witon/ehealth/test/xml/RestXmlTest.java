@@ -9,6 +9,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
+import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
 
 import com.witon.ehealth.biz.srv.rest.test.Customer;
@@ -42,12 +43,16 @@ public class RestXmlTest extends BaseRestTest {
 
     @Test
     public void test_client_hello3p() {
-        Person ret = new Person();
-        ret.setName("<>dfasd");
-        ret.setId(9L);
-        ret.setAge(9);
 
         try {
+            JSONObject jo = new JSONObject();
+            jo.put("aaa", "1111");
+
+            Person ret = new Person();
+            ret.setName("<>dfasd" + jo.toString());
+            ret.setId(9L);
+            ret.setAge(9);
+
             Client client = EhJerseyClient.getJerseyClient();
             WebTarget target = client.target("http://localhost:8090/wit/xml/").path("3.a");
             String restResult = target.request(MediaType.APPLICATION_XML_TYPE).post(Entity.xml(ret),
