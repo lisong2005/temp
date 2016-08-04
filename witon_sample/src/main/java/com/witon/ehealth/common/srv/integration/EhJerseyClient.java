@@ -30,31 +30,30 @@ import org.slf4j.LoggerFactory;
 
 import com.witon.ehealth.common.srv.integration.cfilter.CheckRequestFilter;
 import com.witon.ehealth.common.srv.integration.cfilter.CheckResponseFilter;
+import com.witon.ehealth.util.EhealthConstants;
 
 /**
  * 
  * @author song.li@witontek.com
  * @version $Id: JerseyClient.java, v 0.1 2016年6月21日 上午11:14:44 song.li@witontek.com Exp $
  */
-public class EhJerseyClient {
-    /**  */
-    private static final String       JERSEY_CLIENT_LOGGER_NAME = "com.witon.jersey.CLIENT";
+public class EhJerseyClient implements EhealthConstants {
 
     /**
     * Logger for this class
     */
-    private static final Logger       logger                    = LoggerFactory
+    private static final Logger       logger     = LoggerFactory
         .getLogger(JERSEY_CLIENT_LOGGER_NAME);
 
     private static final ClientConfig CLIENT_CONFIG;
 
     private static final Client       CLIENT;
 
-    public static final String        CERT_TYPE                 = "SunX509";
+    public static final String        CERT_TYPE  = "SunX509";
 
-    public static final String        PROTOCOL                  = "TLS";
+    public static final String        PROTOCOL   = "TLS";
 
-    public static final String        STORE_TYPE                = "PKCS12";
+    public static final String        STORE_TYPE = "PKCS12";
 
     static {
         CLIENT_CONFIG = new ClientConfig();
