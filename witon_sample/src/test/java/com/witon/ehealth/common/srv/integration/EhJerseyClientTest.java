@@ -23,6 +23,30 @@ public class EhJerseyClientTest {
     private static final Logger logger = LoggerFactory.getLogger(EhJerseyClientTest.class);
 
     @Test
+    public void test_0000() {
+        //        logger.info("{}", EhJerseyClient.CLIENT_CONFIG);
+
+        {
+            Client client1 = EhJerseyClient.getJerseyClient();
+            Client client2 = EhJerseyClient.getJerseyClient();
+
+            logger.info("{}", client1.getConfiguration());
+            logger.info("{}", client2.getConfiguration());
+            logger.info("{}", client2.getConfiguration());
+        }
+
+        {
+            Client client1 = EhJerseyClient.getNewJerseyClient();
+            Client client2 = EhJerseyClient.getNewJerseyClient();
+
+            logger.info("{}", client1.getConfiguration());
+            logger.info("{}", client2.getConfiguration());
+            logger.info("{}", client2.getConfiguration());
+        }
+
+    }
+
+    @Test
     public void test_001() {
         Client client = EhJerseyClient.getSSLTrustJerseyClient();
 
