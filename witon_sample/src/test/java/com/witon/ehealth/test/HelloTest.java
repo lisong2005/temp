@@ -130,6 +130,30 @@ public class HelloTest extends BaseRestTest {
         }
     }
 
+    // ==========================================================================
+    // ==========================================================================
+
+    @Test
+    public void test_client_hello4b() {
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://localhost:8090/wit/").path("xml/4.b");
+            String jsonValue = target.request().accept(MediaType.APPLICATION_JSON_TYPE)
+                .get(String.class);
+            logger.info("{}", jsonValue);
+
+            String xmlValue = target.request().accept(MediaType.APPLICATION_XML_TYPE)
+                .get(String.class);
+            logger.info("{}", xmlValue);
+
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    // ==========================================================================
+    // ==========================================================================
+
     @Test
     public void test_token_server_001() {
         try {
