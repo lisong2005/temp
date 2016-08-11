@@ -5,10 +5,14 @@
 package com.witon.ehealth.test;
 
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
 
 import com.witon.ehealth.common.srv.integration.EhJerseyClient;
@@ -125,4 +129,137 @@ public class HelloTest extends BaseRestTest {
             logger.error("", e);
         }
     }
+
+    @Test
+    public void test_token_server_001() {
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://rb-esf01.chinacloudapp.cn:8080/accessToken/")
+                .path("rest/service");
+
+            String url = "http://rb-esf01.chinacloudapp.cn:8080/cibPay/tokenNotify/token";
+
+            JSONArray list = new JSONArray();
+            {
+                JSONObject item = new JSONObject();
+                item.put("appId", "wxa0390756874e8a3e");
+                list.put(item);
+            }
+            {
+                JSONObject item = new JSONObject();
+                item.put("appId", "wx07d537226ba1e326");
+                list.put(item);
+            }
+
+            JSONObject value = new JSONObject();
+            value.put("appId", "wxa0390756874e8a3e");
+            value.put("notifyUrl", url);
+            value.put("name", DigestUtils.md5Hex(url));
+            value.put("listAppId", list);
+
+            JSONObject req = new JSONObject();
+            req.put("command", "100001");
+            req.put("timestamp", System.currentTimeMillis());
+            req.put("object", value);
+
+            String restResult = target.request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json(req.toString()), String.class);
+            logger.info("{}", restResult);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_token_server_002() {
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://rb-esf01.chinacloudapp.cn:8080/accessToken/")
+                .path("rest/service");
+
+            String url = "http://rb-esf01.chinacloudapp.cn:8080/cibPay/tokenNotify/token";
+
+            JSONArray list = new JSONArray();
+            {
+                JSONObject item = new JSONObject();
+                item.put("appId", "wxa0390756874e8a3e");
+                list.put(item);
+            }
+            {
+                JSONObject item = new JSONObject();
+                item.put("appId", "wx07d537226ba1e326");
+                list.put(item);
+            }
+
+            JSONObject value = new JSONObject();
+            value.put("notifyUrl", url);
+            //            value.put("name", StringUtils.upperCase(DigestUtils.md5Hex(url)));
+            value.put("name", DigestUtils.md5Hex(url));
+            value.put("listAppId", list);
+
+            JSONObject req = new JSONObject();
+            req.put("command", "100002");
+            req.put("timestamp", System.currentTimeMillis());
+            req.put("object", value);
+
+            String restResult = target.request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json(req.toString()), String.class);
+            logger.info("{}", restResult);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_token_server_003_add() {
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://rb-esf01.chinacloudapp.cn:8080/accessToken/")
+                .path("rest/service");
+
+            JSONObject value = new JSONObject();
+            value.put("appId", "wx07d537226ba1e326");
+            value.put("appSecret", "appSecret");
+            value.put("appDesc", "appDesc");
+            value.put("type", "add");
+
+            JSONObject req = new JSONObject();
+            req.put("command", "100003");
+            req.put("timestamp", System.currentTimeMillis());
+            req.put("object", value);
+
+            String restResult = target.request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json(req.toString()), String.class);
+            logger.info("{}", restResult);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_token_server_003_update() {
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://rb-esf01.chinacloudapp.cn:8080/accessToken/")
+                .path("rest/service");
+
+            JSONObject value = new JSONObject();
+            value.put("appId", "wx07d537226ba1e326");
+            value.put("appSecret", "appSecret");
+            value.put("appDesc", "appDesc");
+            value.put("type", "update");
+
+            JSONObject req = new JSONObject();
+            req.put("command", "100003");
+            req.put("timestamp", System.currentTimeMillis());
+            req.put("object", value);
+
+            String restResult = target.request(MediaType.APPLICATION_JSON_TYPE)
+                .post(Entity.json(req.toString()), String.class);
+            logger.info("{}", restResult);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
 }
