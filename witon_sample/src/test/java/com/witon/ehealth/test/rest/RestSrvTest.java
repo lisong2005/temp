@@ -2,7 +2,7 @@
  * Witontek.com.
  * Copyright (c) 2012-2016 All Rights Reserved.
  */
-package com.witon.ehealth.test;
+package com.witon.ehealth.test.rest;
 
 import java.net.URLEncoder;
 

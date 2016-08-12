@@ -126,4 +126,26 @@ public class XmlView {
         ret.setAge(30);
         return ret;
     }
+
+    @RequestMapping(value = "/5.b", method = RequestMethod.GET, produces = { MediaType.APPLICATION_XML_VALUE })
+    @ResponseBody
+    public Person test5b(ModelMap modelMap) throws IOException, JSONException {
+        logger.info("{}");
+        Person ret = new Person();
+        ret.setName("李四");
+        ret.setId(11L);
+        ret.setAge(30);
+        return ret;
+    }
+
+    @RequestMapping(value = "/6.b", method = RequestMethod.GET)
+    @ResponseBody
+    public Person test6b(ModelMap modelMap) throws IOException, JSONException {
+        logger.info("{}");
+        Person ret = new Person();
+        ret.setName("李四");
+        ret.setId(11L);
+        ret.setAge(30);
+        return ret;
+    }
 }

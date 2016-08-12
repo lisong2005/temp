@@ -2,7 +2,7 @@
  * LS_Demon Org.
  * Copyright (c) 2005-2016 All Rights Reserved.
  */
-package com.witon.ehealth.test;
+package com.witon.ehealth.test.rest;
 
 import org.junit.Before;
 import org.slf4j.Logger;

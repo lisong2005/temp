@@ -2,7 +2,7 @@
  * LS_Demon Org.
  * Copyright (c) 2005-2016 All Rights Reserved.
  */
-package com.witon.ehealth.test;
+package com.witon.ehealth.test.rest;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
@@ -146,6 +146,50 @@ public class HelloTest extends BaseRestTest {
                 .get(String.class);
             logger.info("{}", xmlValue);
 
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_client_hello5b() {
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://localhost:8090/wit/").path("xml/5.b");
+
+            String xmlValue = target.request().accept(MediaType.APPLICATION_XML_TYPE)
+                .get(String.class);
+            logger.info("{}", xmlValue);
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            String jsonValue = target.request().accept(MediaType.APPLICATION_JSON_TYPE)
+                .get(String.class);
+            logger.info("{}", jsonValue);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_client_hello6b() {
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://localhost:8090/wit/").path("xml/6.b");
+
+            String xmlValue = target.request().accept(MediaType.APPLICATION_XML_TYPE)
+                .get(String.class);
+            logger.info("{}", xmlValue);
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            String jsonValue = target.request().accept(MediaType.APPLICATION_JSON_TYPE)
+                .get(String.class);
+            logger.info("{}", jsonValue);
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("{}", target.request().get(String.class));
         } catch (Exception e) {
             logger.error("", e);
         }

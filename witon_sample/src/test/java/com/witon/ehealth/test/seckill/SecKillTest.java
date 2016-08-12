@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.witon.ehealth.common.srv.integration.EhJerseyClient;
-import com.witon.ehealth.test.BaseRestTest;
+import com.witon.ehealth.test.rest.BaseRestTest;
 import com.witon.ehealth.util.DateUtil;
 
 /**

@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import com.witon.ehealth.biz.srv.rest.test.Customer;
 import com.witon.ehealth.common.srv.integration.EhJerseyClient;
-import com.witon.ehealth.test.BaseRestTest;
+import com.witon.ehealth.test.rest.BaseRestTest;
 import com.witon.ehealth.web.contoller.test.Person;
 
 /**
