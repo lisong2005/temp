@@ -88,7 +88,9 @@ public class PagePerfFilter implements Filter {
                         success ? "S" : "E"));
                 }
             }
+
         } else {
+
             chain.doFilter(request, response);
         }
     }
