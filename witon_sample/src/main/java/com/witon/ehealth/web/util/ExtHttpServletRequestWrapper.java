@@ -56,7 +56,7 @@ public class ExtHttpServletRequestWrapper extends javax.servlet.http.HttpServlet
      */
     @Override
     public ServletInputStream getInputStream() throws IOException {
-        logger.info("");
+        logger.debug("");
         if (this.content != null) {
             final ByteArrayInputStream bis = new ByteArrayInputStream(content);
             return new ServletInputStream() {
@@ -74,7 +74,7 @@ public class ExtHttpServletRequestWrapper extends javax.servlet.http.HttpServlet
      */
     @Override
     public BufferedReader getReader() throws IOException {
-        logger.info("");
+        logger.debug("{}", getCharacterEncoding());
         if (this.content != null) {
             if (StringUtils.isNoneBlank(getCharacterEncoding())) {
                 return new BufferedReader(new InputStreamReader(new ByteArrayInputStream(content),
