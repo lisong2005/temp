@@ -36,7 +36,7 @@ public class ZXingTest {
         //        String imgPath = "d:/witon/a.png";
         //        String imgPath = "D:/witon/barcode.png";
         //        String imgPath = "d:/witon/bar.png";
-        String imgPath = "d:/Screenshot_2016-05-17-10-21-42.png";
+        String imgPath = "d:/filehelper_1472178502353_58.png";
 
         String value = ZxingHandler.decode(imgPath);
         logger.info("{}", value);
