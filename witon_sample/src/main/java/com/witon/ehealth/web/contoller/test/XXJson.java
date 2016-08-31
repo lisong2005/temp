@@ -68,6 +68,26 @@ public class XXJson {
         return ret;
     }
 
+    @RequestMapping(value = "/hello3_4.json", produces = PRODUCES)
+    @ResponseBody
+    public org.json.JSONObject bbb_4(ModelMap modelMap) throws IOException, JSONException {
+        logger.info("");
+
+        org.json.JSONObject ret = new org.json.JSONObject();
+        ret.put("hello", "张三");
+        return ret;
+    }
+
+    @RequestMapping(value = "/hello3_5.json", produces = MediaType.APPLICATION_JSON)
+    @ResponseBody
+    public net.sf.json.JSONObject bbb_5(ModelMap modelMap) throws IOException, JSONException {
+        logger.info("");
+
+        net.sf.json.JSONObject ret = new net.sf.json.JSONObject();
+        ret.put("hello", "张三");
+        return ret;
+    }
+
     @RequestMapping(value = "/hello3_3.json", produces = MediaType.APPLICATION_JSON)
     @ResponseBody
     public Customer bbb_3(ModelMap modelMap) throws IOException, JSONException {
