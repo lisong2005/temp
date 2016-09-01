@@ -32,10 +32,15 @@
 	border: 1px solid #000;
 }
 </style>
+
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-	<h1>Spring Security Custom Login Form (XML)</h1>
+	<h1>newLogin</h1>
 
 	<div id="login-box">
 
@@ -49,7 +54,7 @@
 		#end
 
 		<form name='loginForm'
-		  action="${link.contextPath}/j_spring_security_check" method='POST'>
+		  action="${link.contextPath}/newLogin.htm" method='POST'>
 
 		  <table>
 			<tr>

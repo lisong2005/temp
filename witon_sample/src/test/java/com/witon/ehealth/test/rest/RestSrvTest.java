@@ -29,10 +29,14 @@ import com.witon.ehealth.common.srv.integration.EhJerseyClient;
  * @version $Id: RestSrvTest.java, v 0.1 2016年4月6日 上午9:38:59 Administrator Exp $
  */
 public class RestSrvTest {
+    /**  */
+    private static final String WIT_REST     = "http://localhost:8090/wit/rest";
+    /**  */
+    private static final String EHEALTH_REST = "http://localhost:8080/ehealth/rest";
     /**
     * Logger for this class
     */
-    private static final Logger logger = LoggerFactory.getLogger(RestSrvTest.class);
+    private static final Logger logger       = LoggerFactory.getLogger(RestSrvTest.class);
 
     @Before
     public void setup() {
@@ -58,9 +62,8 @@ public class RestSrvTest {
 
             // http://localhost:8080/ehealth/rest/test/qr/createReq
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8080/ehealth/rest")
-                .path("test/qr/createReq").queryParam("a", "b").queryParam("c", "d")
-                .queryParam("lang", "zh_cn");
+            WebTarget target = client.target(EHEALTH_REST).path("test/qr/createReq")
+                .queryParam("a", "b").queryParam("c", "d").queryParam("lang", "zh_cn");
             String restResult = target.request(MediaType.APPLICATION_JSON_TYPE).get(String.class);
 
             logger.info("{}", restResult);
@@ -81,9 +84,8 @@ public class RestSrvTest {
 
             // http://localhost:8080/ehealth/rest/test/qr/createReq
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8080/ehealth/rest")
-                .path("test/qr/testPost").queryParam("a", "b").queryParam("c", "d")
-                .queryParam("lang", "zh_cn");
+            WebTarget target = client.target(EHEALTH_REST).path("test/qr/testPost")
+                .queryParam("a", "b").queryParam("c", "d").queryParam("lang", "zh_cn");
 
             Entity<String> e = Entity.json(req.toString());
             logger.info("{}", e);
@@ -134,8 +136,7 @@ public class RestSrvTest {
                 logger.info("{}", ToStringBuilder.reflectionToString(client.getConfiguration(),
                     ToStringStyle.MULTI_LINE_STYLE));
 
-                WebTarget target = client.target("http://localhost:8090/wit/rest").path("test/add")
-                    .queryParam("a", "b")
+                WebTarget target = client.target(WIT_REST).path("test/add").queryParam("a", "b")
                     .queryParam("c", URLEncoder.encode(request.toString(), "utf-8"))
                     .queryParam("lang", "zh_cn");
 

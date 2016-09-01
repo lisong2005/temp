@@ -183,6 +183,6 @@
 	<mvc:resources mapping="/resources/**"
 		location="classpath:/META-INF/public-web-resources/" cache-period="31556926" />
 
-	<mvc:view-controller path="/" view-name="login.htm" />
+	<!-- <mvc:view-controller path="/" view-name="login.htm" /> -->
 
 </beans>

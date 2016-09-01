@@ -24,6 +24,9 @@ import com.witon.ehealth.web.contoller.test.Person;
  */
 public class RestXmlTest extends BaseRestTest {
 
+    /**  */
+    private static final String HTTP_LOCALHOST_8090_WIT_XML = "http://localhost:8080/wit/xml/";
+
     @Test
     public void test_client_hello2p() {
         Customer ret = new Customer();
@@ -32,7 +35,7 @@ public class RestXmlTest extends BaseRestTest {
 
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wit/xml/").path("2.a");
+            WebTarget target = client.target(HTTP_LOCALHOST_8090_WIT_XML).path("2.a");
             String restResult = target.request(MediaType.APPLICATION_XML_TYPE).post(Entity.xml(ret),
                 String.class);
             logger.info("{}", restResult);
@@ -54,7 +57,7 @@ public class RestXmlTest extends BaseRestTest {
             ret.setAge(9);
 
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wit/xml/").path("3.a");
+            WebTarget target = client.target(HTTP_LOCALHOST_8090_WIT_XML).path("3.a");
             String restResult = target.request(MediaType.APPLICATION_XML_TYPE).post(Entity.xml(ret),
                 String.class);
             logger.info("{}", restResult);
@@ -70,7 +73,7 @@ public class RestXmlTest extends BaseRestTest {
 
         try {
             Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target("http://localhost:8090/wit/xml/").path("3.b")
+            WebTarget target = client.target(HTTP_LOCALHOST_8090_WIT_XML).path("3.b")
                 .queryParam("timestamp", "zzz").queryParam("xxxx", "bbb");
             String restResult = target.request(MediaType.APPLICATION_XML_TYPE).post(Entity.xml(xml),
                 String.class);
