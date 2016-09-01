@@ -40,7 +40,7 @@
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-	<h1>newLogin</h1>
+	<h1>The quick brown fox jumps over the lazy dog</h1>
 
 	<div id="login-box">
 

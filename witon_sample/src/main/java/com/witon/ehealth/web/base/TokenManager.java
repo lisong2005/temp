@@ -37,10 +37,15 @@ public class TokenManager extends BaseModel implements AutoCloseable {
     }
 
     public void init(String namespace) {
-        this.paramName = namespace + System.currentTimeMillis();
-        this.token = UUID.randomUUID().toString();
-        session.setAttribute(paramName, token);
-        session = null;
+        init(namespace, false);
+    }
+
+    public void init(String namespace, boolean single) {
+        String uuid = UUID.randomUUID().toString();
+        this.paramName = single ? namespace : namespace + uuid;
+        this.token = uuid;
+        this.session.setAttribute(this.paramName, this.token);
+        this.session = null;
     }
 
     /**

@@ -31,9 +31,10 @@ public class CommonInterceptor implements HandlerInterceptor {
     /**
     * Logger for this class
     */
-    private static final Logger logger = LoggerFactory.getLogger(CommonInterceptor.class);
+    private static final Logger logger    = LoggerFactory.getLogger(CommonInterceptor.class);
 
-    private TokenManager        tm;
+    /**  */
+    private static final String TOKEN_MNG = "tokenMng";
 
     /** 
      * @see org.springframework.web.servlet.HandlerInterceptor#preHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object)
@@ -41,14 +42,13 @@ public class CommonInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
-        logger.info("handler={}",
-            ToStringBuilder.reflectionToString(handler, ToStringStyle.SHORT_PREFIX_STYLE));
-        logger.info("{}", handler.getClass());
+        logger.debug("inter = {}", this);
+        logger.debug("{}", handler.getClass());
 
         HttpSession session = request.getSession();
         if (session != null) {
-            tm = new TokenManager(request.getSession(true));
-            request.setAttribute("tokenMng", tm);
+            TokenManager tm = new TokenManager(request.getSession(true));
+            request.setAttribute(TOKEN_MNG, tm);
         }
 
         if (handler instanceof HandlerMethod) {
@@ -58,7 +58,7 @@ public class CommonInterceptor implements HandlerInterceptor {
             logger.debug("method = {}", handlerMethod.getMethod());
             logger.debug("returnType = {}", handlerMethod.getReturnType());
 
-            logger.info("EhForm = {}", handlerMethod.getMethodAnnotation(EhForm.class));
+            logger.debug("EhForm = {}", handlerMethod.getMethodAnnotation(EhForm.class));
 
             EhForm ehForm = handlerMethod.getMethodAnnotation(EhForm.class);
             if (ehForm != null) {
@@ -88,7 +88,7 @@ public class CommonInterceptor implements HandlerInterceptor {
                             return false;
                         }
 
-                        logger.info("check token pass.");
+                        logger.debug("check token pass.");
                         return true;
                     }
                 }
@@ -96,6 +96,8 @@ public class CommonInterceptor implements HandlerInterceptor {
                 return false;
             }
             // end
+        } else {
+            logger.info("{}", handler.getClass());
         }
         return true;
     }
@@ -126,7 +128,8 @@ public class CommonInterceptor implements HandlerInterceptor {
                                 Object handler, Exception ex) throws Exception {
         logger.debug("handler={},ex={}",
             ToStringBuilder.reflectionToString(handler, ToStringStyle.SHORT_PREFIX_STYLE), ex);
-
+        TokenManager tm = (TokenManager) request.getAttribute(TOKEN_MNG);
+        request.removeAttribute(TOKEN_MNG);
         if (tm != null) {
             logger.debug("clean up.");
             tm.close();
