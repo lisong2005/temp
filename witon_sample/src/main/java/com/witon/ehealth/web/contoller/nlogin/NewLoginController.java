@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.witon.ehealth.web.base.annotation.EhForm;
 import com.witon.ehealth.web.contoller.nlogin.form.NewLoginForm;
 
 /**
@@ -30,16 +32,18 @@ public class NewLoginController {
     private static final Logger logger = LoggerFactory.getLogger(NewLoginController.class);
 
     @RequestMapping(method = RequestMethod.GET)
-    public String get(ModelMap modelMap) throws IOException {
-        logger.info("{}", "");
-        modelMap.addAttribute("msg", "welcome");
+    public String get(ModelMap modelMap,
+                      @RequestParam(defaultValue = "welcome", value = "msg") String msg) throws IOException {
+        logger.info("{}", msg);
+        modelMap.addAttribute("msg", msg);
         return "newLogin.vm";
     }
 
     @RequestMapping(method = RequestMethod.POST)
+    @EhForm("com.witon.ehealth.web.contoller.nlogin.NewLoginController.get")
     public String post(ModelMap modelMap, NewLoginForm loginForm) throws IOException {
         logger.info("{}", loginForm);
         modelMap.addAttribute("msg", "success");
-        return "newLogin.vm";
+        return "redirect:/newLogin.htm";
     }
 }

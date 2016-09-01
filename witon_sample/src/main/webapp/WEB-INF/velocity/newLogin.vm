@@ -71,8 +71,9 @@
 			</tr>
 		  </table>
 
-		  <input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
+		  $!{tokenMng.init('com.witon.ehealth.web.contoller.nlogin.NewLoginController.get')}
+		  <input type="hidden" name="$!{tokenMng.paramName}" value="$!{tokenMng.token}" />
+		  <input type="hidden" name="$!{_csrf.parameterName}" value="$!{_csrf.token}" />
 
 		</form>
 	</div>

@@ -34,9 +34,17 @@ public class NewLoginControllerTest extends BaseRestTest {
             Form form = new Form();
             form.param("username", "foo");
             form.param("password", "bar");
+            form.param("com.witon.ehealth.web.contoller.nlogin.NewLoginController.get1472709909269",
+                "f0a73fea-c19b-45e0-acee-7b342674dac2");
+            // Cookie:JSESSIONID=56BCEB804C3FCD2A8C7E93C00501DC89
+            String cookie = "JSESSIONID=56BCEB804C3FCD2A8C7E93C00501DC89";
 
-            String ret = target.request().post(
-                Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE), String.class);
+            String ret = target.request()
+
+                .header("Cookie", cookie)
+
+                .post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE),
+                    String.class);
             logger.info("{}", ret);
         } catch (Exception e) {
             logger.error("", e);
