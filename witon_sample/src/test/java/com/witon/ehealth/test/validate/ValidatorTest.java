@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
 import com.witon.ehealth.test.validate.bean.Order;
+import com.witon.ehealth.test.validate.bean.Product;
 
 /**
  * 
@@ -41,6 +42,12 @@ public class ValidatorTest {
             order.setAddress("x");
             order.setCustomer("xx");
             order.setCreateDate(new Date());
+
+            Product product = new Product();
+            product.setPrice(8000);
+            product.setProductName("xx");
+
+            order.setProduct(product);
 
             ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
             Validator validator = factory.getValidator();

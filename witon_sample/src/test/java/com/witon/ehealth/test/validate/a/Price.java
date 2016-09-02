@@ -27,6 +27,7 @@ import javax.validation.constraints.Min;
 @Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Price {
+
     String message() default "错误的价格";
 
     Class<?>[] groups() default {};
