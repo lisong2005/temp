@@ -2,7 +2,7 @@
  * Witontek.com.
  * Copyright (c) 2012-2016 All Rights Reserved.
  */
-package com.witon.ehealth.test.validate.bean;
+package com.witon.ehealth.web.contoller.test.bean;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.witon.ehealth.common.base.BaseModel;
-import com.witon.ehealth.test.validate.a.Status;
+import com.witon.ehealth.web.contoller.test.an.Status;
 
 /**
  * 

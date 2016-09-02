@@ -6,9 +6,15 @@ package com.witon.ehealth.web.contoller.test;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Date;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,10 +24,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.witon.ehealth.biz.srv.rest.test.Customer;
+import com.witon.ehealth.web.contoller.test.bean.Order;
+import com.witon.ehealth.web.contoller.test.bean.Product;
 
 /**
  * 
@@ -41,6 +50,36 @@ public class XXJson {
     @RequestMapping(value = "/hello1.json")
     public void get(ModelMap modelMap) throws IOException, JSONException {
         logger.info("");
+
+        try {
+            Order order = new Order();
+            order.setOrderId("123456789");
+            order.setStatus("created");
+            order.setAddress("x");
+            order.setCustomer("xx");
+            order.setCreateDate(new Date());
+
+            Product product = new Product();
+            product.setPrice(8000);
+            product.setProductName("xxZZ");
+
+            order.setProduct(product);
+
+            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+            Validator validator = factory.getValidator();
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+
+            if (CollectionUtils.isEmpty(violations)) {
+                logger.info("success");
+            }
+
+            for (ConstraintViolation<Order> i : violations) {
+                logger.info("{}, {}", i.getPropertyPath(), i.getMessage());
+            }
+        } catch (Throwable e) {
+            logger.error("", e);
+        }
+
         modelMap.addAttribute("aaa", "咋说的法定");
         return;
     }

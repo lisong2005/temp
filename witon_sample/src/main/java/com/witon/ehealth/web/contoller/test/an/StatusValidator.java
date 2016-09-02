@@ -2,7 +2,7 @@
  * Witontek.com.
  * Copyright (c) 2012-2016 All Rights Reserved.
  */
-package com.witon.ehealth.test.validate.a;
+package com.witon.ehealth.web.contoller.test.an;
 
 import java.util.Arrays;
 

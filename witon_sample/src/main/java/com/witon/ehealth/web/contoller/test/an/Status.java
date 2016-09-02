@@ -2,7 +2,7 @@
  * Witontek.com.
  * Copyright (c) 2012-2016 All Rights Reserved.
  */
-package com.witon.ehealth.test.validate.a;
+package com.witon.ehealth.web.contoller.test.an;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -12,23 +12,19 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 /**
  * 
  * @author lisong
- * @version $Id: Price.java, v 0.1 2016年9月2日 下午11:17:09 lisong Exp $
+ * @version $Id: Status.java, v 0.1 2016年9月2日 下午11:17:54 lisong Exp $
  */
-@Max(10000)
-@Min(8000)
-@Constraint(validatedBy = {})
+@Constraint(validatedBy = { StatusValidator.class })
 @Documented
 @Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Price {
+public @interface Status {
 
-    String message() default "错误的价格";
+    String message() default "不正确的状态 , 应该是 'created', 'paid', shipped', closed'其中之一";
 
     Class<?>[] groups() default {};
 

@@ -2,11 +2,13 @@
  * Witontek.com.
  * Copyright (c) 2012-2016 All Rights Reserved.
  */
-package com.witon.ehealth.test.validate.bean;
+package com.witon.ehealth.web.contoller.test.bean;
+
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.witon.ehealth.test.validate.a.Price;
+import com.witon.ehealth.web.contoller.test.an.Price;
 
 /**
  * 
@@ -17,6 +19,7 @@ public class Product {
 
     // 必须非空
     @NotEmpty
+    @Pattern(regexp = "[a-zA-Z]*")
     private String productName;
 
     // 必须在 8000 至 10000 的范围内

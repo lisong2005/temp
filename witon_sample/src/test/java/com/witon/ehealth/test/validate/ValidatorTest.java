@@ -17,8 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
-import com.witon.ehealth.test.validate.bean.Order;
-import com.witon.ehealth.test.validate.bean.Product;
+import com.witon.ehealth.web.contoller.test.bean.Order;
+import com.witon.ehealth.web.contoller.test.bean.Product;
 
 /**
  * 
@@ -45,7 +45,7 @@ public class ValidatorTest {
 
             Product product = new Product();
             product.setPrice(8000);
-            product.setProductName("xx");
+            product.setProductName("xxZZ");
 
             order.setProduct(product);
 
