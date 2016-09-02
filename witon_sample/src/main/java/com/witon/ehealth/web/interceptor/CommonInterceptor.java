@@ -61,7 +61,7 @@ public class CommonInterceptor implements HandlerInterceptor {
             logger.debug("EhForm = {}", handlerMethod.getMethodAnnotation(EhForm.class));
 
             EhForm ehForm = handlerMethod.getMethodAnnotation(EhForm.class);
-            if (ehForm != null) {
+            if (ehForm != null && StringUtils.isNoneBlank(ehForm.value())) {
 
                 if (session == null) {
                     logger.info("session is null.");
