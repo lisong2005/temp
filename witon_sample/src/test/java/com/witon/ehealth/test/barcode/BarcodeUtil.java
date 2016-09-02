@@ -16,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.krysalis.barcode4j.impl.code39.Code39Bean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.krysalis.barcode4j.tools.UnitConv;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -23,6 +25,11 @@ import org.krysalis.barcode4j.tools.UnitConv;
  * @version $Id: BarcodeUtil.java, v 0.1 2016年5月16日 下午4:08:22 song.li@witontek.com Exp $
  */
 public class BarcodeUtil {
+    /**
+    * Logger for this class
+    */
+    private static final Logger logger = LoggerFactory.getLogger(BarcodeUtil.class);
+
     /**
      * 生成文件
      *
@@ -94,7 +101,8 @@ public class BarcodeUtil {
 
     public static void main(String[] args) {
         String msg = "123456789";
-        String path = "D:/witon/barcode.png";
+        String path = "D:/witon/barcode222.png";
         generateFile(msg, path);
+        logger.info("end");
     }
 }
