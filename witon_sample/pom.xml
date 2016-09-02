@@ -15,7 +15,7 @@
 		<jdk.version>1.7</jdk.version>
 
 		<jaxservlet.api.version>2.5</jaxservlet.api.version>
-		<jaxjsp.api.version>2.1</jaxjsp.api.version>
+		<jaxjsp.api.version>2.2</jaxjsp.api.version>
 		<jaxjstl.api.version>1.2</jaxjstl.api.version>
 
 		<junit.version>4.11</junit.version>
@@ -110,6 +110,21 @@
 			<artifactId>jstl-api</artifactId>
 			<version>${jaxjstl.api.version}</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>2.2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+
 
 
 		<!-- =================================================================== -->
@@ -444,6 +459,16 @@
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+			<!-- <exclusions> -->
+			<!-- <exclusion> -->
+			<!-- <groupId>javax.validation</groupId> -->
+			<!-- <artifactId>validation-api</artifactId> -->
+			<!-- </exclusion> -->
+			<!-- </exclusions> -->
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-client</artifactId>
 		</dependency>
 		<dependency>
@@ -454,6 +479,12 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-spring3</artifactId>
+			<!-- <exclusions> -->
+			<!-- <exclusion> -->
+			<!-- <groupId>org.glassfish.hk2</groupId> -->
+			<!-- <artifactId>hk2</artifactId> -->
+			<!-- </exclusion> -->
+			<!-- </exclusions> -->
 		</dependency>
 
 		<!-- <dependency> -->
