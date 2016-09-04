@@ -34,7 +34,7 @@ public class ValidatorTest {
     @Test
     public void test_001() {
         logger.info("");
-
+        // http://www.ibm.com/developerworks/cn/java/j-lo-jsr303/index.html
         try {
             Order order = new Order();
             order.setOrderId("123456789");
