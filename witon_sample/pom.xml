@@ -460,6 +460,12 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-server</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.javassist</groupId>
+					<artifactId>javassist</artifactId>
+				</exclusion>
+			</exclusions>
 			<!-- <exclusions> -->
 			<!-- <exclusion> -->
 			<!-- <groupId>javax.validation</groupId> -->
@@ -633,6 +639,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+
 
 
 

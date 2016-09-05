@@ -4,6 +4,9 @@
  */
 package com.witon.ehealth.web.contoller.nlogin.form;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.witon.ehealth.common.base.BaseModel;
 
 /**
@@ -16,7 +19,11 @@ public class NewLoginForm extends BaseModel {
     /**  */
     private static final long serialVersionUID = 7845124077810133398L;
 
+    @NotNull
     private String            username;
+
+    @NotNull
+    @Size(min = 6, message = "密码长度必须6以上")
     private String            password;
 
     /**

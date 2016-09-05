@@ -30,7 +30,7 @@ import com.witon.ehealth.common.srv.integration.EhJerseyClient;
  */
 public class RestSrvTest {
     /**  */
-    private static final String WIT_REST     = "http://localhost:8090/wit/rest";
+    private static final String WIT_REST     = "http://localhost:8080/wit/rest";
     /**  */
     private static final String EHEALTH_REST = "http://localhost:8080/ehealth/rest";
     /**
