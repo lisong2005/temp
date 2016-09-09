@@ -7,6 +7,9 @@ package com.witon.ehealth.test.seckill;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
@@ -35,11 +38,27 @@ public class C_Kill_TEST {
 
     public static final String  cookie = "" +
 
-                                         "AlteonP=BldCaGddqMDyw8F3ON/LNw$$; historyBank=SZDS; PAY_MONEY=100; yjcxFlag=1; WTCX_MY_GRZLGL=MY_GRZLGL+1467880559431; searchText=%u5B9E%u540D%u8BA4%u8BC1; WTHD_1275=%u5BBD%u5E26%u72C2%u6B22%u8DB4+1467881159040; CmLocation=250|250; close_get=1; WTZQ_GLZQ=GLZQ+1468375333052; AlteonP=BgrCe2ddqMB+La0nRw6UVw$$; onedayonetime=1; WTCX_MY_ZDCX=MY_ZDCX+1468377350727; WTCX_MY_WDTC=MY_WDTC+1468377405815; WTCX_MY_INDEX=MY_INDEX+1468377524558; WTHD_1338=e%u5E01%u4E13%u533A+1468377526023; WTHD_1520=%u6C5F%u82CF%u79FB%u52A8E%u5E01%u7B7E%u5230%u6D3B%u52A8%uFF1A%u7B7E%u5230%u9001E%u5E01%uFF01+1468377552938; forwardActSmqllNew=1; forwardActSmqllNewBks=1; login_error_number_https=13815424016; login_error_loginType_https=1; login_error_passwordType_https=1; cmjsSSOCookie=27BEDD7192274BD5BB27A3051142C2A2@js.ac.10086.cn; cmtokenid=27BEDD7192274BD5BB27A3051142C2A2@js.ac.10086.cn; last_success_login_mobile=13815424016; CmProvid=js; topUserMobile=13815424016; city=NJDQ; WTHD_1455=%u5468%u4E09%u7279%u6743%u65E5%20%u6D41%u91CF%u5468%u5468%u62A2+1468377633719; WT_FPC=id=26c2d9d603f670134c51449016457270:lv=1468377633745:ss=1468377258719; js_cmp_manage=LBsJXFqBTP8b4X0trnWBrHZX3DQDydky2nn7Sv1N1vJDq6MJYBJ6!-1606428625; JSESSIONID=K4cBXFqDbbs8MbFWxT0Fv7rQlWFNkhxWGj7ThG7Xxcv5Jg4FDHyQ!2062348696; CmWebtokenid=13815424016,js"
+                                         "AlteonP=Bj44GmddqMA13px9extGTA$$; cmjsSSOCookie=D927F389458640548CC021D31EB69A60@js.ac.10086.cn; cmtokenid=D927F389458640548CC021D31EB69A60@js.ac.10086.cn; js_cmp_manage=swKYXP0X5R2QPlyT3gW1jJ6XH1ZjtZjL46lGfy9Zyqnz1ZMp2Wyh!1169401406; loginMobileList=15152781426; yjcxFlag=1; needShow=1; WTCX_MY_INDEX=MY_INDEX+1473213508911; AlteonP=BmJlWmddqMDsqHs+a7qGdA$$; CmProvid=js; onedayonetime=1; topUserMobile=15152781426; city=YZDQ; JSESSIONID=8pgQXP1LV7ryJQD1T9wQv61ZRvQwZ2vJYcv3JBVkJJrL15XRFZB3!2040559376; WTHD_1455=%u5468%u4E09%u7279%u6743%u65E5%20%u6D41%u91CF%u5468%u5468%u62A2+1473213866589; WT_FPC=id=25c03f13d71d70b758b1473210227327:lv=1473213866612:ss=1473213497771; CmWebtokenid=15152781426,js"
 
                                          + "";
 
     public static void main(String[] args) {
+
+        final ScheduledExecutorService exe = Executors.newSingleThreadScheduledExecutor();
+        exe.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    for (;;) {
+                        logger.info("xxxxx");
+                        exe_for_ls(cookie, null, null);
+                        Thread.sleep(20 * 1000);
+                    }
+                } catch (InterruptedException e) {
+                    logger.error("", e);
+                }
+            }
+        });
 
         final Timer t = new Timer();
         logger.info("{}", t);
@@ -47,11 +66,11 @@ public class C_Kill_TEST {
             @Override
             public void run() {
                 logger.info("xxxxx");
-                exe_for_ls(cookie, t);
+                exe_for_ls(cookie, t, exe);
             }
         };
         logger.info("{}", task);
-        Date date = DateUtil.parseDateNewFormat("2016-07-13 13:59:55");
+        Date date = DateUtil.parseDateNewFormat("2016-09-07 13:59:55");
         //        Date date = DateUtil.parseDateNewFormat("2016-07-13 12:42:55");
         logger.info("{}", date);
         t.schedule(task, date, 100);
@@ -60,13 +79,14 @@ public class C_Kill_TEST {
 
     @Test
     public void test_001() {
-        exe_for_ls(cookie, null);
+        exe_for_ls(cookie, null, null);
     }
 
     /**
+     * @param exe TODO
      * 
      */
-    private static void exe_for_ls(String cookies, Timer t) {
+    private static void exe_for_ls(String cookies, Timer t, ExecutorService exe) {
         String value = "[{\"activityCode\":\"1455\",\"dynamicURI\":\"Seckill\",\"dynamicParameter\":{\"method\":\"seckill\",\"actStageCode\":\"1455\"},\"dynamicDataNodeName\":\"API_seckill_Seckill\"}]";
         try {
             Client client = EhJerseyClient.getJerseyClient();
@@ -115,6 +135,9 @@ public class C_Kill_TEST {
                     logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     if (t != null) {
                         t.cancel();
+                    }
+                    if (exe != null) {
+                        exe.shutdownNow();
                     }
                 }
             }

@@ -30,7 +30,7 @@ import com.witon.ehealth.util.event.model.NotifyContext;
  * @author song.li@witontek.com
  * @version $Id: NotifyServiceImpl.java, v 0.1 2015年12月22日 上午8:32:46 song.li@witontek.com Exp $
  */
-public class NotifyServiceImpl implements NotifyService, InitializingBean {
+public class NotifyServiceImpl implements NotifyService, InitializingBean, AutoCloseable {
     /**
     * Logger for this class
     */
@@ -58,6 +58,8 @@ public class NotifyServiceImpl implements NotifyService, InitializingBean {
 
     @Autowired
     private ThreadPoolTaskExecutor                  taskExecutor;
+
+    private boolean                                 shutdown   = false;
 
     /** 
      * @see com.witon.ehealth.common.service.facade.common.notify.NotifyService#notify(com.witon.ehealth.common.service.facade.common.notify.model.NotifyContext)
@@ -98,6 +100,11 @@ public class NotifyServiceImpl implements NotifyService, InitializingBean {
             public void run() {
                 for (;;) {
                     try {
+                        if (shutdown) {
+                            logger.info("【通知处理器】关闭线程执行程序");
+                            return;
+                        }
+
                         final NotifyContext nc = queue.poll(1, TimeUnit.SECONDS);
 
                         if (nc == null) {
@@ -149,6 +156,22 @@ public class NotifyServiceImpl implements NotifyService, InitializingBean {
                 }
             }
         });
+    }
+
+    /** 
+    * @see java.lang.AutoCloseable#close()
+    */
+    @Override
+    public void close() throws Exception {
+        logger.info("【通知处理器】关闭");
+        this.shutdown = true;
+        try {
+            exe.shutdownNow();
+        } catch (Exception e) {
+            logger.error("", e);
+            throw e;
+        }
+        logger.info("【通知处理器】关闭完成");
     }
 
 }
