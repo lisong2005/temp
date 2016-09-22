@@ -4,6 +4,7 @@
  */
 package com.witon.ehealth.util.conf;
 
+import java.io.File;
 import java.util.Enumeration;
 import java.util.Properties;
 
@@ -98,6 +99,7 @@ public class SystemConfigImpl implements SystemConfig, InitializingBean {
 
         logger.info("runMode={}", this.runMode);
         logger.info("test={}", this.test);
+        logger.info("{}", new File("dd/aa.txt").getAbsolutePath());
     }
 
     private String getStrForProps(Properties props) {

@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Witontek.com.
@@ -15,7 +17,7 @@ import java.io.InputStream;
 public class AATest {
 
     @SuppressWarnings({ "unused", "resource" })
-    public static void main(String[] args) throws Exception {
+    public static <T> void main(String[] args) throws Exception {
         System.out.println("start");
         for (int i = 0; i < 10; i++) {
             InputStream is = new FileInputStream(new File("d:/rsync.txt"));
@@ -33,5 +35,10 @@ public class AATest {
         System.out.println("B: " + new String(b2));
 
         System.out.println("end");
+
+        List<? extends Number> list = new ArrayList<Integer>();
+        list = new ArrayList<Long>();
+        //        list = new ArrayList<String>();
     }
+
 }

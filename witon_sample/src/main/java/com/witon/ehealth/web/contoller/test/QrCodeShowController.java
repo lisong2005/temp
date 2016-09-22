@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 
@@ -28,9 +29,11 @@ public class QrCodeShowController {
     private static final Logger logger = LoggerFactory.getLogger(QrCodeShowController.class);
 
     @RequestMapping(method = RequestMethod.GET)
-    public String test1(ModelMap modelMap) throws IOException, JSONException {
+    public String test1(ModelMap modelMap,
+                        @RequestParam(defaultValue = "test") String id) throws IOException,
+                                                                        JSONException {
         logger.info("");
-        modelMap.addAttribute("id", "test");
+        modelMap.addAttribute("id", id);
         return "/test/showQr.vm";
     }
 }
