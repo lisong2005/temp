@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.witon.ehealth.common.dal.pg.dao.test.TestOrderDao2">
+
+
+	<resultMap id="newRM2"
+		type="com.witon.ehealth.common.dal.pg.dbo.test.TestOrderDo">
+		<id property="id" column="ID" />
+		<result property="tradeNo" column="TRADE_NO" />
+		<result property="amount" column="AMOUNT"
+			typeHandler="com.witon.ehealth.util.money.MoneyTypeHandler" />
+		<result property="memo" column="MEMO" />
+	</resultMap>
+
+
+	<sql id="allColumns">
+		ID,
+		TRADE_NO,
+		AMOUNT,
+		MEMO
+	</sql>
+
+
+
+	<insert id="addBatch" useGeneratedKeys="true" keyProperty="id"
+		keyColumn="id" parameterType="java.util.HashMap">
+		insert into test_batch_insert (TRADE_NO, AMOUNT, MEMO) values
+		<foreach item="item" collection="list" separator=",">
+			(
+			#{item.tradeNo},
+			#{item.amount.cent},
+			#{item.memo}
+			)
+		</foreach>
+	</insert>
+
+	<insert id="add" useGeneratedKeys="true" keyProperty="id"
+		keyColumn="id" parameterType="com.witon.ehealth.common.dal.pg.dbo.test.TestOrderDo">
+		insert into test_batch_insert (
+		TRADE_NO,
+		AMOUNT,
+		MEMO
+		) values
+		(
+		#{tradeNo},
+		#{amount.cent},
+		#{memo}
+		)
+	</insert>
+
+	<insert id="add2"
+		parameterType="com.witon.ehealth.common.dal.pg.dbo.test.TestOrderDo">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select
+			nextval('seq_school')
+		</selectKey>
+		insert into test_batch_insert (
+		ID,
+		TRADE_NO,
+		AMOUNT,
+		MEMO
+		)
+		values
+		(
+		#{id},
+		#{tradeNo},
+		#{amount.cent},
+		#{memo}
+		)
+	</insert>
+
+
+
+
+</mapper>
+

@@ -78,4 +78,16 @@ public class TestOrderDaoImpl extends SqlSessionDaoSupport implements TestOrderD
         return getSqlSession().selectOne(NAMESPACE + ".getByIdNew2", id);
     }
 
+    /** 
+     * @see org.springframework.dao.support.DaoSupport#initDao()
+     */
+    @Override
+    protected void initDao() throws Exception {
+        super.initDao();
+        logger.info("***********************************");
+        logger.info("***********************************");
+        logger.info("***********************************");
+        logger.info("{}", getSqlSession());
+    }
+
 }

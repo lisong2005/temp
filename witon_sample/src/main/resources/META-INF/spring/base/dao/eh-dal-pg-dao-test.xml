@@ -16,5 +16,11 @@
 		parent="mybatisSupport"></bean>
 
 
+	<!-- TestOrderDao2 -->
+	<bean id="testOrderDao2"
+		class="com.witon.ehealth.common.dal.pg.impl.test.TestOrderDao2Impl"
+		parent="mybatisSupport"></bean>
+
+
 
 </beans>
