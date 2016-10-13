@@ -108,7 +108,7 @@ public class SecKillTest extends BaseRestTest {
             };
             logger.info("{}", task);
             //            Date date = DateUtil.parseDateNewFormat("2016-07-13 10:00:00");
-            Date date = DateUtil.parseDateNewFormat("2016-07-13 13:59:55");
+            Date date = DateUtil.parseDateNewFormat(SecKillConstants.DATE_STR);
             //            Date date = DateUtil.parseDateNewFormat("2016-07-13 13:49:00");
             logger.info("{}", date);
 

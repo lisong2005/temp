@@ -55,6 +55,7 @@ public class QrRedirectController {
         logger.info("{}", userAgent);
         if (StringUtils.contains(userAgent, "MicroMessenger")) {
             return "redirect:http://www.qq.com";
+            //            return "redirect:weixin://wxpay/bizpayurl?appid=wx3d81fc2886d86526&mch_id=1225830002&nonce_str=2cdbac0902944c8c80c6b7dbbe71517d&out_trade_no=122583000220160414160142541&product_id=12345678&sign=E300D57C5F2223DE6F8A632EF502E582&time_stamp=1460620903";
         }
         if (StringUtils.contains(userAgent, "Alipay")) {
             return "redirect:http://www.taobao.com";

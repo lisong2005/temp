@@ -51,7 +51,7 @@ public class B_Kill_TEST {
             }
         };
         logger.info("{}", task);
-        Date date = DateUtil.parseDateNewFormat("2016-07-13 14:59:55");
+        Date date = DateUtil.parseDateNewFormat(SecKillConstants.DATE_STR);
         //        Date date = DateUtil.parseDateNewFormat("2016-07-13 12:42:55");
         logger.info("{}", date);
         t.schedule(task, date, 100);

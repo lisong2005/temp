@@ -38,7 +38,7 @@ public class C_Kill_TEST {
 
     public static final String  cookie = "" +
 
-                                         "AlteonP=Bj44GmddqMA13px9extGTA$$; cmjsSSOCookie=D927F389458640548CC021D31EB69A60@js.ac.10086.cn; cmtokenid=D927F389458640548CC021D31EB69A60@js.ac.10086.cn; js_cmp_manage=swKYXP0X5R2QPlyT3gW1jJ6XH1ZjtZjL46lGfy9Zyqnz1ZMp2Wyh!1169401406; loginMobileList=15152781426; yjcxFlag=1; needShow=1; WTCX_MY_INDEX=MY_INDEX+1473213508911; AlteonP=BmJlWmddqMDsqHs+a7qGdA$$; CmProvid=js; onedayonetime=1; topUserMobile=15152781426; city=YZDQ; JSESSIONID=8pgQXP1LV7ryJQD1T9wQv61ZRvQwZ2vJYcv3JBVkJJrL15XRFZB3!2040559376; WTHD_1455=%u5468%u4E09%u7279%u6743%u65E5%20%u6D41%u91CF%u5468%u5468%u62A2+1473213866589; WT_FPC=id=25c03f13d71d70b758b1473210227327:lv=1473213866612:ss=1473213497771; CmWebtokenid=15152781426,js"
+                                         "AlteonP=BlCfT2ddqMCaH54tjFbMbg$$; js_cmp_manage=3qsNX9BZVhGCcl5v01hchv83Rn2gQBsvfvTJ5RZRh0Lwn9WLCssc!-1801101051; AlteonP=BpcCdWddqMAqkSwT8HY5AA$$; forwardActSmqllNew=1; forwardActSmqllNewBks=1; login_error_number_https=13815424016; login_error_loginType_https=1; login_error_passwordType_https=1; cmtokenid=886D18AEA0B34BB6BE1EF62FB78376AC@js.ac.10086.cn; last_success_login_mobile=13815424016; CmProvid=js; loginMobileList=13815424016; topUserMobile=13815424016; city=NJDQ; yjcxFlag=1; cookieYouLike1=%u901A%u7528%u6D41%u91CF%u5305%7C%7C%u591A%u6863%u5957%u9910%uFF0C%u5168%u56FD%u901A%u7528%uFF0C%u6D41%u91CF%u66F4%u4E30%u6EE1%uFF0C%u4EF7%u683C%u66F4%u9AA8%u611F%7C%7Chttp%3A//service.js.10086.cn/GPRS4G.html; cookieYouLike2=%u6D41%u91CF%u7279%u60E0%u4E13%u533A%7C%7C%u7279%u60E0%u6253%u6298%u4E13%u533A%uFF0C%u6D41%u91CF%u52A0%u6CB9%u5305%u4F4E%u81F35%u6298%u8D77%u3002%7C%7Chttp%3A//service.js.10086.cn/act_js/activity_web/1554/index.html%23home; cookieYouLike3=%u5957%u9910%u7406%u8D22%7C%7C%u4E00%u952E%u68C0%u6D4B%u6D88%u8D39%u5F02%u5E38%uFF0C%u5957%u9910%u8FD8%u80FD%u4F53%u68C0%7C%7Chttp%3A//service.js.10086.cn/experience.do; cookieYouLike4=%u5145%u503C%7C%7C%7C%7Chttp%3A//service.js.10086.cn/WSCZYL.html; cookieYouLike5=%u5468%u4E09%u7279%u6743%u65E5%7C%7C%u6BCF%u5468%u4E09%uFF0C%u62A2500M%u514D%u8D39%u6D41%u91CF%7C%7Chttp%3A//service.js.10086.cn/act_js/activity_web/1455/index.html%23home; cookieYouLike6=%u79EF%u5206%u6362%u6D41%u91CF%7C%7C250%u79EF%u5206%u5151%u636210M%u6D41%u91CF%uFF0C420%u79EF%u5206%u5151%u636230M%u6D41%u91CF%7C%7Chttp%3A//service.js.10086.cn/JFDH_JFDHXYW.html; needShow=1; JSESSIONID=LMD8X9BZSGXt4k9QWrG3ngLStRcwvMvZpZYJjCRQhbB3MMFQkzJ5!2112777474; CmWebtokenid=13815424016,js; WTHD_1455=%u5468%u4E09%u7279%u6743%u65E5%20%u6D41%u91CF%u5468%u5468%u62A2+1476231583856; WT_FPC=id=21b7d3489ecbb9bdbde1476231513640:lv=1476231583879:ss=1476231513640"
 
                                          + "";
 
@@ -70,7 +70,7 @@ public class C_Kill_TEST {
             }
         };
         logger.info("{}", task);
-        Date date = DateUtil.parseDateNewFormat("2016-09-07 13:59:55");
+        Date date = DateUtil.parseDateNewFormat(SecKillConstants.DATE_STR);
         //        Date date = DateUtil.parseDateNewFormat("2016-07-13 12:42:55");
         logger.info("{}", date);
         t.schedule(task, date, 100);
