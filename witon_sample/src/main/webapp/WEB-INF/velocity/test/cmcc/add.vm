@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Home</title>
+    </head>
+    <body>
+		###foreach($item in ${pageList.resultList})
+        ##<p>${item.appId}&nbsp;${item.userName}&nbsp;${item.nickName}&nbsp;<a href="${link.contextPath}/wx/menu/query.json?id=$!{item.id}" target="_blank">$link.absolute("${link.contextPath}/wx/menu/query.json")?id=${item.id}</a></p>
+		###end
+		
+		<table border="1">
+			<form id="xxForm" action="${link.contextPath}/test/cmcc/add.htm" method="post">
+        	<tbody>
+        		
+				<tr>
+                    <td ><label>name:</label></td>
+					<td colspan="2"><input type="text" name="name" value="" width="40" maxlength="64" /></td>
+				</tr>
+				<tr>
+                    <td ><label>cookie:</label></td>
+					<td colspan="2"><textarea name="cookie" form="xxForm" rows="20" cols="60"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center"><input type="submit" value="提交" /></td>
+				</tr>
+        	</tbody>
+			</form>
+        </table> 
+    </body>
+</html>
