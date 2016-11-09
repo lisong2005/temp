@@ -36,7 +36,7 @@ public class SecKillTest extends BaseRestTest {
     /**  */
     private static final String CO     = ""
 
-                                         + "AlteonP=BldCaGddqMDyw8F3ON/LNw$$; historyBank=SZDS; PAY_MONEY=100; yjcxFlag=1; WTCX_MY_GRZLGL=MY_GRZLGL+1467880559431; searchText=%u5B9E%u540D%u8BA4%u8BC1; WTHD_1275=%u5BBD%u5E26%u72C2%u6B22%u8DB4+1467881159040; CmLocation=250|250; close_get=1; WTZQ_GLZQ=GLZQ+1468375333052; onedayonetime=1; WTCX_MY_ZDCX=MY_ZDCX+1468377350727; WTCX_MY_INDEX=MY_INDEX+1468377524558; WTHD_1338=e%u5E01%u4E13%u533A+1468377526023; forwardActSmqllNew=1; forwardActSmqllNewBks=1; login_error_number_https=13815424016; login_error_loginType_https=1; login_error_passwordType_https=1; cmjsSSOCookie=27BEDD7192274BD5BB27A3051142C2A2@js.ac.10086.cn; cmtokenid=27BEDD7192274BD5BB27A3051142C2A2@js.ac.10086.cn; last_success_login_mobile=13815424016; js_cmp_manage=LBsJXFqBTP8b4X0trnWBrHZX3DQDydky2nn7Sv1N1vJDq6MJYBJ6!-1606428625; WTHD_1520=%u6C5F%u82CF%u79FB%u52A8E%u5E01%u7B7E%u5230%u6D3B%u52A8%uFF1A%u7B7E%u5230%u9001E%u5E01%uFF01+1468379336770; AlteonP=BtWfIGddqMDctlMKr3YyOw$$; WTCX_MY_WDTC=MY_WDTC+1468386383924; CmProvid=js; topUserMobile=13815424016; city=NJDQ; JSESSIONID=HmW1XFMZMZ8lG2FXGn5SJxndQC5qQlgLBBLv5Lns2412vm2yh1Fb!401977524; WTHD_1455=%u5468%u4E09%u7279%u6743%u65E5%20%u6D41%u91CF%u5468%u5468%u62A2+1468388633610; WT_FPC=id=26c2d9d603f670134c51449016457270:lv=1468388633639:ss=1468388618461; CmWebtokenid=13815424016,js"
+                                         + ""
 
                                          + "";
 

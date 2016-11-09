@@ -35,7 +35,7 @@ public class B_Kill_TEST {
 
     public static final String  cookie = "" +
 
-                                         "AlteonP=BiImE2ddqMAxTQcfMesydg$$; AlteonP=BuQ7IGddqMDU5nJPkwtIJA$$; JSESSIONID=22Y3XFmKny6SXJWhczlR6QpHSKBRC7PBwZ1Y9V0987GBHTTy3xnY!538579807; WTHD_1455=%u5468%u4E09%u7279%u6743%u65E5%20%u6D41%u91CF%u5468%u5468%u62A2+1468392869031; WT_FPC=id=22e6038b0443ae38f791468376644730:lv=1468392869060:ss=1468392869060; js_cmp_manage=CFRwXFlLQXsnsMQlpVh2FDGfsLq2180pL2nH9yvdhJd1m8w42VTp!1141256530; cmjsSSOCookie=66EF16ED8D934A6197C5840A11AB0B90@js.ac.10086.cn; cmtokenid=66EF16ED8D934A6197C5840A11AB0B90@js.ac.10086.cn; CmWebtokenid=13813758884,js"
+                                         ""
 
                                          + "";
 

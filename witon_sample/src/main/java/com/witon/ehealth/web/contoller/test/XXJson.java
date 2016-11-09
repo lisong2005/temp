@@ -76,11 +76,15 @@ public class XXJson {
             for (ConstraintViolation<Order> i : violations) {
                 logger.info("{}, {}", i.getPropertyPath(), i.getMessage());
             }
+
+            Thread.sleep(3 * 1000);
+            logger.info("sleep over");
         } catch (Throwable e) {
             logger.error("", e);
         }
 
         modelMap.addAttribute("aaa", "咋说的法定");
+        logger.info("over");
         return;
     }
 

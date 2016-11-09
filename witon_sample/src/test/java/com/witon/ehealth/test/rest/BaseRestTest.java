@@ -18,7 +18,7 @@ public class BaseRestTest {
     /**
      * Logger for this class
      */
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
+    public final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Before
     public void setup() {
