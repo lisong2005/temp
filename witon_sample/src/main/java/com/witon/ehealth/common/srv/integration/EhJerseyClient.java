@@ -63,8 +63,8 @@ public class EhJerseyClient implements EhealthConstants {
         CLIENT_CONFIG.property(LoggingFeature.LOGGING_FEATURE_VERBOSITY_SERVER,
             LoggingFeature.Verbosity.PAYLOAD_ANY);
 
-        CLIENT_CONFIG.property(ClientProperties.CONNECT_TIMEOUT, 1000);
-        CLIENT_CONFIG.property(ClientProperties.READ_TIMEOUT, 1000);
+        CLIENT_CONFIG.property(ClientProperties.CONNECT_TIMEOUT, 2 * 1000);
+        CLIENT_CONFIG.property(ClientProperties.READ_TIMEOUT, 2 * 1000);
 
         CLIENT_CONFIG.register(CheckRequestFilter.class);
         CLIENT_CONFIG.register(CheckResponseFilter.class);

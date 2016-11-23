@@ -11,5 +11,5 @@ package com.witon.ehealth.test.seckill;
  */
 public interface SecKillConstants {
 
-    public static final String DATE_STR = "2016-10-12 08:59:55";
+    public static final String DATE_STR = "2016-11-02 13:59:52";
 }

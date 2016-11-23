@@ -4,18 +4,28 @@
  */
 package com.witon.ehealth.test.rest;
 
+import java.util.Map;
+import java.util.Set;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.NewCookie;
+import javax.ws.rs.core.Response;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.witon.ehealth.common.srv.integration.EhJerseyClient;
+import com.witon.ehealth.web.contoller.test.cmcc.vo.CookieItem;
 
 /**
  * 
@@ -23,9 +33,13 @@ import com.witon.ehealth.common.srv.integration.EhJerseyClient;
  * @version $Id: HelloTest.java, v 0.1 2016年7月8日 下午10:00:13 lisong Exp $
  */
 public class HelloTest extends BaseRestTest {
+    /**
+    * Logger for this class
+    */
+    private static final Logger logger  = LoggerFactory.getLogger(HelloTest.class);
 
     /**  */
-    private static final String URL_WIT = "http://localhost:8080/wit/";
+    private static final String URL_WIT = "http://localhost:8090/wit/";
 
     @Test
     public void test_client_hello1() {
@@ -329,6 +343,181 @@ public class HelloTest extends BaseRestTest {
         } catch (Exception e) {
             logger.error("", e);
         }
+    }
+
+    @Test
+    public void test_cmcc_1() {
+        // http://service.js.10086.cn/login.html?url=index.html
+
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://service.js.10086.cn/login.html")
+                .queryParam("url", "index.html");
+            NewCookie cc = new NewCookie("aaa", "bbb");
+            Response response = target.request().cookie(cc).get();
+
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            Map<String, NewCookie> cs = response.getCookies();
+            Set<String> keys = cs.keySet();
+            for (String key : keys) {
+                NewCookie c = cs.get(key);
+                logger.info("{} = {}", key, c);
+            }
+
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            String body = response.readEntity(String.class);
+            //            String restResult = target.request().get(String.class);
+            logger.debug("{}", body);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    @Test
+    public void test_cmcc_post() {
+        // http://service.js.10086.cn/login.html?url=index.html
+
+        try {
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client.target("http://service.js.10086.cn/actionDispatcher.do");
+
+            Form form = new Form();
+            form.param("userLoginTransferProtocol", "https");
+            form.param("redirectUrl", "index.html");
+            form.param("reqUrl", "login");
+            form.param("busiNum", "LOGIN");
+            form.param("operType", "0");
+            form.param("passwordType", "1");
+            form.param("isSavePasswordVal", "0");
+            form.param("isSavePasswordVal_N", "1");
+            form.param("currentD", "1");
+            form.param("loginFormTab", "http");
+            form.param("loginType", "1");
+            form.param("phone-login", "on");
+            form.param("mobile", "");
+            form.param("city", "NJDQ");
+            form.param("password", "");
+            form.param("verifyCode", "");
+
+            Response response = target.request()
+                .post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            Map<String, NewCookie> cs = response.getCookies();
+            Set<String> keys = cs.keySet();
+            StringBuilder sb = new StringBuilder();
+            for (String key : keys) {
+                NewCookie c = cs.get(key);
+                logger.info("{} = {}", key, c);
+                logger.info("{} = {}", c.getName(), c.getValue());
+                sb.append(key).append("=").append(c.getValue()).append("; ");
+            }
+            logger.info("{}", sb.toString());
+
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            String body = response.readEntity(String.class);
+            //            String restResult = target.request().get(String.class);
+            logger.info("{}", body);
+
+            CookieItem item = new CookieItem();
+            item.setCookie(sb.toString());
+            item.setEnable(true);
+
+            exe_for_ls(cs);
+
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+
+    public static boolean exe_for_ls(Map<String, NewCookie> cs) {
+        String value = "[{\"activityCode\":\"1455\",\"dynamicURI\":\"Seckill\",\"dynamicParameter\":{\"method\":\"seckill\",\"actStageCode\":\"1455\"},\"dynamicDataNodeName\":\"API_seckill_Seckill\"}]";
+        try {
+            Set<String> keys = cs.keySet();
+            StringBuilder sb = new StringBuilder();
+            for (String key : keys) {
+                NewCookie c = cs.get(key);
+                sb.append(key).append("=").append(c.getValue()).append("; ");
+            }
+            logger.info("{}", sb.toString());
+
+            Client client = EhJerseyClient.getJerseyClient();
+            WebTarget target = client
+                .target("http://service.js.10086.cn/cmp_service/actionDispatcher.do");
+
+            Form form = new Form();
+            form.param("jsonParam", value);
+
+            Builder builder = target.request(MediaType.APPLICATION_JSON_TYPE)
+                .header("Host", "service.js.10086.cn")
+                // 
+                .header("Connection", "keep-alive")
+                // 
+                .header("Pragma", "no-cache")
+                // 
+                .header("Accept", "text/plain, */*; q=0.01")
+                // 
+                .header("Origin", "http://service.js.10086.cn")
+                // 
+                .header("User-Agent",
+                    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36")
+                //
+                .header("Referer", "http://service.js.10086.cn/act_js/activity_web/1455/index.html")
+                //
+                .header("X-Requested-With", "XMLHttpRequest")
+
+                // 
+                .header("Cookie", sb.toString());
+
+            //
+            Response response = builder
+                .post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+
+            String restResult = response.readEntity(String.class);
+            JSONObject r = new JSONObject(restResult);
+            logger.info("{}", r.toString(2));
+
+            JSONObject secR = r.optJSONObject("API_seckill_Seckill");
+            if (secR != null) {
+                boolean success = secR.optBoolean("success");
+                String resultCode = secR.optString("resultCode");
+                logger.info("{}", resultCode);
+
+                if (success) {
+                    logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    logger.info("{}", secR);
+                    logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                    return true;
+                } else {
+                    switch (resultCode) {
+                        case "-10000": // 未登录
+                            return true;
+                        case "-301": // 您本月已经秒中过了呢
+                            return true;
+                        case "-302":
+                            // 活动未开始
+                            break;
+                        default:
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            logger.error("{}", e.getMessage());
+        }
+        return false;
     }
 
 }
