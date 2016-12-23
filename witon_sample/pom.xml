@@ -38,6 +38,8 @@
 		<xstream.version>1.4.9</xstream.version>
 		<jackson.version>2.6.0</jackson.version>
 
+		<magnoliaVersion>5.4.9</magnoliaVersion>
+
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -73,6 +75,13 @@
 				<version>2.23.2</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>info.magnolia</groupId>
+				<artifactId>magnolia-project</artifactId>
+				<version>5.4.9</version>
+				<type>pom</type>
 			</dependency>
 
 		</dependencies>
@@ -550,10 +559,10 @@
 		<!-- <artifactId>jersey-media-json-jettison</artifactId> -->
 		<!-- </dependency> -->
 
-		<!-- <dependency> -->
-		<!-- <groupId>org.glassfish.jersey.media</groupId> -->
-		<!-- <artifactId>jersey-media-multipart</artifactId> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-multipart</artifactId>
+		</dependency>
 
 		<!-- =================================================================== -->
 		<!-- =================================================================== -->

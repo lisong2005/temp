@@ -25,6 +25,7 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.logging.LoggingFeature.Verbosity;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,11 +64,12 @@ public class EhJerseyClient implements EhealthConstants {
         CLIENT_CONFIG.property(LoggingFeature.LOGGING_FEATURE_VERBOSITY_SERVER,
             LoggingFeature.Verbosity.PAYLOAD_ANY);
 
-        CLIENT_CONFIG.property(ClientProperties.CONNECT_TIMEOUT, 2 * 1000);
-        CLIENT_CONFIG.property(ClientProperties.READ_TIMEOUT, 2 * 1000);
+        CLIENT_CONFIG.property(ClientProperties.CONNECT_TIMEOUT, 20 * 1000);
+        CLIENT_CONFIG.property(ClientProperties.READ_TIMEOUT, 20 * 1000);
 
         CLIENT_CONFIG.register(CheckRequestFilter.class);
         CLIENT_CONFIG.register(CheckResponseFilter.class);
+        CLIENT_CONFIG.register(MultiPartFeature.class);
 
         Level logLevel = Level.FINE;
         if (logger.isTraceEnabled() || logger.isDebugEnabled()) {
