@@ -126,7 +126,7 @@ h2 em{color:#e4ebf8;}
 			href="javascript:history.go(-1);">&#9666;返回上一页</a>
 	</p>
 	<dl class="texts">
-		<dt>我们正在联系火星总部查找您所需要的页面.请返回等待信息..</dt>
+		<dt>我们正在联系火星总部查找您所需要的页面.请返回等待信息..${a.escapeHtml4(name)} </dt>
 		<dd>
 			<ul>
 				<li>不要返回吗?</li>

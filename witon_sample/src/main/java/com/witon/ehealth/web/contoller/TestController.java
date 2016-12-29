@@ -7,6 +7,7 @@ package com.witon.ehealth.web.contoller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -27,9 +28,22 @@ public class TestController {
         throw new NullPointerException();
     }
 
-    @RequestMapping(value = "/404.htm")
-    public String notFound() {
+    @RequestMapping(value = "/test.htm")
+    public String test() {
         logger.info("");
-        return "404_.vm";
+        return "test.vm";
     }
+
+    @RequestMapping(value = "/test_ftl.htm")
+    public String test_ftl(ModelMap model) {
+
+        logger.info("");
+        model.addAttribute("user", "lisong");
+        model.addAttribute("latestProductUrl",
+            "xx\">yyyyyyy</a><script>alert(1);</script><br/><a href=\"bbbbb");
+        model.addAttribute("latestProductName", "latestProduct_name");
+
+        return "test.ftl";
+    }
+
 }

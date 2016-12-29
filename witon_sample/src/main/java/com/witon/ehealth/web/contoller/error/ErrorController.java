@@ -6,6 +6,7 @@ package com.witon.ehealth.web.contoller.error;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,9 @@ public class ErrorController {
     public String error(ModelMap modelMap, HttpServletRequest req) {
         logger.info("【error页面】code={}, uri={}", req.getAttribute("javax.servlet.error.status_code"),
             req.getAttribute("javax.servlet.error.request_uri"));
+        req.setAttribute("escUtil", new StringEscapeUtils());
+        // modelMap.addAttribute("escUtil", new StringEscapeUtils());
+        modelMap.addAttribute("name", "zzzzz</dt><script>alert(1);</script>");
         return "error.jsp";
     }
 
