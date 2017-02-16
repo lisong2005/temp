@@ -4,6 +4,8 @@
  */
 package com.witon.ehealth.test;
 
+import java.util.Date;
+
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.BinaryCodec;
 import org.apache.commons.codec.binary.Hex;
@@ -73,5 +75,13 @@ public class LongTest {
         Object ret2 = new BinaryCodec().decode(Integer.toBinaryString(aa));
         logger.info("{}", ret);
         logger.info("{}", ret2);
+    }
+
+    @Test
+    public void test_004() {
+        logger.info("{}", Long.toBinaryString(8L));
+        logger.info("{}", Long.toBinaryString(System.currentTimeMillis()));
+        logger.info("{}", Long.toBinaryString(1L << 41));
+        logger.info("{}", new Date(1L << 41));
     }
 }

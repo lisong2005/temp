@@ -39,4 +39,17 @@ public class ResultHandlerTest {
             logger.error("", e);
         }
     }
+
+    @Test
+    public void test_002() {
+        try {
+            List<String> list = ResultHandlerTest.getList("hello");
+            logger.info("{}", list);
+            logger.info("{}", list.get(0));
+            String ii = list.get(0);
+            logger.info("{}", ii);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
 }

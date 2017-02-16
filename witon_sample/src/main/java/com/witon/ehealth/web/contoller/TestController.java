@@ -4,6 +4,9 @@
  */
 package com.witon.ehealth.web.contoller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -35,13 +38,19 @@ public class TestController {
     }
 
     @RequestMapping(value = "/test_ftl.htm")
-    public String test_ftl(ModelMap model) {
+    public String test_ftl(ModelMap model, HttpServletRequest request) {
 
         logger.info("");
         model.addAttribute("user", "lisong");
         model.addAttribute("latestProductUrl",
             "xx\">yyyyyyy</a><script>alert(1);</script><br/><a href=\"bbbbb");
         model.addAttribute("latestProductName", "latestProduct_name");
+
+        HttpSession session = request.getSession(true);
+        session.invalidate();
+        logger.info("{}", session.getId());
+        session = request.getSession(true);
+        logger.info("{}", session.getId());
 
         return "test.ftl";
     }

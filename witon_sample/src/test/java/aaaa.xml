@@ -1,0 +1,115 @@
+<object id="sd_player_1_swf" name="sd_player_1_swf" class="swf-sd-player"
+	width="100%" height="100%" type="application/x-shockwave-flash"
+	data="http://jia.360.cn/player/flash/1_0_0/QihooPlayer.swf?ver=201610112120">
+	<param name="allowfullscreen" value="true" />
+	<param name="wmode" value="transparent" />
+	<param name="allowscriptaccess" value="always" />
+	<param name="flashvars"
+		value="sn=36051794632&amp;poster=http%3A%2F%2Flive.jia.360.cn%2Fpublic%2FviewImage%3FimgKey%3D46b3a789b385314af9b17bf72f9af8207d4da442-1-1-5-736-414.jpg%26sn%3D36051794632&amp;buffertime=3&amp;streamversion=2&amp;ctrbarhide=true&amp;autostart=true&amp;channel=42654&amp;_init_player=sd_evt_1_init&amp;_play_start=sd_evt_1_start&amp;_play_pause=sd_evt_1_pause&amp;_play_resume=sd_evt_1_resume&amp;_play_end=sd_evt_1_end" />
+</object>
+
+<object id="sd_player_2_swf" name="sd_player_2_swf" class="swf-sd-player"
+	width="100%" height="100%" type="application/x-shockwave-flash"
+	data="http://jia.360.cn/player/flash/1_0_0/QihooPlayer.swf?ver=201610112120">
+	<param name="allowfullscreen" value="true" />
+	<param name="wmode" value="transparent" />
+	<param name="allowscriptaccess" value="always" />
+	<param name="flashvars"
+		value="sn=36053757734&amp;poster=http%3A%2F%2Flive.jia.360.cn%2Fpublic%2FviewImage%3FimgKey%3D17ac4afa879a5a4be311cc931144fbf834d894c9-2-1-5-736-414.jpg%26sn%3D36053757734&amp;buffertime=3&amp;streamversion=2&amp;ctrbarhide=true&amp;autostart=true&amp;channel=14073&amp;_init_player=sd_evt_2_init&amp;_play_start=sd_evt_2_start&amp;_play_pause=sd_evt_2_pause&amp;_play_resume=sd_evt_2_resume&amp;_play_end=sd_evt_2_end">
+</object>
+
+<object id="sd_player_3_swf" name="sd_player_3_swf" class="swf-sd-player"
+	width="100%" height="100%" type="application/x-shockwave-flash"
+	data="http://jia.360.cn/player/flash/1_0_0/QihooPlayer.swf?ver=201610112120">
+	<param name="allowfullscreen" value="true">
+		<param name="wmode" value="transparent">
+			<param name="allowscriptaccess" value="always">
+				<param name="flashvars"
+					value="sn=36030223620&amp;poster=http%3A%2F%2Flive.jia.360.cn%2Fpublic%2FviewImage%3FimgKey%3D53b05e3f1e9221466a2d12d96444de1040b8ce3e-1-1-5-736-414.jpg%26sn%3D36030223620&amp;buffertime=3&amp;streamversion=2&amp;ctrbarhide=true&amp;autostart=true&amp;channel=24803&amp;_init_player=sd_evt_3_init&amp;_play_start=sd_evt_3_start&amp;_play_pause=sd_evt_3_pause&amp;_play_resume=sd_evt_3_resume&amp;_play_end=sd_evt_3_end">
+</object>
+
+
+<object type="application/x-shockwave-flash" data="//static.youku.com/v20161222.0/v/swf/loader.swf"
+	width="100%" height="100%" id="movie_player">
+	<param name="allowFullScreen" value="true" />
+	<param name="allowscriptaccess" value="always" />
+	<param name="allowFullScreenInteractive" value="true" />
+	<param name="flashvars"
+		value="skincolor1=ffffff&amp;skincolor2=ffffff&amp;VideoIDS=XMTg3NjY2MzI1Ng==&amp;ShowId=0&amp;category=91&amp;Cp=0&amp;unCookie=0&amp;frame=undefined&amp;uepflag=0&amp;Tid=0&amp;isAutoPlay=true&amp;playmode=2&amp;show_ce=1&amp;winType=interior&amp;Fid=28990588&amp;Pt=0&amp;Ob=1&amp;plchid=&amp;embedid=AjQ2OTE2NTgxNAJ3d3cueW91a3UuY29tAi8=&amp;ysuid=1479198318175ZnC&amp;vext=bc%3D%26pid%3Dundefined%26unCookie%3Dundefined%26frame%3Dundefined%26type%3D1%26fob%3D1%26fpo%3D0%26svt%3D0%26cna%3DFRCsEG2bT1ECATrw9ILq1Cdj%26emb%3DAjQ2OTE2NTgxNAJ3d3cueW91a3UuY29tAi8%3D%26dn%3D%E7%BD%91%E9%A1%B5%26hwc%3D1%26mtype%3Doth&amp;cna=FRCsEG2bT1ECATrw9ILq1Cdj&amp;pageStartTime=1482392695580" />
+	<param name="movie" value="//static.youku.com/v20161222.0/v/swf/loader.swf" />
+	<div class="player_html5">
+		<div class="picture" style="height:100%">
+			<div style="line-height:460px;">
+				<span style="font-size:18px">
+					您还没有安装flash播放器,请点击
+					<a href="//www.adobe.com/go/getflash" target="_blank">这里</a>
+					安装
+				</span>
+			</div>
+		</div>
+	</div>
+</object>
+
+<object type="application/x-shockwave-flash" data="//static.youku.com/v20161222.0/v/swf/loader.swf"
+	width="100%" height="100%" id="movie_player">
+	<param name="allowFullScreen" value="true" />
+	<param name="allowscriptaccess" value="always" />
+	<param name="allowFullScreenInteractive" value="true" />
+	<param name="flashvars"
+		value="skincolor1=ffffff&amp;skincolor2=ffffff&amp;VideoIDS=XMTgyNzI1MzQyNA==&amp;ShowId=0&amp;category=91&amp;Cp=0&amp;unCookie=0&amp;frame=undefined&amp;uepflag=0&amp;Tid=0&amp;isAutoPlay=true&amp;playmode=2&amp;show_ce=1&amp;winType=interior&amp;Fid=28990588&amp;Pt=1&amp;Ob=1&amp;plchid=&amp;embedid=AjQ1NjgxMzM1NgJ2LnlvdWt1LmNvbQIvdl9zaG93L2lkX1hNVGczTmpZMk16STFOZz09Lmh0bWw=&amp;ysuid=1479198318175ZnC&amp;vext=bc%3D%26pid%3Dundefined%26unCookie%3Dundefined%26frame%3Dundefined%26type%3D1%26fob%3D1%26fpo%3D1%26svt%3D0%26cna%3DFRCsEG2bT1ECATrw9ILq1Cdj%26emb%3DAjQ1NjgxMzM1NgJ2LnlvdWt1LmNvbQIvdl9zaG93L2lkX1hNVGczTmpZMk16STFOZz09Lmh0bWw%3D%26dn%3D%E7%BD%91%E9%A1%B5%26hwc%3D1%26mtype%3Doth&amp;cna=FRCsEG2bT1ECATrw9ILq1Cdj&amp;pageStartTime=1482392823730" />
+	<param name="movie" value="//static.youku.com/v20161222.0/v/swf/loader.swf" />
+	<div class="player_html5">
+		<div class="picture" style="height:100%">
+			<div style="line-height:460px;">
+				<span style="font-size:18px">
+					您还没有安装flash播放器,请点击
+					<a href="//www.adobe.com/go/getflash" target="_blank">这里</a>
+					安装
+				</span>
+			</div>
+		</div>
+	</div>
+</object>
+
+
+
+<div class="video-container">
+
+
+
+
+
+
+
+	<div class="scalable-video">
+		<div class="video-wrapper">
+			<video preload="auto" controls="">
+				<source
+					src="/magnoliaPublic/dam/jcr:cbef68c8-148f-44bf-935e-9016c90a42f0/grca-over15-432.mp4"
+					type="video/mp4">
+			</video>
+		</div>
+
+		<div class="video-captions">
+			<span class="video-caption">The holiday of a lifetime. Helicopter tour over the
+				Grand Canyon.
+			</span>
+			<span class="video-credit">Public domain
+				http://www.nps.gov/grca/learn/photosmultimedia/b-roll_hd_index.htm
+			</span>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+<video tabindex="-1" class="video-stream html5-main-video"
+	style="width: 854px; height: 480px; left: 0px; top: 0px;"
+	src="blob:https://www.youtube.com/ace06a8f-3293-4db4-9a5b-7f494080d1fd">
+</video>
+	
+	
+	
+	

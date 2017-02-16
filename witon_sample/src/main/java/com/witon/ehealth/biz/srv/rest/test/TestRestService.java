@@ -110,6 +110,11 @@ public class TestRestService implements InitializingBean {
         return new ArrayList<Customer>(customers.values());
     }
 
+    /**
+     * http://localhost:8080/wit/rest/test/query
+     * @param id
+     * @return
+     */
     @GET
     @Path("/query")
     @Produces({ MediaType.APPLICATION_JSON })
@@ -122,6 +127,12 @@ public class TestRestService implements InitializingBean {
         return new Customer();
     }
 
+    /**
+     * http://localhost:8080/wit/rest/test/query/0
+     * 
+     * @param id
+     * @return
+     */
     @GET
     @Path("/query/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
@@ -135,6 +146,13 @@ public class TestRestService implements InitializingBean {
         return new Customer();
     }
 
+    /**
+     * http://localhost:8080/wit/rest/test/hello/world
+     * 
+     * @param userName
+     * @param uriInfo
+     * @return
+     */
     @GET
     @Produces(MediaType.TEXT_HTML)
     @Path("/hello/{username}")
@@ -150,6 +168,12 @@ public class TestRestService implements InitializingBean {
         return String.format("hello %s!", userName);
     }
 
+    /**
+     * http://localhost:8080/wit/rest/test/jsonStr
+     * 
+     * @param uriInfo
+     * @return
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/jsonStr")
@@ -168,6 +192,12 @@ public class TestRestService implements InitializingBean {
         return uriArray.toString();
     }
 
+    /**
+     * http://localhost:8080/wit/rest/test/ja
+     * 
+     * @param uriInfo
+     * @return
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/ja")
@@ -186,6 +216,11 @@ public class TestRestService implements InitializingBean {
         return uriArray;
     }
 
+    /**
+     * http://localhost:8080/wit/rest/test/map
+     * 
+     * @return
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/map")
@@ -200,6 +235,11 @@ public class TestRestService implements InitializingBean {
         return ret;
     }
 
+    /**
+     * http://localhost:8080/wit/rest/test/list
+     * 
+     * @return
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/list")

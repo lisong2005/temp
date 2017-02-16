@@ -18,14 +18,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class JsonUtil {
 
-    public static String convertToString(Object obj) throws JsonProcessingException {
+    /**
+     * 
+     * @param obj
+     * @return
+     * @throws JsonProcessingException
+     */
+    public static String convertObjToJson(Object obj) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(obj);
     }
 
-    public static <T> T convertToJson(String jsonStr, Class<T> clazz) throws JsonParseException,
-                                                                      JsonMappingException,
-                                                                      IOException {
+    /**
+     * 
+     * @param jsonStr
+     * @param clazz
+     * @return
+     * @throws JsonParseException
+     * @throws JsonMappingException
+     * @throws IOException
+     */
+    public static <T> T convertJsonToObj(String jsonStr, Class<T> clazz) throws JsonParseException,
+                                                                         JsonMappingException,
+                                                                         IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonStr, clazz);
     }

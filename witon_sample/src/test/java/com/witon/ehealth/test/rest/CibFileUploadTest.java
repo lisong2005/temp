@@ -41,37 +41,40 @@ public class CibFileUploadTest {
      * 
      */
     private static void exe_for_ls() {
+        String uri = "http://rb-esf01.chinacloudapp.cn/cibPay/ed/property/importPropertyExcel.html";
+        // uri = "https://icloud.cib.com.cn/educationPay/ed/student/importStudentsExcel";
+        uri = "https://icloud.cib.com.cn/educationPay/ed/schpayItem/importPayingExcel";
         try {
-            Client client = EhJerseyClient.getJerseyClient();
-            WebTarget target = client.target(
-                "http://rb-esf01.chinacloudapp.cn/cibPay/ed/property/importPropertyExcel.html");
+            Client client = EhJerseyClient.getSSLTrustJerseyClient();
+            WebTarget target = client.target(uri);
 
             FormDataMultiPart multiPart = new FormDataMultiPart();
             {
-                FormDataBodyPart item = new FormDataBodyPart("name", "value");
+                FormDataBodyPart item = new FormDataBodyPart("uploaditemid",
+                    "8ea99b91803b4ae89152621108d33f99");
                 multiPart.bodyPart(item);
             }
             {
-                FormDataBodyPart item = new FormDataBodyPart("1111", "2222");
+                FormDataBodyPart item = new FormDataBodyPart("upLoadItemFeeType", "2222");
                 multiPart.bodyPart(item);
             }
             {
-                String pathname = "d:/a.jsp";
+                String pathname = "d:/b.jsp";
                 FileDataBodyPart fdbp = new FileDataBodyPart("uploadFile", new File(pathname)
                 // , MediaType.APPLICATION_OCTET_STREAM_TYPE
                 );
                 BodyPart bp = multiPart.bodyPart(fdbp);
                 logger.info("{}", bp);
             }
-            {
-                String pathname = "d:/property-wuye.xlsx";
-                FileDataBodyPart fdbp = new FileDataBodyPart("uploadFile2", new File(pathname));
-                BodyPart bp = multiPart.bodyPart(fdbp);
-                logger.info("{}", bp);
-            }
+            //            {
+            //                String pathname = "d:/property-wuye.xlsx";
+            //                FileDataBodyPart fdbp = new FileDataBodyPart("uploadFile2", new File(pathname));
+            //                BodyPart bp = multiPart.bodyPart(fdbp);
+            //                logger.info("{}", bp);
+            //            }
 
             String restResult = target.request(MediaType.MULTIPART_FORM_DATA_TYPE)
-                .header("Cookie", "JSESSIONID=2FF01410BC978E746923208902FECAEC")
+                .header("Cookie", "JSESSIONID=7E90C524FEF886E20757AEC093F9990D")
                 //
                 .post(Entity.entity(multiPart, multiPart.getMediaType()), String.class);
 

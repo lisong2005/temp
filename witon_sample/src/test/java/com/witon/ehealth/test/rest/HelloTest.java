@@ -520,4 +520,106 @@ public class HelloTest extends BaseRestTest {
         return false;
     }
 
+    @Test
+    public void test_login() {
+        // http://120.24.56.48:8889/api/auth/login
+
+        Client client = EhJerseyClient.getJerseyClient();
+        WebTarget target = client.target("http://120.24.56.48:8889/api/auth/login");
+
+        Form form = new Form();
+        form.param("username", "15951320987");
+        form.param("password", "142536");
+        form.param("depth", "1");
+
+        Response response = target.request()
+            .post(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        Map<String, NewCookie> cs = response.getCookies();
+        Set<String> keys = cs.keySet();
+        StringBuilder sb = new StringBuilder();
+        for (String key : keys) {
+            NewCookie c = cs.get(key);
+            logger.info("{} = {}", key, c);
+            logger.info("{} = {}, {}", c.getName(), c.getValue(), c.getExpiry());
+            sb.append(key).append("=").append(c.getValue()).append("; ");
+        }
+        logger.info("{}", sb.toString());
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+        String body = response.readEntity(String.class);
+        //            String restResult = target.request().get(String.class);
+        logger.info("{}", body);
+    }
+
+    @Test
+    public void test_query_device() {
+        // http://120.24.56.48:8889/api/auth/login
+        //        String cookie = "2|1:0|10:1483671999|4:user|16:MTU5NTEzMjA5ODc=|83d1e05e77acabf5503cecd57ae34ee09ebc81504bf689357ce8ebd45c434e89";
+        String cookie = "2|1:0|10:1483663981|4:user|16:MTU5NTEzMjA5ODc=|0846b5e39639b519f50f8b4ac6b6c839eeb94d51cfd8a31860078a9db5eb44ca";
+
+        Client client = EhJerseyClient.getJerseyClient();
+        WebTarget target = client.target("http://120.24.56.48:8889/api/device/").queryParam("owner",
+            "586dd7ef2642512c1047c415");
+
+        Response response = target.request().header("Cookie", String.format("user=\"%s\"", cookie))
+            .get();
+
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        Map<String, NewCookie> cs = response.getCookies();
+        Set<String> keys = cs.keySet();
+        StringBuilder sb = new StringBuilder();
+        for (String key : keys) {
+            NewCookie c = cs.get(key);
+            logger.info("{} = {}", key, c);
+            logger.info("{} = {}, {}", c.getName(), c.getValue(), c.getExpiry());
+            sb.append(key).append("=").append(c.getValue()).append("; ");
+        }
+        logger.info("{}", sb.toString());
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+        String body = response.readEntity(String.class);
+        //            String restResult = target.request().get(String.class);
+        logger.info("{}", body);
+        org.json.JSONObject jo = new org.json.JSONObject(body);
+        logger.info("{}", jo.opt("error_desc"));
+    }
+
+    @Test
+    public void test_query_device_detail() {
+        // http://120.24.56.48:8889/api/auth/login
+        //        String cookie = "2|1:0|10:1483671999|4:user|16:MTU5NTEzMjA5ODc=|83d1e05e77acabf5503cecd57ae34ee09ebc81504bf689357ce8ebd45c434e89";
+        String cookie = "2|1:0|10:1483663981|4:user|16:MTU5NTEzMjA5ODc=|0846b5e39639b519f50f8b4ac6b6c839eeb94d51cfd8a31860078a9db5eb44ca";
+
+        Client client = EhJerseyClient.getJerseyClient();
+        WebTarget target = client
+            .target("http://120.24.56.48:8889/api/device/" + "868219000099926");
+
+        Response response = target.request().header("Cookie", String.format("user=\"%s\"", cookie))
+            .get();
+
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        Map<String, NewCookie> cs = response.getCookies();
+        Set<String> keys = cs.keySet();
+        StringBuilder sb = new StringBuilder();
+        for (String key : keys) {
+            NewCookie c = cs.get(key);
+            logger.info("{} = {}", key, c);
+            logger.info("{} = {}, {}", c.getName(), c.getValue(), c.getExpiry());
+            sb.append(key).append("=").append(c.getValue()).append("; ");
+        }
+        logger.info("{}", sb.toString());
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+        String body = response.readEntity(String.class);
+        //            String restResult = target.request().get(String.class);
+        logger.info("{}", body);
+        org.json.JSONObject jo = new org.json.JSONObject(body);
+        logger.info("{}", jo.opt("error_desc"));
+    }
+
 }

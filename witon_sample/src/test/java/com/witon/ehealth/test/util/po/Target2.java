@@ -11,7 +11,8 @@ import java.io.Serializable;
  * @author song.li@witontek.com
  * @version $Id: Target2.java, v 0.1 2016年8月24日 下午4:49:07 song.li@witontek.com Exp $
  */
-public class Target2 implements Cloneable, Serializable {
+public class Target2 implements Cloneable, Comparable<Target2>, Serializable
+{
 
     /**  */
     private static final long serialVersionUID = 487153937010360776L;
@@ -22,6 +23,14 @@ public class Target2 implements Cloneable, Serializable {
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    /** 
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(Target2 o) {
+        return 0;
     }
 
 }
