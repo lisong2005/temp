@@ -16,7 +16,7 @@ import com.witon.ehealth.common.base.BaseModel;
  */
 public class NotifyContext extends BaseModel {
 
-    /** SUID */
+    /** SUID 0xff0f083c5e0df448 */
     private static final long   serialVersionUID = -67826414018235320L;
 
     /** 事件码 */

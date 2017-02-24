@@ -64,7 +64,7 @@ public class XmlUtil {
 
     // ===================================================================
 
-    public <T> String ConvertToXml(T obj) {
+    public static String convertToXml(Object obj) {
         try {
             JAXBContext context = JAXBContext.newInstance(obj.getClass());
             Marshaller marshaller = context.createMarshaller();
@@ -78,7 +78,7 @@ public class XmlUtil {
         }
     }
 
-    public <T> boolean ConvertToXml(T obj, Writer writer) {
+    public static boolean convertToXml(Object obj, Writer writer) {
         try {
             JAXBContext context = JAXBContext.newInstance(obj.getClass());
             Marshaller marshaller = context.createMarshaller();
@@ -91,7 +91,7 @@ public class XmlUtil {
         }
     }
 
-    public <T> boolean ConvertToXml(T obj, OutputStream os) {
+    public static boolean convertToXml(Object obj, OutputStream os) {
         try {
             JAXBContext context = JAXBContext.newInstance(obj.getClass());
             Marshaller marshaller = context.createMarshaller();
