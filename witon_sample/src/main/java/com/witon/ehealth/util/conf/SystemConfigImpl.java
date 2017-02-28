@@ -5,13 +5,14 @@
 package com.witon.ehealth.util.conf;
 
 import java.io.File;
-import java.util.Enumeration;
 import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+
+import com.witon.ehealth.util.conf.ext.PropViewUtils;
 
 /**
  * 
@@ -83,8 +84,8 @@ public class SystemConfigImpl implements SystemConfig, InitializingBean {
     public void afterPropertiesSet() throws Exception {
         logger.info("[init]xxxxxxxxxxxxxxxxxxxx");
         logger.info("[init]系统配置初始化");
-        logger.info("envProps=\n{}", getStrForProps(envProps));
-        logger.debug("extprops=\n{}", getStrForProps(extprops));
+        logger.info("envProps=\n{}", PropViewUtils.getStrForProps(envProps));
+        logger.debug("extprops=\n{}", PropViewUtils.getStrForProps(extprops));
         logger.info("[init]xxxxxxxxxxxxxxxxxxxx");
         String runMode = envProps.getProperty("run.mode");
         if (StringUtils.equals("1", runMode)) {
@@ -100,20 +101,6 @@ public class SystemConfigImpl implements SystemConfig, InitializingBean {
         logger.info("runMode={}", this.runMode);
         logger.info("test={}", this.test);
         logger.info("{}", new File("dd/aa.txt").getAbsolutePath());
-    }
-
-    private String getStrForProps(Properties props) {
-        StringBuilder sb = new StringBuilder();
-        if (props != null) {
-            Enumeration<Object> keys = props.keys();
-            sb.append("\n");
-            while (keys.hasMoreElements()) {
-                Object key = keys.nextElement();
-                sb.append(key).append("=").append(props.get(key)).append("\n");
-            }
-        }
-        return sb.toString();
-
     }
 
     /**

@@ -46,8 +46,7 @@
 		</property>
 	</bean>
 
-	<bean id="dbConfigProperties"
-		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	<bean id="dbConfigProperties" class="com.witon.ehealth.util.conf.ext.WitPropertiesFactoryBean">
 		<property name="locations">
 			<list>
 				<value>#{extProperties.getProperty('db.config.file')}</value>
