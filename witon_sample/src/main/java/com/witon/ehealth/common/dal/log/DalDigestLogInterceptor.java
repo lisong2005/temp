@@ -11,6 +11,8 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.witon.ehealth.util.profiler.Profiler;
+
 /**
  * dao性能摘要日志拦截器
  * 
@@ -53,6 +55,8 @@ public class DalDigestLogInterceptor implements MethodInterceptor {
         String className = method.getDeclaringClass().getSimpleName();
         String methodName = method.getName();
 
+        Profiler.enter(String.format("%s.%s", className, methodName));
+
         String logStr = null;
         long startTime = System.currentTimeMillis();
         try {
@@ -68,6 +72,7 @@ public class DalDigestLogInterceptor implements MethodInterceptor {
         } finally {
             // do logger
             digestLogger.info(logStr);
+            Profiler.release();
         }
     }
 
