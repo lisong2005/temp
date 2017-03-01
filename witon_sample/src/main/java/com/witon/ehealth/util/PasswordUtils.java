@@ -31,6 +31,17 @@ public class PasswordUtils {
         }
     }
 
+    public static String encrypt2(String src, String keyStr) {
+        byte[] key = Base64.decodeBase64(keyStr);
+        try {
+            byte[] to = AESCoder.encrypt(Base64.encodeBase64(StringUtils.getBytesUtf8(src)), key);
+            return Base64.encodeBase64URLSafeString(to);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
     public static String decrypt(String src, String keyStr) {
         byte[] key = Base64.decodeBase64(keyStr);
         try {
@@ -41,4 +52,5 @@ public class PasswordUtils {
             return null;
         }
     }
+
 }

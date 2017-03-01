@@ -35,10 +35,33 @@ public class PasswordUtilsTest {
         try {
             String key = "owNYZ1qRZmZCPNkXoKUPv+uWNF75uaLKdBLgsHhzdcA=";
             String encrypt = PasswordUtils.encrypt("abc", key);
+            String encrypt2 = PasswordUtils.encrypt2("abc", key);
             String decript = PasswordUtils.decrypt(encrypt, key);
+            String decript2 = PasswordUtils.decrypt(encrypt2, key);
             logger.info("{}", key);
             logger.info("{}", encrypt);
+            logger.info("{}", encrypt2);
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
             logger.info("{}", decript);
+            logger.info("{}", decript2);
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+    }
+    @Test
+    public void test_002() {
+        try {
+            String key = "9H9d8jNbS5wKgfaATf6E1w";
+            String encrypt = PasswordUtils.encrypt("postgres", key);
+            String encrypt2 = PasswordUtils.encrypt2("postgres", key);
+            String decript = PasswordUtils.decrypt(encrypt, key);
+            String decript2 = PasswordUtils.decrypt(encrypt2, key);
+            logger.info("{}", key);
+            logger.info("{}", encrypt);
+            logger.info("{}", encrypt2);
+            logger.info("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            logger.info("{}", decript);
+            logger.info("{}", decript2);
         } catch (Exception e) {
             logger.error("", e);
         }
