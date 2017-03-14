@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
@@ -96,7 +97,7 @@ public class WxSaxParseUtil {
         @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
             String content = new String(ch, start, length);
-            if (org.apache.commons.lang.StringUtils.isNotBlank(key)) {
+            if (StringUtils.isNotBlank(key) && StringUtils.isNotBlank(content)) {
                 values.put(key, content);
             }
             logger.debug("[characters] key={},content={}", key, content);

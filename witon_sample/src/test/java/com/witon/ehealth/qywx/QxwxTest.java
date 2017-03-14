@@ -64,7 +64,7 @@ public class QxwxTest {
     @Test
     public void test_client_hello1() {
         try {
-            Client client = EhJerseyClient.getJerseyClient();
+            Client client = EhJerseyClient.getSSLTrustJerseyClient();
             WebTarget target = client.target(TOKEN_URL).queryParam("corpid", "wxc44a4025ecb7c8ac")
                 .queryParam("corpsecret",
                     "Q3sSh6y5iuvpyFNgogGqoES19GMHTJwhCh20H_2FjuzwAwMMYVm1KI7maVQueACR");
@@ -83,7 +83,7 @@ public class QxwxTest {
     public void test_query_list() {
         String accessToken = "iNXPqArxPJd99jgna4Wxet6pexaYKqPCI2hkqBKNLKf0l0wM8wfQLXl9A4zKSRi3";
         try {
-            Client client = EhJerseyClient.getJerseyClient();
+            Client client = EhJerseyClient.getSSLTrustJerseyClient();
             WebTarget target = client.target(AGENT_LIST).queryParam("access_token", accessToken);
 
             logger.info("{}", target.getUri().toString());

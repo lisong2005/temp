@@ -83,5 +83,8 @@ public class LongTest {
         logger.info("{}", Long.toBinaryString(System.currentTimeMillis()));
         logger.info("{}", Long.toBinaryString(1L << 41));
         logger.info("{}", new Date(1L << 41));
+
+        logger.info("{}", Long.toBinaryString(192));
+        logger.info("{}", Long.toBinaryString(224));
     }
 }

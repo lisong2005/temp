@@ -115,15 +115,18 @@ public class EhJerseyClient implements EhealthConstants {
             TrustManager[] tm = new TrustManager[] { new X509TrustManager() {
 
                 public X509Certificate[] getAcceptedIssuers() {
+                    //logger.debug("xxxx ---- getAcceptedIssuers");
                     return null;
                 }
 
                 public void checkServerTrusted(X509Certificate[] chain,
                                                String authType) throws CertificateException {
+                    //logger.debug("checkServerTrusted {}, {}", authType, chain);
                 }
 
                 public void checkClientTrusted(X509Certificate[] chain,
                                                String authType) throws CertificateException {
+                    //logger.debug("checkClientTrusted {}, {}", authType, chain);
                 }
             } };
             SSLContext sslContext = SSLContext.getInstance(PROTOCOL);
@@ -152,27 +155,12 @@ public class EhJerseyClient implements EhealthConstants {
                 }
             };
 
-            TrustManager[] tm = new TrustManager[] { new X509TrustManager() {
-
-                public X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
-
-                public void checkServerTrusted(X509Certificate[] chain,
-                                               String authType) throws CertificateException {
-                }
-
-                public void checkClientTrusted(X509Certificate[] chain,
-                                               String authType) throws CertificateException {
-                }
-            } };
-
             KeyManagerFactory kmf = KeyManagerFactory.getInstance(CERT_TYPE);
             KeyStore ks = getKeyStore(keyStorePath, keyStorePwd);
             kmf.init(ks, keyStorePwd.toCharArray());
 
             SSLContext sslContext = SSLContext.getInstance(PROTOCOL);
-            sslContext.init(kmf.getKeyManagers(), tm, new SecureRandom());
+            sslContext.init(kmf.getKeyManagers(), null, new SecureRandom());
 
             return ClientBuilder.newBuilder().hostnameVerifier(verifier).sslContext(sslContext)
                 .withConfig(CLIENT_CONFIG).build();
