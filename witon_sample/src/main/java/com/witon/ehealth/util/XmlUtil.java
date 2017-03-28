@@ -69,6 +69,9 @@ public class XmlUtil {
             JAXBContext context = JAXBContext.newInstance(obj.getClass());
             Marshaller marshaller = context.createMarshaller();
 
+            // output pretty printed
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
             StringWriter sw = new StringWriter();
             marshaller.marshal(obj, sw);
             return sw.toString();
