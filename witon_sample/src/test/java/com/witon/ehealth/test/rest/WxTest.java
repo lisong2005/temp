@@ -27,11 +27,6 @@ public class WxTest extends BaseRestTest {
     public void test_client_hello1() {
         try {
 
-            String xml = "<xml>"
-                         // 
-                         + "<total_fee>4</total_fee>"
-                         // 
-                         + "</xml>";
             Client client = EhJerseyClient.getJerseyClient();
             WebTarget target = client.target(URL);
             String result = target.request()

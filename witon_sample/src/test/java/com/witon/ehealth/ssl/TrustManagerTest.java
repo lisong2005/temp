@@ -87,7 +87,7 @@ public class TrustManagerTest {
             WebTarget target = client.target("https://kyfw.12306.cn/otn/");
 
             String restResult = target.request().get(String.class);
-            logger.info("{}", restResult);
+            logger.info("{}", restResult.length());
 
         } catch (Exception e) {
             logger.error("", e);

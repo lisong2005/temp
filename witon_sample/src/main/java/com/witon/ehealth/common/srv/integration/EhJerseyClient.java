@@ -7,8 +7,13 @@ package com.witon.ehealth.common.srv.integration;
 import java.io.FileInputStream;
 import java.security.KeyStore;
 import java.security.SecureRandom;
+import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.security.cert.CertificateParsingException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.logging.Level;
 
 import javax.net.ssl.HostnameVerifier;
@@ -99,6 +104,29 @@ public class EhJerseyClient implements EhealthConstants {
         return ClientBuilder.newClient(CLIENT_CONFIG);
     }
 
+    static List<String> extractSubjectAlts(final X509Certificate cert, final int subjectType) {
+        Collection<List<?>> c = null;
+        try {
+            c = cert.getSubjectAlternativeNames();
+        } catch (final CertificateParsingException ignore) {
+        }
+        List<String> subjectAltList = null;
+        if (c != null) {
+            for (final List<?> aC : c) {
+                final List<?> list = aC;
+                final int type = ((Integer) list.get(0)).intValue();
+                if (type == subjectType) {
+                    final String s = (String) list.get(1);
+                    if (subjectAltList == null) {
+                        subjectAltList = new ArrayList<String>();
+                    }
+                    subjectAltList.add(s);
+                }
+            }
+        }
+        return subjectAltList;
+    }
+
     /**
      * 
      * @return
@@ -108,6 +136,16 @@ public class EhJerseyClient implements EhealthConstants {
 
             HostnameVerifier verifier = new HostnameVerifier() {
                 public boolean verify(String hostname, SSLSession session) {
+                    logger.info("{}", hostname);
+                    try {
+                        logger.info("{}", session.getCipherSuite());
+                        final Certificate[] certs = session.getPeerCertificates();
+                        final X509Certificate x509 = (X509Certificate) certs[0];
+                        logger.info("{}", x509.getSubjectAlternativeNames());
+                        // logger.info("{}", session.getPeerCertificates());
+                    } catch (Exception e) {
+                        logger.error("", e);
+                    }
                     return true;
                 }
             };
@@ -115,18 +153,18 @@ public class EhJerseyClient implements EhealthConstants {
             TrustManager[] tm = new TrustManager[] { new X509TrustManager() {
 
                 public X509Certificate[] getAcceptedIssuers() {
-                    //logger.debug("xxxx ---- getAcceptedIssuers");
+                    logger.debug("xxxx ---- getAcceptedIssuers");
                     return null;
                 }
 
                 public void checkServerTrusted(X509Certificate[] chain,
                                                String authType) throws CertificateException {
-                    //logger.debug("checkServerTrusted {}, {}", authType, chain);
+                    logger.debug("checkServerTrusted {}, {}", authType, chain);
                 }
 
                 public void checkClientTrusted(X509Certificate[] chain,
                                                String authType) throws CertificateException {
-                    //logger.debug("checkClientTrusted {}, {}", authType, chain);
+                    logger.debug("checkClientTrusted {}, {}", authType, chain);
                 }
             } };
             SSLContext sslContext = SSLContext.getInstance(PROTOCOL);

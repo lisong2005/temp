@@ -46,7 +46,8 @@
 		</property>
 	</bean>
 
-	<bean id="dbConfigProperties" class="com.witon.ehealth.util.conf.ext.WitPropertiesFactoryBean">
+	<bean id="dbConfigProperties"
+		class="com.witon.ehealth.util.conf.ext.WitPropertiesFactoryBean">
 		<property name="locations">
 			<list>
 				<value>#{extProperties.getProperty('db.config.file')}</value>
@@ -91,6 +92,12 @@
 		</property>
 		<property name="resourceLoaderPath" value="classpath:/META-INF/velocity/vms/" />
 	</bean>
+
+	<bean id="xxfreeMarkerConfiguration"
+		class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+		<property name="templateLoaderPath" value="classpath:/META-INF/freemarker/ftl/" />
+	</bean>
+
 
 
 

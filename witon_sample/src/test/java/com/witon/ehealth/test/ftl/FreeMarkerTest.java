@@ -36,7 +36,7 @@ public class FreeMarkerTest {
         logger.info("");
 
         try {
-            Configuration cfg = new Configuration(Configuration.VERSION_2_3_25);
+            Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
             cfg.setDirectoryForTemplateLoading(new File("E:/template/freemarker"));
             cfg.setDefaultEncoding("UTF-8");
             cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
