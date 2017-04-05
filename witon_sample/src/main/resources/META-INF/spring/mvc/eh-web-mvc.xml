@@ -67,6 +67,18 @@
 		</property>
 	</bean>
 
+
+	<!-- freemarker 静态类的配置位置 -->
+	<bean id="freemarkerStatic"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:META-INF/staticClass.properties" />
+	</bean>
+	<!-- freemarker 静态类的解析配置 -->
+	<bean id="freemarkerStaticModels" class="com.witon.ehealth.util.fm.FreemarkerStaticModels"
+		factory-method="getInstance">
+		<property name="staticModels" ref="freemarkerStatic" />
+	</bean>
+
 	<!-- http://www.cnblogs.com/someoneisyou/p/6646113.html -->
 
 	<bean id="freemarkerConfig"
@@ -174,7 +186,7 @@
 					<property name="order" value="0" />
 
 					<!-- freemarker 静态类配置 -->
-					<!-- <property name="attributesMap" ref="freemarkerStaticModels"/> -->
+					<property name="attributesMap" ref="freemarkerStaticModels"/>
 				</bean>
 
 				<bean
