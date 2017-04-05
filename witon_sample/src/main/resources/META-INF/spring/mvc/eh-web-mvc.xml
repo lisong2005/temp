@@ -67,7 +67,7 @@
 		</property>
 	</bean>
 
-<!-- http://www.cnblogs.com/someoneisyou/p/6646113.html -->
+	<!-- http://www.cnblogs.com/someoneisyou/p/6646113.html -->
 
 	<bean id="freemarkerConfig"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
@@ -85,7 +85,7 @@
 				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
 				<prop key="classic_compatible">true</prop>
 				<prop key="template_exception_handler">ignore</prop>
-				
+
 				<prop key="auto_import">templates/common.ftl as common</prop>
 			</props>
 		</property>
@@ -172,6 +172,9 @@
 					<!-- <property name="exposeSessionAttributes" value="true" /> -->
 					<!-- <property name="exposeSpringMacroHelpers" value="true" /> -->
 					<property name="order" value="0" />
+
+					<!-- freemarker 静态类配置 -->
+					<!-- <property name="attributesMap" ref="freemarkerStaticModels"/> -->
 				</bean>
 
 				<bean
