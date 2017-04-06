@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 
 /**
  * 
@@ -26,6 +27,7 @@ public class JsonUtil {
      */
     public static String convertObjToJson(Object obj) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JaxbAnnotationModule());
         return mapper.writeValueAsString(obj);
     }
 
@@ -42,6 +44,7 @@ public class JsonUtil {
                                                                          JsonMappingException,
                                                                          IOException {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JaxbAnnotationModule());
         return mapper.readValue(jsonStr, clazz);
     }
 }
