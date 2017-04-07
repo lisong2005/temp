@@ -73,7 +73,7 @@ public class TestRestService implements InitializingBean {
     final void init() {
         for (int i = 0; i < 3; i++) {
             Customer c = new Customer();
-            c.setName("John" + i);
+            c.setName("张三John" + i);
             c.setId(i);
             customers.put(c.getId(), c);
         }

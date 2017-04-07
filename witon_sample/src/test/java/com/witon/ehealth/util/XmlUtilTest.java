@@ -19,6 +19,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.witon.ehealth.common.base.BaseModel;
+
 /**
  * 
  * @author song.li@witontek.com
@@ -42,12 +44,15 @@ public class XmlUtilTest {
         obj.setXx(list.toArray(new SubEle[0]));
         obj.xx2 = obj.xx;
         logger.info("{}", XmlUtil.convertToXml(obj));
+
+        String xml = XmlUtil.convertToXml(obj);
+        logger.info("\n{}", XmlUtil.convertToObj(RootEle.class, xml));
     }
 
     @XmlType
     @XmlRootElement(name = "xml")
     @XmlAccessorType(XmlAccessType.FIELD)
-    static class RootEle {
+    static class RootEle extends BaseModel {
 
         @XmlElement(name = "xName")
         private String   name = "n";
@@ -121,8 +126,10 @@ public class XmlUtilTest {
 
     @XmlRootElement
     @XmlAccessorType(XmlAccessType.FIELD)
-    static class SubEle {
+    static class SubEle extends BaseModel {
+        @XmlElement(name = "sub_name")
         private String subName;
+        @XmlElement(name = "sub_code")
         private int    subCode;
 
         /**
