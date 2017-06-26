@@ -15,6 +15,9 @@
  */
 package io.netty.example.factorial;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
@@ -29,11 +32,15 @@ import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
  * the factorial of the specified integer.
  */
 public final class FactorialClient {
+    /**
+    * Logger for this class
+    */
+    private static final Logger logger = LoggerFactory.getLogger(FactorialClient.class);
 
     static final boolean SSL = System.getProperty("ssl") != null;
     static final String HOST = System.getProperty("host", "127.0.0.1");
     static final int PORT = Integer.parseInt(System.getProperty("port", "8322"));
-    static final int COUNT = Integer.parseInt(System.getProperty("count", "1000"));
+    static final int COUNT = Integer.parseInt(System.getProperty("count", "5"));
 
     public static void main(String[] args) throws Exception {
         // Configure SSL.
@@ -54,10 +61,13 @@ public final class FactorialClient {
 
             // Make a new connection.
             ChannelFuture f = b.connect(HOST, PORT).sync();
-
+            logger.info("xxxx");
+            
             // Get the handler instance to retrieve the answer.
             FactorialClientHandler handler =
                 (FactorialClientHandler) f.channel().pipeline().last();
+            
+            logger.info("xxxx--11111");
 
             // Print out the answer.
             System.err.format("Factorial of %,d is: %,d", COUNT, handler.getFactorial());

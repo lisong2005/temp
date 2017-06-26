@@ -15,6 +15,9 @@
  */
 package io.netty.example.discard;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -33,11 +36,16 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
  * Discards any incoming data.
  */
 public final class DiscardServer {
+    /**
+    * Logger for this class
+    */
+    private static final Logger logger = LoggerFactory.getLogger(DiscardServer.class);
 
-    static final boolean SSL = System.getProperty("ssl") != null;
-    static final int PORT = Integer.parseInt(System.getProperty("port", "8009"));
+    static final boolean        SSL    = System.getProperty("ssl") != null;
+    static final int            PORT   = Integer.parseInt(System.getProperty("port", "8009"));
 
     public static void main(String[] args) throws Exception {
+        logger.error("");
         // Configure SSL.
         final SslContext sslCtx;
         if (SSL) {
@@ -51,20 +59,22 @@ public final class DiscardServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup)
-             .channel(NioServerSocketChannel.class)
-             .handler(new LoggingHandler(LogLevel.INFO))
-             .childHandler(new ChannelInitializer<SocketChannel>() {
-                 @Override
-                 public void initChannel(SocketChannel ch) {
-                     ChannelPipeline p = ch.pipeline();
-                     if (sslCtx != null) {
-                         p.addLast(sslCtx.newHandler(ch.alloc()));
-                     }
-                     p.addLast(new DiscardServerHandler());
-                 }
-             });
+            b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+                .handler(new LoggingHandler(LogLevel.INFO))
+                .childHandler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    public void initChannel(SocketChannel ch) {
+                        ChannelPipeline p = ch.pipeline();
+                        if (sslCtx != null) {
+                            p.addLast(sslCtx.newHandler(ch.alloc()));
+                        }
+                        p.addLast(new DiscardServerHandler());
+                    }
+                });
 
+            
+            
+            logger.info("{}, {}", SSL, PORT);
             // Bind and start to accept incoming connections.
             ChannelFuture f = b.bind(PORT).sync();
 

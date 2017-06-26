@@ -15,6 +15,9 @@
  */
 package io.netty.example.http.helloworld;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -28,25 +31,35 @@ import static io.netty.handler.codec.http.HttpResponseStatus.*;
 import static io.netty.handler.codec.http.HttpVersion.*;
 
 public class HttpHelloWorldServerHandler extends ChannelInboundHandlerAdapter {
-    private static final byte[] CONTENT = { 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' };
+    /**
+    * Logger for this class
+    */
+    private static final Logger      logger         = LoggerFactory
+        .getLogger(HttpHelloWorldServerHandler.class);
 
-    private static final AsciiString CONTENT_TYPE = new AsciiString("Content-Type");
+    private static final byte[]      CONTENT        = { 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r',
+                                                        'l', 'd' };
+
+    private static final AsciiString CONTENT_TYPE   = new AsciiString("Content-Type");
     private static final AsciiString CONTENT_LENGTH = new AsciiString("Content-Length");
-    private static final AsciiString CONNECTION = new AsciiString("Connection");
-    private static final AsciiString KEEP_ALIVE = new AsciiString("keep-alive");
+    private static final AsciiString CONNECTION     = new AsciiString("Connection");
+    private static final AsciiString KEEP_ALIVE     = new AsciiString("keep-alive");
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
+        logger.info("", new Exception());
         ctx.flush();
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        logger.info(String.format("%s", msg), new Exception());
         if (msg instanceof HttpRequest) {
             HttpRequest req = (HttpRequest) msg;
 
             boolean keepAlive = HttpUtil.isKeepAlive(req);
-            FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, OK, Unpooled.wrappedBuffer(CONTENT));
+            FullHttpResponse response = new DefaultFullHttpResponse(HTTP_1_1, OK,
+                Unpooled.wrappedBuffer(CONTENT));
             response.headers().set(CONTENT_TYPE, "text/plain");
             response.headers().setInt(CONTENT_LENGTH, response.content().readableBytes());
 

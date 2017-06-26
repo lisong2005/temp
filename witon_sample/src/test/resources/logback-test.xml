@@ -507,6 +507,9 @@
 	<!-- ================================================== -->
 	<!-- ================================================== -->
 
+	<logger name="io.netty.example" level="${logging_level_default}" />
+	<logger name="io.netty" level="${logging_level_default}" />
+
 	<logger name="org.glassfish.jersey" level="${logging_level_test}" />
 	<logger name="com.witon.jersey.CLIENT" level="${logger.sql.level}" />
 

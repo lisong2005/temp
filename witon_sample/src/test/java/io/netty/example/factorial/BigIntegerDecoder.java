@@ -15,6 +15,9 @@
  */
 package io.netty.example.factorial;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -30,9 +33,15 @@ import java.util.List;
  * decoded into new BigInteger("42").
  */
 public class BigIntegerDecoder extends ByteToMessageDecoder {
+    /**
+    * Logger for this class
+    */
+    private static final Logger logger = LoggerFactory.getLogger(BigIntegerDecoder.class);
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
+        logger.info("{}", in.readableBytes());
+
         // Wait until the length prefix is available.
         if (in.readableBytes() < 5) {
             return;

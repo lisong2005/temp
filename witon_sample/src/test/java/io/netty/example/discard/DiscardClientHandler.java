@@ -15,6 +15,9 @@
  */
 package io.netty.example.discard;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -25,12 +28,17 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * Handles a client-side channel.
  */
 public class DiscardClientHandler extends SimpleChannelInboundHandler<Object> {
+    /**
+    * Logger for this class
+    */
+    private static final Logger   logger = LoggerFactory.getLogger(DiscardClientHandler.class);
 
-    private ByteBuf content;
+    private ByteBuf               content;
     private ChannelHandlerContext ctx;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
+        logger.info("", new Exception());
         this.ctx = ctx;
 
         // Initialize the message.
@@ -53,7 +61,7 @@ public class DiscardClientHandler extends SimpleChannelInboundHandler<Object> {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         // Close the connection when an exception is raised.
-        cause.printStackTrace();
+        logger.error(null, cause);
         ctx.close();
     }
 
