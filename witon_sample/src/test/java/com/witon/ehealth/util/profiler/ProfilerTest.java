@@ -43,7 +43,8 @@ public class ProfilerTest {
         logger.info("\n{}", Profiler.dump());
     }
 
-    private void method01() throws Exception {
+    @Test
+    public void method01() throws Exception {
         Profiler.enter("method01");
         logger.info("\n{}", Profiler.dump());
         Thread.sleep(500);

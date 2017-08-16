@@ -4,10 +4,9 @@
  */
 package com.witon.ehealth.java;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.junit.Test;
 
 /**
  * 
@@ -22,13 +21,12 @@ public class ClassLoaderTest {
 
     @Test
     public void test_001() {
-        logger.info("");
+        logger.info("", String.class.getResource(""));
         logger.info("{}", ClassLoader.getSystemClassLoader());
         logger.info("{}", ClassLoader.getSystemClassLoader().getParent());
         logger.info("{}", ClassLoader.getSystemClassLoader().getParent().getParent());
-        
+
         logger.info("{}", Thread.currentThread().getContextClassLoader());
-        
 
     }
 }
